@@ -9,10 +9,6 @@ class Api::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
-  def new
-    @category = Category.new
-  end
-
   def create
     @category = Category.new(category_params)
     if @category.save
@@ -33,6 +29,6 @@ end
    end
 
    def category_params
-    params.require(:user).permit(:name)
+    params.require(:category).permit(:name)
    end
 end
