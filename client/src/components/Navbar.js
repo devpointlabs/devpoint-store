@@ -21,7 +21,7 @@ const Navbar = (props) => {
       return (
         <>
           <Menu.Menu position='right'>
-            <Button class="ui button" size='tiny'>
+            <Button class="ui small button">
              <h3><Link to='/login'>
                 <Menu.Item
                   id='login'
@@ -30,7 +30,7 @@ const Navbar = (props) => {
                 />
               </Link></h3>
             </Button>
-            <Button class="ui button" size='tiny'>
+            <Button size="tiny">
               <h3><Link to='/register'>
                 <Menu.Item
                   id='register'
@@ -49,27 +49,28 @@ const Navbar = (props) => {
     <AuthConsumer>
       {auth => (
         <Menu pointing secondary>
-          <Button class="ui button">
+          <Button class="button">
             <Link to='/'>
-              <h3>
+              
+                <img alt="build diagram" src="https://www.devpointlabs.com/static/media/Beaker-purple.c898b23f.png" width="40" height="40"></img>
                 <Menu.Item
-                name='home'
+                // name='home'
                 id='home'
                 active={props.location.pathname === '/'}
               />
                 {/* <Icon name="home"></Icon> */}
-              </h3>
+            
             </Link>
           </Button>
 
-          <Button class="ui button" size='Big'>
+          <Button class="button">
             <Link to="/Cart">
               <Menu.Item>
                 <h3><Icon name="cart arrow down"></Icon>Cart</h3>
               </Menu.Item>
             </Link>
           </Button>
-          <Button class="ui button" size='Big'>
+          <Button class="button">
             <Menu.Item>
               <Link to="/Contact">
                 <h3><Icon name="phone"></Icon>Contact</h3>
