@@ -22,5 +22,3 @@ class Api::ItemVariantsController < ApplicationController
    def category_params
    end
 end
-
-end
