@@ -17,9 +17,9 @@ class Api::ItemVariantsController < ApplicationController
   end
 
   private
-   def set_category
+   def set_item_variant
    end
 
-   def category_params
+   def item_variant_params
    end
 end
