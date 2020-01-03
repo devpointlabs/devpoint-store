@@ -1,3 +1,5 @@
+import Cart from './components/Cart';
+import Contact from  './components/Contact'
 import React from 'react';
 import FetchUser from './components/FetchUser'
 import Home from './components/Home'
@@ -15,6 +17,8 @@ const App = () => (
       <Route exact path='/' component={Home} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/register' component={Register} />
+      <Route exact path="/Cart" component={Cart} />
+      <Route exact path="/Contact" component={Contact}/>
       <Route component={NoMatch} />
     </Switch>
   </FetchUser>
