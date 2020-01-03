@@ -3,12 +3,12 @@ import { AuthConsumer } from '../providers/AuthProvider'
 import { Button, Form, Segment, Header } from 'semantic-ui-react'
 
 class Login extends React.Component {
-  state= { email: '', password: '' }
+  state = { email: '', password: '' }
 
   handleSubmit = (e) => {
     e.preventDefault()
     const { email, password } = this.state
-    this.props.auth.handleLogin({ email, password}, this.props.history)
+    this.props.auth.handleLogin({ email, password }, this.props.history)
   }
 
   handleChange = (e) => {
@@ -24,21 +24,22 @@ class Login extends React.Component {
         <Header as='h1' textAlign='center'> Login </Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
-          label='E-mail'
-          autoFocus
-          required
-          name='email'
-          value={email}
-          placeholder='E-mail'
-          onChange={this.handleChange}
+            label='E-mail'
+            autoFocus
+            required
+            name='email'
+            value={email}
+            placeholder='E-mail'
+            onChange={this.handleChange}
           />
           <Form.Input
-          label='Password'
-          required
-          name='password'
-          value={password}
-          placeholder='Password'
-          onChange={this.handleChange}
+            size='large'
+            label='Password'
+            required
+            name='password'
+            value={password}
+            placeholder='Password'
+            onChange={this.handleChange}
           />
           <Segment textAlign='center' basic>
             <Button primary tpye='submit'> Submit </Button>
@@ -53,7 +54,7 @@ export default class ConnectedLogin extends React.Component {
   render() {
     return (
       <AuthConsumer>
-        { auth => <Login { ...this.props} auth={auth} />}
+        {auth => <Login {...this.props} auth={auth} />}
       </AuthConsumer>
     )
   }
