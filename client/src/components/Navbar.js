@@ -7,7 +7,7 @@ const Navbar = () => (
     <Button class="ui button" size='massive'>
       <Link to="/">
         <Menu.Item>
-          <h1>Home</h1>
+          <h1><Icon name='home'></Icon>Home</h1>
         </Menu.Item>
       </Link>
     </Button>
@@ -21,7 +21,7 @@ const Navbar = () => (
     <Button class="ui button" size='massive'>
     <Link to="/Contact">
       <Menu.Item>
-        <h1>Contact</h1>
+        <h1><Icon name="phone"></Icon>Contact</h1>
       </Menu.Item>
     </Link>
     </Button>
