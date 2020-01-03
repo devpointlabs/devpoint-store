@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Container, } from "semantic-ui-react";
 import { Route, } from 'react-router-dom';
 import Home from './components/Home';
 import Cart from './components/Cart';

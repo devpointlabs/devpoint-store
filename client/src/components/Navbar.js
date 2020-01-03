@@ -4,21 +4,27 @@ import React from "react";
 
 const Navbar = () => (
   <menu>
-    <Link to="/">
-      <Menu.Item>
-        <h3>Home</h3>
-      </Menu.Item>
-    </Link>
+    <Button class="ui button">
+      <Link to="/">
+        <Menu.Item>
+          <h3>Home</h3>
+        </Menu.Item>
+      </Link>
+    </Button>
+    <Button class="ui button">
     <Link to="/Cart">
       <Menu.Item>
         <h3>Cart</h3>
       </Menu.Item>
     </Link>
+    </Button>
+    <Button class="ui button">
     <Link to="/Contact">
       <Menu.Item>
         <h3>Contact</h3>
       </Menu.Item>
     </Link>
+    </Button>
   </menu>
 );
 
