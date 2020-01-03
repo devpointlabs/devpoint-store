@@ -1,4 +1,5 @@
 class Api::ItemVariantsController < ApplicationController
+  before_action :set_item
   
   def index
   end

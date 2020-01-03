@@ -3,7 +3,7 @@ class CreateItemVariants < ActiveRecord::Migration[6.0]
     create_table :item_variants do |t|
       t.string :color
       t.string :image
-      t.string :quantity
+      t.integer :quantity
       t.string :size
       t.belongs_to :item, null: false, foreign_key: true
 
