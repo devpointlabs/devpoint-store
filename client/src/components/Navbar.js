@@ -3,17 +3,15 @@ import { AuthConsumer } from '../providers/AuthProvider'
 import { Menu } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 
-class Navbar extends React.Component {
+const Navbar = (props) => {
 
-  rightNavItems = () => {
-    const { auth: {user, handleLogout }, location } = this.props
-
-    if (user) {
+  const rightNavItems = (auth) => {
+    if (auth.user) {
       return (
         <Menu.Menu position='right'>
           <Menu.Item
           name='logout'
-          onClick={ ()=> handleLogout(this.props.history) }
+          onClick={ ()=> auth.handleLogout(props.history) }
           />
         </Menu.Menu>
       )
@@ -24,14 +22,14 @@ class Navbar extends React.Component {
             <Menu.Item
             id='login'
             name='login'
-            active={location.pathname === '/login'}
+            active={props.location.pathname === '/login'}
             />
           </Link>
           <Link to='/register'>
             <Menu.Item
             id='register'
             name='register'
-            active={location.pathname === '/register'}
+            active={props.location.pathname === '/register'}
             />
           </Link>
         </Menu.Menu>
@@ -39,34 +37,22 @@ class Navbar extends React.Component {
       }
     }
 
-    render() {
       return (
-        <>
-        <Menu pointing secondary>
-          <Link to='/'>
-            <Menu.Item
-            name='home'
-            id='home'
-            active={this.props.location.pathname === '/'}
-            />
-          </Link>
-          { this.rightNavItems() }
-        </Menu>
-        </>
+        <AuthConsumer>
+          { auth => (
+            <Menu pointing secondary>
+              <Link to='/'>
+                <Menu.Item
+                name='home'
+                id='home'
+                active={props.location.pathname === '/'}
+                />
+              </Link>
+              { rightNavItems(auth) }
+            </Menu>
+        )}
+        </AuthConsumer>
       )
     }
-  }
 
-export class ConnectedNavbar extends React.Component {
-  render() {
-    return (
-      <AuthConsumer>
-        { auth =>
-          <Navbar {...this.props} auth={auth} />
-        }
-      </AuthConsumer>
-    )
-  }
-}
-
-export default withRouter(ConnectedNavbar)
+export default withRouter(Navbar)
