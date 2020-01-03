@@ -4,7 +4,7 @@ class ItemView extends React.Component {
   state = { }
 
   componentDidMount() {
-    axios.get('/api/items/${id  }')
+    axios.get('/api/items/${id}')
     .then( res => {
       this.setState
     })
