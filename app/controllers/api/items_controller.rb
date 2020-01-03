@@ -9,16 +9,13 @@ class Api::ItemsController < ApplicationController
   def create
   end
 
-  def update
-  end
-
   def destroy
   end
 
   private
-   def set_category
+   def set_item
    end
 
-   def category_params
+   def item_params
    end
 end
