@@ -1,27 +1,27 @@
 import { Link } from "react-router-dom";
-import { Menu, Button } from "semantic-ui-react";
+import { Menu, Button, Icon } from "semantic-ui-react";
 import React from "react";
 
 const Navbar = () => (
   <menu>
-    <Button class="ui button">
+    <Button class="ui button" size='massive'>
       <Link to="/">
         <Menu.Item>
-          <h3>Home</h3>
+          <h1>Home</h1>
         </Menu.Item>
       </Link>
     </Button>
-    <Button class="ui button">
+    <Button class="ui button" size='massive'>
     <Link to="/Cart">
       <Menu.Item>
-        <h3>Cart</h3>
+        <h1><Icon name="cart arrow down"></Icon>Cart</h1>
       </Menu.Item>
     </Link>
     </Button>
-    <Button class="ui button">
+    <Button class="ui button" size='massive'>
     <Link to="/Contact">
       <Menu.Item>
-        <h3>Contact</h3>
+        <h1>Contact</h1>
       </Menu.Item>
     </Link>
     </Button>
