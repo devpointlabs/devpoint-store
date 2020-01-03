@@ -1,5 +1,6 @@
 class Api::ItemVariantsController < ApplicationController
   before_action :set_item
+  before_action :set_item_variant
   
   def index
   end
@@ -17,6 +18,9 @@ class Api::ItemVariantsController < ApplicationController
   end
 
   private
+  def set_item
+  end
+
    def set_item_variant
    end
 

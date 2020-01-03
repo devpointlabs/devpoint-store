@@ -16,6 +16,9 @@ class Api::ItemsController < ApplicationController
    def set_item
    end
 
+   def set_category
+   end
+
    def item_params
    end
 end
