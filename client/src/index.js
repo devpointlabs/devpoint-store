@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-import './index.css';
-import 'semantic-ui-css/semantic.min.css';
+import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './providers/AuthProvider'
+import { initMiddleware } from 'devise-axios'
 
+initMiddleware()
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <AuthProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AuthProvider>,
   document.getElementById('root')
-);
-
+)

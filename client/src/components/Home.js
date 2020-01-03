@@ -1,9 +1,8 @@
-import React from "react";
+import React from 'react'
+import { Header } from 'semantic-ui-react'
 
 const Home = () => (
-  <center>
-    <h1>Home</h1>
-  </center>
-);
+  <Header as='h3' textAlign='center'> DevPoint Store </Header>
+)
 
-export default Home;
+export default Home
