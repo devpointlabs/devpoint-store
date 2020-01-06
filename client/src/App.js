@@ -3,7 +3,6 @@ import Contact from  './components/Contact'
 import React from 'react';
 import FetchUser from './components/FetchUser'
 import Home from './components/Home'
-import ItemView from './components/ItemView'
 import Login from './components/Login'
 import NoMatch from './components/NoMatch'
 import Navbar from './components/Navbar'
@@ -20,7 +19,6 @@ const App = () => (
       <Route exact path='/register' component={Register} />
       <Route exact path="/Cart" component={Cart} />
       <Route exact path="/Contact" component={Contact}/>
-      <Route exact path="/ItemView" component={ItemView}/>
       <Route component={NoMatch} />
     </Switch>
   </FetchUser>
