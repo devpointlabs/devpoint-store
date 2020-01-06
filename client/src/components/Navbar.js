@@ -1,7 +1,7 @@
 import React from 'react'
 import { AuthConsumer } from '../providers/AuthProvider'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, Button, Icon } from "semantic-ui-react";
+import { Menu, Icon, Button } from "semantic-ui-react";
 
 const Navbar = (props) => {
 
@@ -21,24 +21,21 @@ const Navbar = (props) => {
       return (
         <>
           <Menu.Menu position='right'>
-            <Button class="ui small button">
-             <h3><Link to='/login'>
-                <Menu.Item
-                  id='login'
-                  name='login'
-                  active={props.location.pathname === '/login'}
-                />
-              </Link></h3>
-            </Button>
-            <Button size="tiny">
-              <h3><Link to='/register'>
-                <Menu.Item
-                  id='register'
-                  name='register'
-                  active={props.location.pathname === '/register'}
-                />
-              </Link></h3>
-            </Button>
+            <Link to='/login'>
+              <Menu.Item
+                id='login'
+                name='login'
+                active={props.location.pathname === '/login'}
+              />
+            </Link>
+            
+            <Link to='/register'>
+              <Menu.Item
+                id='register'
+                name='register'
+                active={props.location.pathname === '/register'}
+              />
+            </Link>
           </Menu.Menu>
         </>
       )
