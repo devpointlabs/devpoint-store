@@ -5,7 +5,7 @@ import { Header } from 'semantic-ui-react'
 const NoMatch = () => (
   <Header as='h3' textAlign='center'>
     Page not found.
-    Go back to <Link to='/'> Shop </Link>
+    Continue <Link to='/'> shopping </Link>.
   </Header>
 )
 

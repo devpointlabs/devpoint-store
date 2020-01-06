@@ -1,7 +1,7 @@
 import React from 'react'
 import { AuthConsumer } from '../providers/AuthProvider'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, Button, Icon } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 
 const Navbar = (props) => {
 
@@ -28,7 +28,7 @@ const Navbar = (props) => {
                 active={props.location.pathname === '/login'}
               />
             </Link>
-            <Button>
+            
             <Link to='/register'>
               <Menu.Item
                 id='register'
@@ -36,7 +36,7 @@ const Navbar = (props) => {
                 active={props.location.pathname === '/register'}
               />
             </Link>
-            </Button>
+            
           </Menu.Menu>
         </>
       )
@@ -47,7 +47,6 @@ const Navbar = (props) => {
     <AuthConsumer>
       {auth => (
         <Menu pointing secondary>
-          <Button class="ui button" size='massive'>
           <Link to='/'>
             <Menu.Item
               name='home'
@@ -55,24 +54,20 @@ const Navbar = (props) => {
               active={props.location.pathname === '/'}
             />
           </Link>
-          </Button>
-
-          <Button class="ui button" size='massive'>
+          
             <Link to="/Cart">
               <Menu.Item>
                 <h1><Icon name="cart arrow down"></Icon>Cart</h1>
               </Menu.Item>
             </Link>
-          </Button>
-
-          <Button class="ui button" size='massive'>
+          
             <Link to="/Contact">
               <Menu.Item>
                 <h1><Icon name="phone"></Icon>Contact</h1>
               </Menu.Item>
             </Link>
             {rightNavItems(auth)}
-          </Button>
+          
 
         </Menu>
       )}
