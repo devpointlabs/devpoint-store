@@ -1,7 +1,7 @@
 import React from 'react'
 import { AuthConsumer } from '../providers/AuthProvider'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, Icon } from "semantic-ui-react";
+import { Menu, Icon, Button } from "semantic-ui-react";
 
 const Navbar = (props) => {
 
@@ -36,7 +36,6 @@ const Navbar = (props) => {
                 active={props.location.pathname === '/register'}
               />
             </Link>
-            
           </Menu.Menu>
         </>
       )
@@ -47,28 +46,35 @@ const Navbar = (props) => {
     <AuthConsumer>
       {auth => (
         <Menu pointing secondary>
-          <Link to='/'>
-            <Menu.Item
-              name='home'
-              id='home'
-              active={props.location.pathname === '/'}
-            />
-          </Link>
-          
+          <Button class="button">
+            <Link to='/'>
+              
+                <img alt="build diagram" src="https://www.devpointlabs.com/static/media/Beaker-purple.c898b23f.png" width="40" height="40"></img>
+                <Menu.Item
+                // name='home'
+                id='home'
+                active={props.location.pathname === '/'}
+              />
+                {/* <Icon name="home"></Icon> */}
+            
+            </Link>
+          </Button>
+
+          <Button class="button">
             <Link to="/Cart">
               <Menu.Item>
-                <h1><Icon name="cart arrow down"></Icon>Cart</h1>
+                <h3><Icon name="cart arrow down"></Icon>Cart</h3>
               </Menu.Item>
             </Link>
-          
-            <Link to="/Contact">
-              <Menu.Item>
-                <h1><Icon name="phone"></Icon>Contact</h1>
-              </Menu.Item>
-            </Link>
-            {rightNavItems(auth)}
-          
-
+          </Button>
+          <Button class="button">
+            <Menu.Item>
+              <Link to="/Contact">
+                <h3><Icon name="phone"></Icon>Contact</h3>
+              </Link>
+            </Menu.Item>
+          </Button>
+          {rightNavItems(auth)}
         </Menu>
       )}
     </AuthConsumer>

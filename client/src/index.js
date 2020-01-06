@@ -7,7 +7,6 @@ import { AuthProvider } from './providers/AuthProvider'
 import { initMiddleware } from 'devise-axios'
 import 'semantic-ui-css/semantic.min.css'
 
-
 initMiddleware()
 
 ReactDOM.render(
