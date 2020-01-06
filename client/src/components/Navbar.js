@@ -1,11 +1,7 @@
 import React from 'react'
 import { AuthConsumer } from '../providers/AuthProvider'
 import { Link, withRouter } from 'react-router-dom'
-<<<<<<< HEAD
-import { Menu, Button, Icon } from "semantic-ui-react";
-=======
 import { Menu, Icon, Button } from "semantic-ui-react";
->>>>>>> 23b3185457fe613244939b392b32514b3d154d0e
 
 const Navbar = (props) => {
 
@@ -25,7 +21,6 @@ const Navbar = (props) => {
       return (
         <>
           <Menu.Menu position='right'>
-<<<<<<< HEAD
             <Button class="ui small button">
              <h3><Link to='/login'>
                 <Menu.Item
@@ -44,23 +39,6 @@ const Navbar = (props) => {
                 />
               </Link></h3>
             </Button>
-=======
-            <Link to='/login'>
-              <Menu.Item
-                id='login'
-                name='login'
-                active={props.location.pathname === '/login'}
-              />
-            </Link>
-            
-            <Link to='/register'>
-              <Menu.Item
-                id='register'
-                name='register'
-                active={props.location.pathname === '/register'}
-              />
-            </Link>
->>>>>>> 23b3185457fe613244939b392b32514b3d154d0e
           </Menu.Menu>
         </>
       )
