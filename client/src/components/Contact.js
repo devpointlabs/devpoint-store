@@ -1,19 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Radio,
-  Select,
-  TextArea,
-} from 'semantic-ui-react'
-
-const options = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-  { key: 'o', text: 'Other', value: 'other' },
-]
+import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
 class Contact extends Component {
   state = {}
