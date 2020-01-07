@@ -1,5 +1,6 @@
 import StyleSheets from './components/StyleSheets'
-import Cart from './components/Cart';
+import Cart from './components/Cart'
+import CategoryView from './components/CategoryView'
 import CategoryForm from './components/CategoryForm'
 import Contact from  './components/Contact'
 import React from 'react';
@@ -25,6 +26,7 @@ const App = () => (
       <Route exact path="/Contact" component={Contact}/>
       <Route exact path="/CategoryForm" component={CategoryForm} />
       <Route exact path="/ItemView" component={ItemView}/>
+      <Route exact path="/categories/:id" component={CategoryView} />
       <Route component={NoMatch} />
     </Switch>
   </FetchUser>
