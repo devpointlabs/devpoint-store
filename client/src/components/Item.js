@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-import catshirt from './Images/catshirt.jpg'
+import gshirt from './Images/gshirt.jpg'
+import gshirtB from './Images/gshirt-b.jpg'
+import gshirtW from './Images/gshirt-w.jpg'
+import gshirtWB from './Images/gshirt-wb.jpg'
 import styled from 'styled-components'
 import { Container, Button, Image, Header, Dropdown, Form, TextArea } from 'semantic-ui-react'
 
@@ -49,13 +52,13 @@ class Item extends React.Component {
     <Container>
       <Grid>
         <div> 
-          <Image src={catshirt} /> {/* item.image */}
+          <Image src={gshirt} /> {/* item.image */}
           {/* may need additional styling here if adding images messes with format of page */}
           <Mini style={{ }}>
-          <div center> 1 </div> {/* placeholder fo additional images - clarke suggested a carousel? */}
-          <div> 2 </div>
-          <div> 3 </div>
-          <div> 4 </div>
+          <div center> <Image src={gshirt} /> </div> {/* placeholder fo additional images - clarke suggested a carousel? */}
+          <div> <Image src={gshirtB} /> </div>
+          <div> <Image src={gshirtW} /> </div>
+          <div> <Image src={gshirtWB} /></div>
           </Mini>
         </div>
         
@@ -98,9 +101,9 @@ const Grid = styled.div`
 
 const Mini = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 40px);
-  grid-template-rows: repeat(4, 20px);
-  margin: 20px 20px 20px 160px;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(4, 40px);
+  margin: 20px 20px 20px 70px;
 `
 
 const Desc = styled.div`
@@ -108,7 +111,7 @@ const Desc = styled.div`
   height: 200px;
   width: 600px;
   padding: 25px;
-  margin: 10px 10px 10px 250px;
+  margin: 100px 10px 10px 250px;
 `
 
 
