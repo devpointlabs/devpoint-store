@@ -12,6 +12,7 @@ const Navbar = (props) => {
           <Menu.Menu position='right' >
             <h3>
               <Menu.Item
+                style={btn}
                 name='logout'
                 onClick={() => auth.handleLogout(props.history)}
               />
