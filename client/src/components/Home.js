@@ -1,7 +1,6 @@
 import React from "react"
 import {  Grid, Image } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
-
 import tshirt from './Images/tshirt.png'
 import hoodie from './Images/hoodie.png'
 import hats from './Images/hats.png'
@@ -71,14 +70,7 @@ class Home extends React.Component {
   }
 }
        
-       
-
-
- 
-
-
-
-
+      
 export default Home
 
 
