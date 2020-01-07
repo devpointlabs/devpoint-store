@@ -7,7 +7,6 @@ import mug from './Images/mug.png'
 import hoodie from './Images/hoodie.png'
 import styled from 'styled-components'
 
-
  class Home extends React.Component {
   render() {
     return (

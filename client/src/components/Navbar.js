@@ -65,7 +65,7 @@ const Navbar = (props) => {
                     height="60"
                     width="100"
                   >
-                  </img>DevPoint Labs
+                  </img> .Shop()
                 </Menu.Item>
               </Link>
             </Button>
