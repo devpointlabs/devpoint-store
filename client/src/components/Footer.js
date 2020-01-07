@@ -1,18 +1,36 @@
 import React from 'react'
+import Devlogo from './Images/devlabLogo.png'
 
 class Footer extends React.Component {
   render() {
     return(
 
-      <div class="ui inverted black vertical footer segment" style={{ 
+      <div class="ui inverted vertical footer segment" style={{ 
         fontSize: "75px",
-        fontFamily: "Luminari, fantasy",
-        height: '80px',
-        display: 'flex',
+        
+        height: '60px',
+        backgroundColor: '#121212',
+        width:'100vw',
+        bottom:'0',
+       
+
+
+
+        
         }} >
-      <div class="ui center aligned container">
-      <h4 class="ui inverted header"> 2020 DevPoint Labs / 370 S. 300 E. SLC, Utah 84111c / 801-448-7240 / contact@devpointlabs.com </h4>
-      </div>
+        <div class="ui center aligned container">
+          <h4 class="ui center aligned inverted header" style={{color:'white'}}>370 S. 300 E. SLC, Utah 84111 / 801-448-7240 / contact@devpointlabs.com </h4>
+          <img src={Devlogo} 
+           style={{
+             height:'150px', 
+              display: 'flex',
+             position: 'fixed' ,
+             bottom: '0',
+             left: '0',
+             
+             
+             }} />
+        </div>
       </div>
     )
   }
