@@ -12,6 +12,7 @@ import NoMatch from './components/NoMatch'
 import Navbar from './components/Navbar'
 import Register from './components/Register'
 import { Switch, Route } from 'react-router-dom'
+import Footer from './components/Footer'
 
 const App = () => (
   <>
@@ -29,6 +30,8 @@ const App = () => (
       <Route component={NoMatch} />
     </Switch>
   </FetchUser>
+  <br />
+  <Footer />
   </>
 )
 
