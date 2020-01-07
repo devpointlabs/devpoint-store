@@ -10,7 +10,7 @@ class ItemForm extends React.Component {
     if (id && category_id)
       axios.get(`/api/departments/${category_id}/items/${id}`)
         .then(res => {
-          const { name, description, price, size } = res.data
+          const { name, desc, price, size } = res.data
           this.setState({ name, desc, price, size })
         })
         .catch(err => {
