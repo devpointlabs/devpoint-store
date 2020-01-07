@@ -18,7 +18,7 @@ class Home extends React.Component {
     <Link to={`ItemView`}>
         <Image src={tshirt}
         style={{
-          height: '350px',
+          height: '500px',
           width: '1200px',
           boxShadow: '10px 10px 5px grey',
           display: 'block',
@@ -34,8 +34,8 @@ class Home extends React.Component {
         <Link to={`ItemView`}>
             <Image src={hats}
               style={{
-               height: '400px',
-               width: '500px',
+               height: '500px',
+               width: '600px',
                 boxShadow: '10px 10px 5px grey',
                }} />
           </Link>
@@ -44,8 +44,8 @@ class Home extends React.Component {
         <Link to={`ItemView`}>
           <Image src={hoodie}
             style={{
-              height: '400px',
-              width: '500px',
+              height: '500px',
+              width: '600px',
               boxShadow: '10px 10px 5px grey',
             }} />
             </Link>
@@ -57,8 +57,8 @@ class Home extends React.Component {
         <Link to={`ItemView`}>
           <Image src={stickers}
           style={{
-            height: '400px',
-            width: '400vw',
+            height: '500px',
+            width: '600px',
             boxShadow: '10px 10px 5px grey',
           }}  />
           </Link>
