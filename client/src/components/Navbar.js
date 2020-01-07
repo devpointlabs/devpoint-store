@@ -48,7 +48,7 @@ const Navbar = (props) => {
         <Menu pointing secondary>
           <Button class="button">
             <Link to='/'>
-              
+
                 <img alt="build diagram" src="https://www.devpointlabs.com/static/media/Beaker-purple.c898b23f.png" width="40" height="40"></img>
                 <Menu.Item
                 // name='home'
