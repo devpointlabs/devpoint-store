@@ -1,5 +1,5 @@
 import React from "react"
-import {  Card, Image, Header } from 'semantic-ui-react'
+import {  Card, Image, Header, Button, } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import shirt from './Images/shirt.png'
 import hat from './Images/hat.png'
@@ -52,7 +52,7 @@ import styled from 'styled-components'
 
           
           <Card.Content>
-              
+              <link to="ItemView"></link>
           T-Shirt
 
           </Card.Content>
@@ -107,7 +107,6 @@ import styled from 'styled-components'
           <Card.Content extra>
             $15
           </Card.Content>
-
         </Card>
         </Link>
 
