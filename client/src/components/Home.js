@@ -6,238 +6,240 @@ import hat from './Images/hat.png'
 import mug from './Images/mug.png'
 import hoodie from './Images/hoodie.png'
 import styled from 'styled-components'
+import ItemForm from './ItemForm'
 
 
  class Home extends React.Component {
   render() {
     return (
-      <Page>
+      // <Page>
 
-      <Header style={{
-                fontSize: "75px",
-                fontFamily: "Luminari, fantasy",
-                textShadow: "2px 3px #3299a8",
-                height: '80px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                position:'absolute, center',
-                color: '#e0d1b8',
-              }}>
+      // <Header style={{
+      //           fontSize: "75px",
+      //           fontFamily: "Luminari, fantasy",
+      //           textShadow: "2px 3px #3299a8",
+      //           height: '80px',
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //           position:'absolute, center',
+      //           color: '#e0d1b8',
+      //         }}>
 
-      Swag
+      // Swag
 
         
 
-        </Header>
+      //   </Header>
 
-      <br/>
-      <br/>
-      <br/>
-      <>
-      <Card.Group itemsPerRow="5">
-        <Link to={`/ItemView`}>
-        <Card style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{
-                  height: '320px',
-                  width: '300px',
-                }}
+      // <br/>
+      // <br/>
+      // <br/>
+      // <>
+      // <Card.Group itemsPerRow="5">
+      //   <Link to={`/ItemView`}>
+      //   <Card style={{
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //         }}>
+      //         <Image
+      //           style={{
+      //             height: '320px',
+      //             width: '300px',
+      //           }}
               
-            Image src={shirt} alt="Shirt" />
+      //       Image src={shirt} alt="Shirt" />
 
           
-          <Card.Content>
+      //     <Card.Content>
               
-          T-Shirt
+      //     T-Shirt
 
-          </Card.Content>
-          <Card.Content extra>
-            $25
-          </Card.Content>
+      //     </Card.Content>
+      //     <Card.Content extra>
+      //       $25
+      //     </Card.Content>
 
-        </Card>
-        </Link>
+      //   </Card>
+      //   </Link>
 
-        <Link to={`/ItemView`}>
-        <Card style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{
-                  height: '320px',
-                  width: '300px',
-                }}
+      //   <Link to={`/ItemView`}>
+      //   <Card style={{
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //         }}>
+      //         <Image
+      //           style={{
+      //             height: '320px',
+      //             width: '300px',
+      //           }}
               
-            Image src={hat} alt="Hat" />
-          <Card.Content>
-            Hat
+      //       Image src={hat} alt="Hat" />
+      //     <Card.Content>
+      //       Hat
 
-          </Card.Content>
-          <Card.Content extra>
-            $25
-          </Card.Content>
+      //     </Card.Content>
+      //     <Card.Content extra>
+      //       $25
+      //     </Card.Content>
 
-        </Card>
-        </Link>
+      //   </Card>
+      //   </Link>
 
-        <Link to={`/ItemView`}>
-        <Card style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{
-                  height: '320px',
-                  width: '300px',
-                }}
+      //   <Link to={`/ItemView`}>
+      //   <Card style={{
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //         }}>
+      //         <Image
+      //           style={{
+      //             height: '320px',
+      //             width: '300px',
+      //           }}
               
-            Image src={mug} alt="Mug" />
-          <Card.Content>
-          Mug
+      //       Image src={mug} alt="Mug" />
+      //     <Card.Content>
+      //     Mug
 
-          </Card.Content>
-          <Card.Content extra>
-            $15
-          </Card.Content>
+      //     </Card.Content>
+      //     <Card.Content extra>
+      //       $15
+      //     </Card.Content>
 
-        </Card>
-        </Link>
+      //   </Card>
+      //   </Link>
 
 
-        <Link to={`/ItemView`}>
-        <Card style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{
-                  height: '320px',
-                  width: '300px',
-                }}
+      //   <Link to={`/ItemView`}>
+      //   <Card style={{
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //         }}>
+      //         <Image
+      //           style={{
+      //             height: '320px',
+      //             width: '300px',
+      //           }}
               
-            Image src={hoodie} alt="Hoodie" />
-          <Card.Content>
-            Hoodie
+      //       Image src={hoodie} alt="Hoodie" />
+      //     <Card.Content>
+      //       Hoodie
 
-          </Card.Content>
-          <Card.Content extra>
-            $50
-          </Card.Content>
+      //     </Card.Content>
+      //     <Card.Content extra>
+      //       $50
+      //     </Card.Content>
 
-        </Card>
-        </Link>
-        <Link to={`/ItemView`}>
-        <Card style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{
-                  height: '320px',
-                  width: '300px',
-                }}
+      //   </Card>
+      //   </Link>
+      //   <Link to={`/ItemView`}>
+      //   <Card style={{
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //         }}>
+      //         <Image
+      //           style={{
+      //             height: '320px',
+      //             width: '300px',
+      //           }}
               
-            Image src={shirt} alt="Shirt" />
-          <Card.Content>
-          T-Shirt
+      //       Image src={shirt} alt="Shirt" />
+      //     <Card.Content>
+      //     T-Shirt
 
-          </Card.Content>
-          <Card.Content extra>
-            $25
-          </Card.Content>
+      //     </Card.Content>
+      //     <Card.Content extra>
+      //       $25
+      //     </Card.Content>
 
-        </Card>
-        </Link>
+      //   </Card>
+      //   </Link>
 
-        <Link to={`/ItemView`}>
-        <Card style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{
-                  height: '320px',
-                  width: '300px',
-                }}
+      //   <Link to={`/ItemView`}>
+      //   <Card style={{
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //         }}>
+      //         <Image
+      //           style={{
+      //             height: '320px',
+      //             width: '300px',
+      //           }}
               
-            Image src={hat} alt="Hat" />
-          <Card.Content>
-            Hat
+      //       Image src={hat} alt="Hat" />
+      //     <Card.Content>
+      //       Hat
 
-          </Card.Content>
-          <Card.Content extra>
-            $25
-          </Card.Content>
+      //     </Card.Content>
+      //     <Card.Content extra>
+      //       $25
+      //     </Card.Content>
 
-        </Card>
-        </Link>
+      //   </Card>
+      //   </Link>
 
-        <Link to={`/ItemView`}>
+      //   <Link to={`/ItemView`}>
 
-        <Card style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{
-                  height: '320px',
-                  width: '300px',
-                }}
+      //   <Card style={{
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //         }}>
+      //         <Image
+      //           style={{
+      //             height: '320px',
+      //             width: '300px',
+      //           }}
               
-            Image src={mug} alt="Mug" />
-          <Card.Content>
-          Mug
+      //       Image src={mug} alt="Mug" />
+      //     <Card.Content>
+      //     Mug
 
-          </Card.Content>
-          <Card.Content extra>
-            $15
-          </Card.Content>
+      //     </Card.Content>
+      //     <Card.Content extra>
+      //       $15
+      //     </Card.Content>
 
-        </Card>
-        </Link>
+      //   </Card>
+      //   </Link>
 
-        <Link to={`/ItemView`}>
+      //   <Link to={`/ItemView`}>
 
-        <Card style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{
-                  height: '320px',
-                  width: '300px',
-                }}
+      //   <Card style={{
+      //           display: 'flex',
+      //           justifyContent: 'center',
+      //           alignItems: 'center',
+      //         }}>
+      //         <Image
+      //           style={{
+      //             height: '320px',
+      //             width: '300px',
+      //           }}
               
-            Image src={hoodie} alt="Hoodie" />
-          <Card.Content>
-            Hoodie
+      //       Image src={hoodie} alt="Hoodie" />
+      //     <Card.Content>
+      //       Hoodie
 
-          </Card.Content>
-          <Card.Content extra>
-            $50
-          </Card.Content>
+      //     </Card.Content>
+      //     <Card.Content extra>
+      //       $50
+      //     </Card.Content>
 
-        </Card>
-        </Link>
-      </Card.Group>
+      //   </Card>
+      //   </Link>
+      // </Card.Group>
 
       
 
-      </>
-      </Page>
+      // </>
+      // </Page>
+      <ItemForm/>
     )
   }
 }
