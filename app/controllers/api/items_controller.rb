@@ -32,8 +32,9 @@ class Api::ItemsController < ApplicationController
   end
 
   private
+
    def set_category
-    @category = Category.find(params[:category_id]
+    @category = Category.find(params[:category_id])
    end
 
    def set_item
