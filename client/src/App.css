@@ -1,3 +1,5 @@
+@import 'index.css';
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,38 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.ui.button{
+  background: white !important;
+  border: none;
+  box-shadow: 1px 1px 0 rgb(255, 255, 255) !important;
+}
+.ui.menu{
+  background: white !important;
+  border: none !important;
+  border-top-color: rgb(255, 255, 255);
+  border-top-style: none;
+  border-top-width: none;
+  border-right-color: rgb(255, 255, 255);
+  border-right-style: none;
+  border-right-width: none;
+  border-bottom-color: rgba(34, 36, 38, 0.15);
+  border-bottom-style: none;
+  border-bottom-width: none;
+  border-left-color: rgb(255, 255, 255);
+  border-left-style: none;
+  border-left-width: none;
+  border-image-source: none;
+  border-image-slice: none;
+  border-image-width: none;
+  border-image-outset: none;
+  border-image-repeat: none;
+  box-shadow: 1px 1px 0 rgb(255, 255, 255) !important;
+  border-color: whitesmoke !important;
+}
+
+.ui.menu .item:before {
+  position: none !important;
+  box-shadow: 1px 1px 0 rgb(255, 255, 255) !important;
 }

@@ -9,11 +9,13 @@ const Navbar = (props) => {
     if (auth.user) {
       return (
         <>
-          <Menu.Menu position='right'>
-            <Menu.Item
-              name='logout'
-              onClick={() => auth.handleLogout(props.history)}
-            />
+          <Menu.Menu position='right' >
+            <h3>
+              <Menu.Item
+                name='logout'
+                onClick={() => auth.handleLogout(props.history)}
+              />
+            </h3>
           </Menu.Menu>
         </>
       )
@@ -21,65 +23,86 @@ const Navbar = (props) => {
       return (
         <>
           <Menu.Menu position='right'>
-            <Link to='/login'>
-              <Menu.Item
-                id='login'
-                name='login'
-                active={props.location.pathname === '/login'}
-              />
-            </Link>
-            
-            <Link to='/register'>
-              <Menu.Item
-                id='register'
-                name='register'
-                active={props.location.pathname === '/register'}
-              />
-            </Link>
+            <Button style={otherBTN}>
+              <Link to='/login'>
+                <h3>
+                  <Menu.Item
+                    id='login'
+                    name='login'
+                    active={props.location.pathname === '/login'} />
+                </h3>
+              </Link>
+            </Button>
+
+            <Button style={otherBTN}>
+              <Link to='/register' >
+                <h3>
+                  <Menu.Item
+                    id='register'
+                    name='register'
+                    active={props.location.pathname === '/register'}
+                  />
+                </h3>
+              </Link>
+            </Button>
+
           </Menu.Menu>
         </>
       )
     }
   }
-
   return (
     <AuthConsumer>
       {auth => (
-        <Menu pointing secondary>
-          <Button class="button">
-            <Link to='/'>
-
-                <img alt="build diagram" src="https://www.devpointlabs.com/static/media/Beaker-purple.c898b23f.png" width="40" height="40"></img>
-                <Menu.Item
-                // name='home'
-                id='home'
-                active={props.location.pathname === '/'}
-              />
-                {/* <Icon name="home"></Icon> */}
-            
-            </Link>
-          </Button>
-
-          <Button class="button">
-            <Link to="/Cart">
-              <Menu.Item>
-                <h3><Icon name="cart arrow down"></Icon>Cart</h3>
-              </Menu.Item>
-            </Link>
-          </Button>
-          <Button class="button">
-            <Menu.Item>
-              <Link to="/Contact">
-                <h3><Icon name="phone"></Icon>Contact</h3>
+        <Menu>
+          <div class="btn">
+            <Button>
+              <Link to="/">
+                <Menu.Item style={btn}>
+                  <img
+                    src="https://media.licdn.com/dms/image/C510BAQEaODeG-ziDdQ/company-logo_200_200/0?e=2159024400&v=beta&t=aHik_r9QdKRvn_OC_Ng1e-O0G9f58i-DiHsgmu81FhI"
+                    height="60"
+                    width="100"
+                  >
+                  </img>DevPoint Labs
+                </Menu.Item>
               </Link>
-            </Menu.Item>
-          </Button>
-          {rightNavItems(auth)}
+            </Button>
+          </div>
+          <Menu.Menu position="right" >
+            <Button style={otherBTN}>
+              <Link to="/Cart">
+                <Menu.Item >
+                  <h3>Cart</h3>
+                </Menu.Item>
+              </Link>
+            </Button>
+            <Button style={otherBTN}>
+              <Link to="/Contact">
+                <Menu.Item>
+                  <h3>Contact</h3>
+                </Menu.Item>
+              </Link>
+            </Button>
+            {rightNavItems(auth)}
+          </Menu.Menu>
         </Menu>
       )}
     </AuthConsumer>
   )
 }
 
+const btn = {
+  background: 'white',
+  paddingLeft: '40px',
+  paddingTop: '45px',
+  paddingColor: 'white',
+  paddingRight: '25px',
+  paddingBottom: '20px'
+}
+
+const otherBTN = {
+  paddingTop: '45px',
+}
 export default withRouter(Navbar)
 
