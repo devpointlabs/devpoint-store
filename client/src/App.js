@@ -1,4 +1,3 @@
-import StyleSheets from './components/StyleSheets'
 import Cart from './components/Cart';
 import CategoryForm from './components/CategoryForm'
 import Contact from  './components/Contact'
