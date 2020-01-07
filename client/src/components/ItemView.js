@@ -29,7 +29,7 @@ const sizeOptions = [
   }
 ]
 
-class Item extends React.Component {
+class ItemView extends React.Component {
   state = { item: {} }
 
   componentDidMount() {
