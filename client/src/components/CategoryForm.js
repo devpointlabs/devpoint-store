@@ -1,15 +1,15 @@
-import React from 'react';
-import axios from "axios";
-import { Form, Header, Button, } from "semantic-ui-react";
+import React from 'react'
+import axios from "axios"
+import { Form, Header, Button, } from "semantic-ui-react"
 
 class CategoryForm extends React.Component {
-  state = { name: "", categories: [ {id: 1, name: "T-Shirts"}, {id: 2, name: "Hoodies"},  {id: 3, name: "Hats"}, {id:4, name:"Stickers"} ]  }
+  state = { name: "", image: "", categories: []  }
 
 // pull any other added categories
   componentDidMount() {
     axios.get("/api/categories")
     .then( res => {
-      this.setState({ categories: [...this.state.categories, ...res.data], });
+      this.setState({ categories: [ res.data], });
     })
     .catch( err => {
       console.log(err)
@@ -19,8 +19,8 @@ class CategoryForm extends React.Component {
 // on submit
   handleSubmit = (e) => {
     e.preventDefault();
-    this.addItem(this.state.name)
-    this.setState({ name: "", })
+    this.addItem(this.state.name, this.state.image)
+    this.setState({ name: "", image: "", })
   }
 
   handleChange = (e) => {
@@ -28,8 +28,8 @@ class CategoryForm extends React.Component {
   }
 
   // add to API and reset state
-  addItem = (name) => {
-    axios.post('/api/categories', { name })
+  addItem = (name, image) => {
+    axios.post('/api/categories', { name, image })
     .then( res => {
         const { categories, } = this.state
         this.setState({ categories: [...categories, res.data], })
@@ -70,6 +70,14 @@ class CategoryForm extends React.Component {
           placeholder="Add A Category"
           required
           value={this.state.name}
+          onChange={this.handleChange}
+        />
+
+       <Form.Input
+          label="Image"
+          placeholder="Add a URL"
+          required
+          value={this.state.image}
           onChange={this.handleChange}
         />
           <Form.Button color="blue">Submit</Form.Button>
