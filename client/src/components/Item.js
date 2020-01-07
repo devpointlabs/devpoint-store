@@ -53,9 +53,9 @@ class Item extends React.Component {
       <Grid>
         <div> 
           <Image src={gshirt} /> {/* item.image */}
-          {/* may need additional styling here if adding images messes with format of page */}
+          {/* TODO: // change main display on click */}
           <Mini style={{ }}>
-          <div center> <Image src={gshirt} /> </div> {/* placeholder fo additional images - clarke suggested a carousel? */}
+          <div center> <Image src={gshirt} /> </div> {/* placeholder for db images - clarke suggested a carousel? */}
           <div> <Image src={gshirtB} /> </div>
           <div> <Image src={gshirtW} /> </div>
           <div> <Image src={gshirtWB} /></div>
@@ -70,13 +70,13 @@ class Item extends React.Component {
             placeholder='Select Size'
             selection
             options={sizeOptions}
+            style={{ backgroundColor: '#ececec' }}
             />
-          <Header as='h3'> Quantity </Header> {/* item.quantity */}
+          <Header as='h3'> Quantity </Header> {/* item.quantity ? */}
             <Form>
-              <TextArea style={{ height: '50px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
+              <TextArea style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
             </Form>
-          {/* TODO: style button */}
-          <Button basic color='black'> Add to Cart </Button>
+          <Button size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}> Add to Cart </Button>
         </div>
       </Grid>
 
