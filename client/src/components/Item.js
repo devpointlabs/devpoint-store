@@ -4,7 +4,7 @@ import catshirt from './Images/catshirt.jpg'
 import styled from 'styled-components'
 import { Container, Button, Image, Header, Dropdown, Form, TextArea } from 'semantic-ui-react'
 
-// TODO: make responsive ( faith has a specific idea for this please let me do it )
+// TODO: make responsive
 
 // below are size options to make demo work, will need to change for real data later
 
@@ -40,10 +40,9 @@ class Item extends React.Component {
     })
 }
 
-
-render() {
-  // const { match: { params: { id, department_id } } } = this.props
-  // const { name, description, price } = this.state.item
+  render() {
+    // const { match: { params: { id, category_id } } } = this.props
+    // const { name, description, price } = this.state.item
 
   return(
     <>
@@ -53,7 +52,7 @@ render() {
           <Image src={catshirt} /> {/* item.image */}
           {/* may need additional styling here if adding images messes with format of page */}
           <Mini style={{ }}>
-          <div center> 1 </div> {/* additional images - clarke suggested a carousel? */}
+          <div center> 1 </div> {/* placeholder fo additional images - clarke suggested a carousel? */}
           <div> 2 </div>
           <div> 3 </div>
           <div> 4 </div>
@@ -64,26 +63,25 @@ render() {
           <Header as='h1'> Neat Shirt </Header> {/* item.name */}
           <Header as='h2' style={{ color: '#A9A9A9' }}> $25.00 </Header> {/* item.price */}
           <Header as='h3'> Size </Header> {/* item.size */}
-          <Dropdown
-          placeholder='Select Size'
-          selection
-          options={sizeOptions}
-          />
+            <Dropdown
+            placeholder='Select Size'
+            selection
+            options={sizeOptions}
+            />
           <Header as='h3'> Quantity </Header> {/* item.quantity */}
-          <Form>
-            <TextArea style={{ height: '50px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
-          </Form>
+            <Form>
+              <TextArea style={{ height: '50px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
+            </Form>
           {/* TODO: style button */}
           <Button basic color='black'> Add to Cart </Button>
         </div>
-        </Grid>
-      
+      </Grid>
+
       <Desc>
         {/* <p> { item.desc } </p> */}
-        <p> When a black cat crosses your path, nothing happens. It's </p>
+        <p> When a black cat crosses your path, nothing happens. It's just a cat.</p>
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat enim vitae lectus consectetur laoreet. Maecenas in massa vel leo efficitur mattis sed eget massa. Pellentesque posuere, nibh non tempus egestas, erat nisi interdum elit, vitae eleifend elit nunc eget massa. Proin et urna ut risus gravida euismod non vitae nisl. </p>
       </Desc>
-
     </Container>
     </>
     )
@@ -92,16 +90,16 @@ render() {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 450px 450px;
-  grid-template-rows: 225px 225px;
+  grid-template-columns: repeat(2, 450px);
+  grid-template-rows: repeat(2, 225px);
   grid-gap: 50px;
   margin: 50px 25px 25px 50px;
 `
 
 const Mini = styled.div`
   display: grid;
-  grid-template-columns: 40px 40px 40px 40px;
-  grid-template-rows: 20px 20px 20px 20px;
+  grid-template-columns: repeat(4, 40px);
+  grid-template-rows: repeat(4, 20px);
   margin: 20px 20px 20px 160px;
 `
 
