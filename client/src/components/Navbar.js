@@ -1,12 +1,58 @@
-import React from 'react'
+import React, { useState, } from 'react'
 import { AuthConsumer } from '../providers/AuthProvider'
 import { Link, withRouter } from 'react-router-dom'
-import { Button, Icon } from "semantic-ui-react";
+import { Button, Icon, Dropdown, } from "semantic-ui-react";
 import '../App.css';
 import styled from "styled-components";
 
 
 const Navbar = (props) => {
+  const [selection, setSelection] = useState('')
+
+  const menuOptions = [
+    { key: 1, text: 'Contact', value: 'Contact' },
+    { key: 2, text: 'Register', value: 'Register' },
+    { key: 3, text: 'Login', value: 'Login' },
+    { key: 1, text: 'Hats', value: 4 },
+    { key: 2, text: 'Stickers', value: 5 },
+    { key: 2, text: 'Clarks', value: 5 },
+  ]
+
+  const handleChange = (e, { value, }, ) => setSelection(value)
+
+  const userOptions = () => {
+    switch (selection) {
+      case 'Contact':
+        setSelection('')
+        props.history.push('/Contact')
+        break;
+      case "Register":
+        setSelection('')
+        props.history.push('/Register')
+        break;
+      case "Login":
+        setSelection('')
+        props.history.push('/login')
+        break;
+      // case "":
+      //   setSelection('')
+      //   props.history.push('/')
+      //   break;
+      // case "":
+      //   setSelection('')
+      //   props.history.push('/')
+      //   break;
+      // case "":
+      //   setSelection('')
+      //   props.history.push('/')
+      //   break;
+      // case "":
+      //   setSelection('')
+      //   props.history.push('/')
+      //   break;
+    }
+  }
+
 
   const rightNavItems = (auth) => {
     if (auth.user) {
@@ -67,14 +113,16 @@ const Navbar = (props) => {
                     width="90"
                     class="navbar"
                   >
-                  </img> .Shop()
+                  </img> .Shop( )
                 </div>
               </Link>
             </Button>
           </div>
           <div>
             <div>
-              <Button style={cust}>
+              {/* <Button style={cust}>
+
+
                 <Link to="/Contact">
                   <div>
                     <h3>Contact</h3>
@@ -97,20 +145,48 @@ const Navbar = (props) => {
                       active={props.location.pathname === '/login'} />
                     Login</h3>
                 </Link>
+              </Button> */}
+              <Button style={cust}>
+                <Link to=' '>
+                  <h3>
+                    <Nav
+                    //what are you adding on this button 
+                    />
+                    All products</h3>
+                </Link>
               </Button>
-              <Button>
-                <h4>
-                  <Icon
-                    name="caret down">
-                  </Icon>
-                  More
-                </h4>
+              <Button style={cust}>
+                <Link to=' '>
+                  <h3>
+                    <Nav
+                    //what are you adding on this button 
+                    />
+                    T-Shirts</h3>
+                </Link>
               </Button>
+              <Button style={cust}>
+                <Link to=' '>
+                  <h3>
+                    <Nav
+                    //what are you adding on this button 
+                    />
+                    Hoodies</h3>
+                </Link>
+              </Button>
+              <Dropdown
+                as="h3"
+                placeholder='More'
+                options={menuOptions}
+                onChange={handleChange}
+                value={selection}
+                simple item
+              />
+              {selection != '' ? userOptions() : null}
               <Button style={cust}>
                 <Link to="/Cart">
                   <h3>
                     <Icon name='cart arrow down'>
-                      Cart</Icon>
+                    </Icon>Cart
                   </h3>
                 </Link>
               </Button>
@@ -162,6 +238,15 @@ const home = {
 const left = {
   paddingleft: '350',
 
+}
+
+class Rend extends React.Component {
+  valueRender = (element, value) => {
+    if (!value) {
+      return element;
+    }
+    const child = []
+  }
 }
 
 
