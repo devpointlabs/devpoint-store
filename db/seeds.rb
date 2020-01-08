@@ -1,7 +1,63 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+1.times do
+  cat = Category.create(
+    name: 'T-shirts',
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519422/shirtimage_lsexnh.jpg'
+  )
+
+  5.times do
+    Item.create(
+      name: Faker::Lorem.words(number: 1),
+      price: 25.00,
+      desc: Faker::Lorem.paragraph(sentence_count: 3),
+      category_id: cat.id
+    )
+  end
+end
+
+1.times do
+  cat = Category.create(
+    name: 'Hats',
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519429/hatimage_jqvmhz.jpg'
+  )
+
+  5.times do
+    Item.create(
+      name: Faker::Lorem.words(number: 1),
+      price: 15.00,
+      desc: Faker::Lorem.paragraph(sentence_count: 3),
+      category_id: cat.id
+    )
+  end
+end
+
+1.times do
+  cat = Category.create(
+    name: 'Hoodies',
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519441/hoodieimage_uqkzat.jpg'
+  )
+
+  5.times do
+    Item.create(
+      name: Faker::Lorem.words(number: 1),
+      price: 35.00,
+      desc: Faker::Lorem.paragraph(sentence_count: 3),
+      category_id: cat.id
+    )
+  end
+end
+
+1.times do
+  cat = Category.create(
+    name: 'Stickers',
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519447/stickerimage_o87upo.jpg'
+  )
+
+  5.times do
+    Item.create(
+      name: Faker::Lorem.words(number: 1),
+      price: 5.00,
+      desc: Faker::Lorem.paragraph(sentence_count: 3),
+      category_id: cat.id
+    )
+  end
+end
