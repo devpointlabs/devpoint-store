@@ -2,7 +2,7 @@ import Cart from './components/Cart'
 import CategoryView from './components/CategoryView'
 import CategoryForm from './components/CategoryForm'
 import Contact from  './components/Contact'
-import React from 'react';
+import React from 'react'
 import FetchUser from './components/FetchUser'
 import Home from './components/Home'
 import ItemView from './components/ItemView'
