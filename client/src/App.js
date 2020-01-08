@@ -1,4 +1,3 @@
-import StyleSheets from './components/StyleSheets'
 import Cart from './components/Cart'
 import CategoryView from './components/CategoryView'
 import CategoryForm from './components/CategoryForm'
