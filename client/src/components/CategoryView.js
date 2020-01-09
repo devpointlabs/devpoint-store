@@ -1,7 +1,8 @@
 import React from "react"
 import axios from "axios"
 import ItemForm from './ItemForm'
-import { Image, Card, Container, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Image, Card, Container, Button, Grid } from 'semantic-ui-react'
 
 class CategoryView extends React.Component {
   state = {  category: {}, items: []   }
@@ -28,19 +29,23 @@ class CategoryView extends React.Component {
           this.setState({ items: items.filter(i => i.id !== id), })
         })
     }
+
     // list of all item names
     renderItems() {
-      return this.state.items.map(i => (
-        <div>
-          <ul>
-            <li>
-              {i.name}
+      const {id, category_id } = this.props.match.params
+      return this.state.items.map( i => (
+            <Link to={`/api/categories/${category_id}/items/${id}`}>
+              <Grid.Column>
+                <Image src={i.image}/>
+                {i.name}
+                <br />
+                {i.price}
+                <br />
               <Button onClick={ () => this.deleteItem(i.id)}>Delete</Button>
-            </li>
-          </ul>
-        </div>
-     ))
-    }
+          </Grid.Column>
+        </Link>
+      ))
+  }
    
 
   render() {
@@ -57,7 +62,11 @@ class CategoryView extends React.Component {
     </Card.Group>
   <ItemForm id={this.props.match.params}/>
   </Container>
-         {this.renderItems() }
+      <Grid>
+        <Grid.Row columns={4}>
+          {this.renderItems() }
+        </Grid.Row>
+      </Grid>
       </>
 
     
