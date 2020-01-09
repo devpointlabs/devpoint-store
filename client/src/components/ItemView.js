@@ -1,13 +1,16 @@
-import React from 'react'
 import axios from 'axios'
+import ItemForm from './ItemForm'
 import gshirt from './Images/gshirt.jpg'
 import gshirtB from './Images/gshirt-b.jpg'
 import gshirtW from './Images/gshirt-w.jpg'
 import gshirtWB from './Images/gshirt-wb.jpg'
+import React from 'react'
 import styled from 'styled-components'
-import { Container, Button, Image, Header, Dropdown, Form, TextArea } from 'semantic-ui-react'
+import { Container, Button, Image, Header, Dropdown, Form, Modal } from 'semantic-ui-react'
 
 // TODO: make responsive
+// TODO: modify + add code to be dynamic to data when db is made
+// TODO: make item form / update actions work - tries to add instead of update
 
 // below are size options to make demo work, will need to change for real data later
 
@@ -30,7 +33,7 @@ const sizeOptions = [
 ]
 
 class ItemView extends React.Component {
-  state = { item: {}, currentImage: 0 }
+  state = { item: {}, currentImage: 0, open: false }
 
   componentDidMount() {
     const { match: { params: { id, category_id } } } = this.props
@@ -43,9 +46,38 @@ class ItemView extends React.Component {
     })
 }
 
+  updateItem = (item) => {
+    this.setState({ item })
+  }
+
+  handleDelete = () => {
+    const { id, category_id } = this.props.match.params
+    axios.delete(`/api/categories/${category_id}/items/${id}`)
+    .then( res => {
+      this.props.history.push(`/categories/${category_id}`)
+  })
+}
+
+  showModal = () => this.setState({ open: !this.state.open})
+
+  itemModal = () => {
+    const { match: { params: { id, department_id } } } = this.props
+    return (
+      <Modal
+        open={this.state.open}
+        onClose={() => this.showModal()}
+      >
+        <Modal.Header>Update This Item</Modal.Header>
+        <Modal.Content>
+          <ItemForm id={id} department_id={department_id} close={this.showModal} update={this.updateItem} />
+        </Modal.Content>
+      </Modal>
+    )
+  }
+
   render() {
     // const { match: { params: { id, category_id } } } = this.props
-    // const { name, description, price } = this.state.item
+    const { name, desc, price, image } = this.state.item
 
   return(
     <>
@@ -53,45 +85,67 @@ class ItemView extends React.Component {
       <Grid>
         <div> 
           {/* will need to adjust function for item.image */}
-        {(() => {
-        switch (this.state.currentImage) {
-          case 1:   return <Image src={gshirtB} />;
-          case 2: return <Image src={gshirtW} />;
-          case 3:  return <Image src={gshirtWB} />;
-          default:      return <Image src={gshirt} />;
-        }
-      })()}
+          {(() => {
+          switch (this.state.currentImage) {
+            case 1: return <Image src={gshirtB} />
+            case 2: return <Image src={gshirtW} />
+            case 3: return <Image src={gshirtWB} />
+            default: return <Image src={gshirt} />
+          }
+          })()}
 
+{/* placeholder for db images */}
           <Mini style={{ }}>
-          <div center> <Image src={gshirt} onClick={ () =>  this.setState({ currentImage: 0 }) } /> </div> {/* placeholder for db images - clarke suggested a carousel? */}
-          <div> <Image src={gshirtB} onClick={ () => this.setState({ currentImage: 1 }) }/> </div>
-          <div> <Image src={gshirtW} onClick={ () =>  this.setState({ currentImage: 2 }) }/> </div>
-          <div> <Image src={gshirtWB} onClick={ () => this.setState({ currentImage: 3 }) }/> </div>
+          <div> <Image src={gshirt} style={{ cursor: 'pointer'}} onClick={ () =>  this.setState({ currentImage: 0 }) } /> </div>
+          <div> <Image src={gshirtB} style={{ cursor: 'pointer'}} onClick={ () => this.setState({ currentImage: 1 }) }/> </div>
+          <div> <Image src={gshirtW} style={{ cursor: 'pointer'}} onClick={ () =>  this.setState({ currentImage: 2 }) }/> </div>
+          <div> <Image src={gshirtWB} style={{ cursor: 'pointer'}} onClick={ () => this.setState({ currentImage: 3 }) }/> </div>
           </Mini>
         </div>
         
+        {/* possiblity to make below section into second Item/Cart Form and render here instead */}
+
+        {/* will need to figure out functions for size/quantity */}
+        {/* when cart is set up */}
+          {this.itemModal()}
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '550px', width: '450px', padding: '40px'}}>
-          <Header as='h1'> Neat Shirt </Header> {/* item.name */}
-          <Header as='h2' style={{ color: '#A9A9A9' }}> $25.00 </Header> {/* item.price */}
-          <Header as='h3'> Size </Header> {/* item.size */}
+          <Header as='h1'> { name } </Header>
+          <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
+          <Header as='h3'> Size </Header>
             <Dropdown
             placeholder='Select Size'
             selection
             options={sizeOptions}
             style={{ backgroundColor: '#ececec' }}
             />
-          <Header as='h3'> Quantity </Header> {/* item.quantity ? */}
+          <Header as='h3'> Quantity </Header>
             <Form>
-              <TextArea style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
+              {/* might an onchange function here + in style */}
+              <Form.TextArea defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
             </Form>
           <Button size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}> Add to Cart </Button>
+
+          {/* definitely need to change absolute positioning here for responsiveness */}
+          {/* crud actions below should be hidden for regular users */}
+          {/* edit item */}
+          <i style={{ cursor: 'pointer', position: 'absolute', right: '350px', bottom: '50px' }}
+          aria-hidden="true"
+          class="icon pencil large" 
+          onClick={() => this.showModal()}
+          />
+          {/* delete item */}
+          <i 
+          style={{ cursor: 'pointer', position: 'absolute', right: '300px', bottom: '50px' }}
+          aria-hidden="true"
+          class="icon trash large"
+          onClick={this.handleDelete}
+          />
         </div>
+
       </Grid>
 
       <Desc>
-        {/* <p> { item.desc } </p> */}
-        <p> When a black cat crosses your path, nothing happens. It's just a cat.</p>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat enim vitae lectus consectetur laoreet. Maecenas in massa vel leo efficitur mattis sed eget massa. Pellentesque posuere, nibh non tempus egestas, erat nisi interdum elit, vitae eleifend elit nunc eget massa. Proin et urna ut risus gravida euismod non vitae nisl. </p>
+        <p> { desc } </p>
       </Desc>
     </Container>
     </>
