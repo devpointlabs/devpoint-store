@@ -1,7 +1,8 @@
 1.times do
   cat = Category.create(
     name: 'T-shirts',
-    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519422/shirtimage_lsexnh.jpg'
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519422/shirtimage_lsexnh.jpg',
+    fullwidth: 'true'
   )
 
   5.times do
