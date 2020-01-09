@@ -16,7 +16,7 @@ class ItemVariantForm extends React.Component {
         })
         .catch(err => {
           console.log(err.responce)
-        })
+      })
   }
   //this needs to get looked at
   handleChange = (e) => {
@@ -39,7 +39,7 @@ class ItemVariantForm extends React.Component {
         .then(res => {
           this.props.add(res.data)
         })
-    }
+     }
   }
   //adding aditional attributes
   addItemVariant = (color, image, quantity, size) => {
