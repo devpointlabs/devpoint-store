@@ -18,16 +18,43 @@ class Home extends React.Component {
     })
   }
 
-  renderImages = () => (
-    <>
-      <Card.Group itemsPerRow={1}>      
-        // 1) map and only return full_width items
-      </Card.Group>
-      <Card.Group itemsPerRow={2}>  
-        // 2) map and only return !full_width items
-      </Card.Group>
-    </>
+  renderImages = () => {
+    return this.state.categories.map(c => {
+      if (c.full_width) {
+    return(
+    
+     <Card>
+       <Card.Content>
+         <Link to={`/categories/${c.id}`}  >
+            <Image src={c.image} id='shirtpic'/>
+           </Link>
+       </Card.Content>
+       </Card>    
 
+    )
+      }
+    })
+  }
+
+
+  renderImagessmall = () => {
+    
+    return this.state.categories.map(c => {
+      if (c.full_width === false)
+    return(
+  
+   <Card>
+     <Card.Content>
+       <Link to={`/categories/${c.id}`}  >
+          <Image src={c.image} id='shirtpic'/>
+         </Link>
+     </Card.Content>
+     </Card>    
+
+    )
+  })
+}
+      
 
 
     // return this.state.categories.map(c => {
@@ -39,36 +66,36 @@ class Home extends React.Component {
   
   
     // })
-  )
-      
-      
-      renderPrimaryCategory(c) {
-        return this.state.categories.map(c => (
-          <>
-        <Card.Group itemsPerRow={1}>
-      <Card>
-        <Card.Content>
-          <Link to={`/categories/${c.id}`}  >
-            <Image src={c.image} id='shirtpic'/>
-          </Link>
-        </Card.Content>
-      </Card>
-    </Card.Group>
-      </>
-    ))
-  }
   
-  renderCategories = (c) => (
-    <Card.Group itemsPerRow={2}>
-      <Card>
-        <Card.Content>
-          <Link to={`/categories/${c.id}`}  >
-            <Image src={c.image} id='shirtpic'/>
-          </Link>
-        </Card.Content>
-      </Card>
-    </Card.Group>      
-  )
+      
+      
+  //     renderPrimaryCategory(c) {
+  //       return this.state.categories.map(c => (
+  //         <>
+  //       <Card.Group itemsPerRow={1}>
+  //     <Card>
+  //       <Card.Content>
+  //         <Link to={`/categories/${c.id}`}  >
+  //           <Image src={c.image} id='shirtpic'/>
+  //         </Link>
+  //       </Card.Content>
+  //     </Card>
+  //   </Card.Group>
+  //     </>
+  //   ))
+  // }
+  
+  // renderCategories = (c) => (
+  //   <Card.Group itemsPerRow={2}>
+  //     <Card>
+  //       <Card.Content>
+  //         <Link to={`/categories/${c.id}`}  >
+  //           <Image src={c.image} id='shirtpic'/>
+  //         </Link>
+  //       </Card.Content>
+  //     </Card>
+  //   </Card.Group>      
+  // )
 
 
 
@@ -76,8 +103,13 @@ class Home extends React.Component {
     return (
       <Container>
 
-
+        <Card.Group itemsPerRow={1}>  
           {this.renderImages()}
+          </Card.Group>
+          <Card.Group itemsPerRow={2}>
+
+          {this.renderImagessmall()}
+          </Card.Group>
           
 
 
