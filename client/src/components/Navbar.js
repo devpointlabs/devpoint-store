@@ -10,12 +10,11 @@ const Navbar = (props) => {
   const [selection, setSelection] = useState('')
 
   const menuOptions = [
-    { key: 1, text: 'Contact', value: 'Contact' },
-    { key: 2, text: 'Register', value: 'Register' },
-    { key: 3, text: 'Login', value: 'Login' },
-    { key: 1, text: 'Hats', value: 4 },
-    { key: 2, text: 'Stickers', value: 5 },
-    { key: 2, text: 'Clarks', value: 5 },
+    { key: 1, text: 'Hats', value: 'Hats' },
+    { key: 2, text: 'Stickers', value: 'Stickers' },
+    { key: 3, text: 'Contact', value: 'Contact' },
+    { key: 4, text: 'Register', value: 'Register' },
+    { key: 5, text: 'Login', value: 'Login' },
   ]
 
   const handleChange = (e, { value, }, ) => setSelection(value)
@@ -34,14 +33,14 @@ const Navbar = (props) => {
         setSelection('')
         props.history.push('/login')
         break;
-      // case "":
-      //   setSelection('')
-      //   props.history.push('/')
-      //   break;
-      // case "":
-      //   setSelection('')
-      //   props.history.push('/')
-      //   break;
+      case "Hats":
+        setSelection('')
+        props.history.push('/categories/2')
+        break;
+      case "Stickers":
+        setSelection('')
+        props.history.push('/categories/4')
+        break;
       // case "":
       //   setSelection('')
       //   props.history.push('/')
@@ -93,6 +92,22 @@ const Navbar = (props) => {
                   </h3>
                 </Link>
               </Button>
+              <Button style={cust}>
+                <Link to='/categories/2'>
+                  <h3>
+                    <Nav
+                      active={props.location.pathname === '/categories/2'} />
+                  </h3>Hats
+                </Link>
+              </Button>
+              <Button style={cust}>
+                <Link to='/categories/4'>
+                  <h3>
+                    <Nav
+                      active={props.location.pathname === '/categories/4'} />
+                  </h3>Stickers
+                </Link>
+              </Button>
             </div>
           </Nav>
         </>
@@ -109,45 +124,19 @@ const Navbar = (props) => {
                 <div>
                   <img
                     src="https://media.licdn.com/dms/image/C510BAQEaODeG-ziDdQ/company-logo_200_200/0?e=2159024400&v=beta&t=aHik_r9QdKRvn_OC_Ng1e-O0G9f58i-DiHsgmu81FhI"
-                    height="70"
-                    width="90"
+                    height="60"
+                    width="60"
                     class="navbar"
                   >
-                  </img> .Shop( )
+                  </img> .SHOP( )
                 </div>
               </Link>
             </Button>
           </div>
           <div>
             <div>
-              {/* <Button style={cust}>
-
-
-                <Link to="/Contact">
-                  <div>
-                    <h3>Contact</h3>
-                  </div>
-                </Link>
-              </Button>
               <Button style={cust}>
-                <Link to='/register' >
-                  <h3 >
-                    <div
-                      active={props.location.pathname === '/register'}
-                    />Register
-                    </h3>
-                </Link>
-              </Button>
-              <Button style={cust}>
-                <Link to='/login'>
-                  <h3>
-                    <Nav
-                      active={props.location.pathname === '/login'} />
-                    Login</h3>
-                </Link>
-              </Button> */}
-              <Button style={cust}>
-                <Link to=' '>
+                <Link to='/'>
                   <h3>
                     <Nav
                     //what are you adding on this button 
@@ -156,7 +145,7 @@ const Navbar = (props) => {
                 </Link>
               </Button>
               <Button style={cust}>
-                <Link to=' '>
+                <Link to='/categories/1'>
                   <h3>
                     <Nav
                     //what are you adding on this button 
@@ -165,7 +154,7 @@ const Navbar = (props) => {
                 </Link>
               </Button>
               <Button style={cust}>
-                <Link to=' '>
+                <Link to='/categories/3'>
                   <h3>
                     <Nav
                     //what are you adding on this button 
@@ -212,7 +201,7 @@ const Nav = styled.div`
 
 `
 const cust = {
-  paddingTop: '125px',
+  paddingTop: '95px',
   backgroundColor: 'white',
   color: 'black',
   fontSize: '30px',
@@ -228,11 +217,10 @@ const cust = {
 
 const home = {
   backgroundColor: 'white',
-  paddingTop: '70px',
+  paddingTop: '60px',
   paddingLeft: '85px',
   color: 'black',
   fontSize: '30px'
-
 }
 
 const left = {
