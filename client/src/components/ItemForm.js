@@ -8,7 +8,7 @@ class ItemForm extends React.Component {
   componentDidMount() {
     const { id, category_id, } = this.props
     if (id && category_id)
-      axios.get(`/api/departments/${category_id}/items/${id}`)
+      axios.get(`/api/categories/${category_id}/items/${id}`)
         .then(res => {
           const { name, desc, price, size } = res.data
           this.setState({ name, desc, price, size })
