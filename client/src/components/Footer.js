@@ -11,7 +11,7 @@ class Footer extends React.Component {
           fontSize: "75px",
           height: "40px",
           backgroundColor: "#121212",
-          width: "100vw",
+          width: '100vw',
           bottom: "0",
           display: "flex",
           position: 'static',
@@ -39,10 +39,10 @@ class Footer extends React.Component {
           }} >
           <h5> &copy; 2020 DevPoint labs 
               <a href='https://www.devpointlabs.com/dpl-terms-of-service' 
-              target='_blank'>Terms</a> 
+              target='_blank'> Terms </a> 
                and  
               <a href='https://www.devpointlabs.com/dpl-privacy-policy' 
-                target='_blank'>Policy</a>
+                target='_blank'> Policy </a>
           </h5>
         </div>
         </>
