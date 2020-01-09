@@ -9,6 +9,7 @@
       name: Faker::Lorem.words(number: 1),
       price: 25.00,
       desc: Faker::Lorem.paragraph(sentence_count: 3),
+      image: Faker::LoremFlickr.image(size: "50x60", search_terms: ['fashion']),
       category_id: cat.id
     )
   end
@@ -25,6 +26,7 @@ end
       name: Faker::Lorem.words(number: 1),
       price: 15.00,
       desc: Faker::Lorem.paragraph(sentence_count: 3),
+      image: Faker::LoremFlickr.image(size: "50x60", search_terms: ['fashion']),
       category_id: cat.id
     )
   end
@@ -41,6 +43,7 @@ end
       name: Faker::Lorem.words(number: 1),
       price: 35.00,
       desc: Faker::Lorem.paragraph(sentence_count: 3),
+      image: Faker::LoremFlickr.image(size: "50x60", search_terms: ['fashion']),
       category_id: cat.id
     )
   end
@@ -57,6 +60,7 @@ end
       name: Faker::Lorem.words(number: 1),
       price: 5.00,
       desc: Faker::Lorem.paragraph(sentence_count: 3),
+      image: Faker::LoremFlickr.image(size: "50x60", search_terms: ['fashion']),
       category_id: cat.id
     )
   end
