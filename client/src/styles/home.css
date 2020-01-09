@@ -19,5 +19,12 @@
   width: 700px;
 } 
 
+#shirty{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: orchid;
+}
+
 
 
