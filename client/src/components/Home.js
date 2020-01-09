@@ -15,7 +15,7 @@ class Home extends React.Component {
   componentDidMount() {
     axios.get("/api/categories")
     .then( res => {
-      this.setState({ categories: [ res.data], });
+      this.setState({ categories: [ ...res.data], });
     })
     .catch( err => {
       console.log(err)
