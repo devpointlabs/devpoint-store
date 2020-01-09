@@ -5,7 +5,7 @@
     full_width: 'true'
   )
 
-  5.times do
+  8.times do
     Item.create(
       name: Faker::Lorem.words(number: 1),
       price: 25.00,
@@ -23,7 +23,7 @@ end
     full_width: 'false'
     )
 
-  5.times do
+  8.times do
     Item.create(
       name: Faker::Lorem.words(number: 1),
       price: 15.00,
@@ -41,7 +41,7 @@ end
     full_width: 'false'
   )
 
-  5.times do
+  8.times do
     Item.create(
       name: Faker::Lorem.words(number: 1),
       price: 35.00,
@@ -59,7 +59,7 @@ end
     full_width: 'false'
   )
 
-  5.times do
+  8.times do
     Item.create(
       name: Faker::Lorem.words(number: 1),
       price: 5.00,
