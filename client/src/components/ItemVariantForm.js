@@ -20,13 +20,10 @@ class ItemVariantForm extends React.Component {
   }
   //this needs to get looked at
   handleChange = (e) => {
-    // this.setState({
-    //   [e.target.color]: e.target.value,
-    //   [e.target.image]: e.target.value,
-    //   [e.target.quantity]: e.target.value,
-    //   [e.target.size]: e.target.value
-    // })
+    const {target:{name, value }} = e
+    this.setState({ [name]: value })
   }
+
   //this needs to get looked at
   handleSubmit = (e) => {
     e.preventDefault()
@@ -91,6 +88,7 @@ class ItemVariantForm extends React.Component {
           </Header>
           <Form onSubmit={this.handleSubmit}>
             <Form.input
+              name='color'
               label="Color"
               placeholder="Add Color"
               required
@@ -98,6 +96,7 @@ class ItemVariantForm extends React.Component {
               onChange={this.handleChange}
             />
             <Form.input
+              name='image'
               label="Image"
               placeholder="Image"
               required
@@ -105,6 +104,7 @@ class ItemVariantForm extends React.Component {
               onChange={this.handleChange}
             />
             <Form.input
+              name='quantity'
               label="Quantity"
               placeholder="Quantity"
               required
@@ -112,6 +112,7 @@ class ItemVariantForm extends React.Component {
               onChange={this.handleChange}
             />
             <Form.input
+              name='size'
               label="Size"
               placeholder="Size"
               required
