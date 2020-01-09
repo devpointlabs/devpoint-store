@@ -30,7 +30,7 @@ const sizeOptions = [
 ]
 
 class ItemView extends React.Component {
-  state = { item: {} }
+  state = { item: {}, currentImage: 0 }
 
   componentDidMount() {
     const { match: { params: { id, category_id } } } = this.props
@@ -52,17 +52,25 @@ class ItemView extends React.Component {
     <Container>
       <Grid>
         <div> 
-          <Image src={gshirt} /> {/* item.image */}
-          {/* TODO: // change main display on click */}
+          {/* will need to adjust function for item.image */}
+        {(() => {
+        switch (this.state.currentImage) {
+          case 1:   return <Image src={gshirtB} />;
+          case 2: return <Image src={gshirtW} />;
+          case 3:  return <Image src={gshirtWB} />;
+          default:      return <Image src={gshirt} />;
+        }
+      })()}
+
           <Mini style={{ }}>
-          <div center> <Image src={gshirt} /> </div> {/* placeholder for db images - clarke suggested a carousel? */}
-          <div> <Image src={gshirtB} /> </div>
-          <div> <Image src={gshirtW} /> </div>
-          <div> <Image src={gshirtWB} /></div>
+          <div center> <Image src={gshirt} onClick={ () =>  this.setState({ currentImage: 0 }) } /> </div> {/* placeholder for db images - clarke suggested a carousel? */}
+          <div> <Image src={gshirtB} onClick={ () => this.setState({ currentImage: 1 }) }/> </div>
+          <div> <Image src={gshirtW} onClick={ () =>  this.setState({ currentImage: 2 }) }/> </div>
+          <div> <Image src={gshirtWB} onClick={ () => this.setState({ currentImage: 3 }) }/> </div>
           </Mini>
         </div>
         
-        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '500px', width: '450px', padding: '40px'}}>
+        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '550px', width: '450px', padding: '40px'}}>
           <Header as='h1'> Neat Shirt </Header> {/* item.name */}
           <Header as='h2' style={{ color: '#A9A9A9' }}> $25.00 </Header> {/* item.price */}
           <Header as='h3'> Size </Header> {/* item.size */}
