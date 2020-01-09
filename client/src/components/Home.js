@@ -23,18 +23,17 @@ class Home extends React.Component {
       if (c.full_width) {
     return(
     
-     <Card>
-       <Card.Content>
-         <Link to={`/categories/${c.id}`}  >
-            <Image src={c.image} id='shirtpic'/>
-           </Link>
-       </Card.Content>
-       </Card>    
+    <Card>
+    <Card.Content>
+      <Link to={`/categories/${c.id}`}  >
+        <Image src={c.image} id='shirtpic'/>
+      </Link>
+      </Card.Content>
+    </Card>    
 
-    )
-      }
-    })
-  }
+    )}
+  })
+}
 
 
   renderImagessmall = () => {
@@ -43,77 +42,27 @@ class Home extends React.Component {
       if (c.full_width === false)
     return(
   
-   <Card>
-     <Card.Content>
-       <Link to={`/categories/${c.id}`}  >
+      <Card>
+       <Card.Content>
+         <Link to={`/categories/${c.id}`}  >
           <Image src={c.image} id='shirtpic'/>
          </Link>
-     </Card.Content>
-     </Card>    
-
+        </Card.Content>
+      </Card>    
     )
   })
 }
-      
-
-
-    // return this.state.categories.map(c => {
-    //   { c.full_width ?
-    //     this.renderPrimaryCategory(c)
-    //     :
-    //     this.renderCategories(c)
-    //   }
-  
-  
-    // })
-  
-      
-      
-  //     renderPrimaryCategory(c) {
-  //       return this.state.categories.map(c => (
-  //         <>
-  //       <Card.Group itemsPerRow={1}>
-  //     <Card>
-  //       <Card.Content>
-  //         <Link to={`/categories/${c.id}`}  >
-  //           <Image src={c.image} id='shirtpic'/>
-  //         </Link>
-  //       </Card.Content>
-  //     </Card>
-  //   </Card.Group>
-  //     </>
-  //   ))
-  // }
-  
-  // renderCategories = (c) => (
-  //   <Card.Group itemsPerRow={2}>
-  //     <Card>
-  //       <Card.Content>
-  //         <Link to={`/categories/${c.id}`}  >
-  //           <Image src={c.image} id='shirtpic'/>
-  //         </Link>
-  //       </Card.Content>
-  //     </Card>
-  //   </Card.Group>      
-  // )
-
-
 
   render() {
     return (
       <Container>
-
         <Card.Group itemsPerRow={1}>  
           {this.renderImages()}
-          </Card.Group>
-          <Card.Group itemsPerRow={2}>
-
+        </Card.Group>
+        <Card.Group itemsPerRow={2}>
           {this.renderImagessmall()}
-          </Card.Group>
-          
-
-
-        </Container>
+        </Card.Group>
+      </Container>
 
 )}}
 
