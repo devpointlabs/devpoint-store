@@ -4,6 +4,7 @@ import { Form, Header, Button, } from "semantic-ui-react"
 
 class ItemVariantForm extends React.Component {
   state = { color: "", image: "", quantity: "", size: "" }
+
   //grab the item reveling details 
   componentDidMount() {
     const { id, item_id, } = this.props
@@ -17,23 +18,31 @@ class ItemVariantForm extends React.Component {
           console.log(err.responce)
         })
   }
-  //accessing it's value's
+  //this needs to get looked at
   handleChange = (e) => {
-    this.setState({
-      color: e.target.value,
-      image: e.target.value,
-      quantity: e.target.value,
-      size: e.target.value
-    })
+    // this.setState({
+    //   [e.target.color]: e.target.value,
+    //   [e.target.image]: e.target.value,
+    //   [e.target.quantity]: e.target.value,
+    //   [e.target.size]: e.target.value
+    // })
   }
-  // action event
+  //this needs to get looked at
   handleSubmit = (e) => {
-    e.preventDefault();
-    this.addItemVariant(this.state.color,
-      this.state.image,
-      this.state.quantity,
-      this.state.size)
-    this.setState({ color: "", image: "", quantity: "", size: "" })
+    e.preventDefault()
+    const itemVariant = { ...this.state }
+    const { id, item_id } = this.props
+    if (id && item_id) {
+      axios.put(`/api/items/${item_id}/item_variants/${id}`, item_variant)
+        .then(res => {
+          this.props.update(res.data)
+        })
+    } else {
+      axios.post(`/api/items/${item_id}/item_variants`, item_variant)
+        .then(res => {
+          this.props.add(res.data)
+        })
+    }
   }
   //adding aditional attributes
   addItemVariant = (color, image, quantity, size) => {
@@ -77,7 +86,9 @@ class ItemVariantForm extends React.Component {
     return (
       <Fragment>
         <div>
-          <Header as="h1">New Item</Header>
+          <Header as="h1" widths='equal'>
+            New Item
+          </Header>
           <Form onSubmit={this.handleSubmit}>
             <Form.input
               label="Color"
