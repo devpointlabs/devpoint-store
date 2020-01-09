@@ -32,9 +32,9 @@ class CategoryView extends React.Component {
 
     // list of all item names
     renderItems() {
-      const {id, category_id } = this.props.match.params
+      const {id } = this.props.match.params
       return this.state.items.map( i => (
-            <Link to={`/api/categories/${category_id}/items/${id}`}>
+            <Link to={`/categories/${id}/items/${i.id}`}>
               <Grid.Column>
                 <Image src={i.image}/>
                 {i.name}
