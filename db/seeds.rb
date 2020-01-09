@@ -2,7 +2,7 @@
   cat = Category.create(
     name: 'T-shirts',
     image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519422/shirtimage_lsexnh.jpg',
-    fullwidth: 'true'
+    full_width: 'true'
   )
 
   5.times do
@@ -20,7 +20,7 @@ end
   cat = Category.create(
     name: 'Hats',
     image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519429/hatimage_jqvmhz.jpg',
-    fullwidth: 'false'
+    full_width: 'false'
     )
 
   5.times do
@@ -38,7 +38,7 @@ end
   cat = Category.create(
     name: 'Hoodies',
     image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519441/hoodieimage_uqkzat.jpg',
-    fullwidth: 'false'
+    full_width: 'false'
   )
 
   5.times do
@@ -56,7 +56,7 @@ end
   cat = Category.create(
     name: 'Stickers',
     image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519447/stickerimage_o87upo.jpg',
-    fullwidth: 'false'
+    full_width: 'false'
   )
 
   5.times do
