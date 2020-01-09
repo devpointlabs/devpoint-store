@@ -61,7 +61,7 @@ class ItemView extends React.Component {
   showModal = () => this.setState({ open: !this.state.open})
 
   itemModal = () => {
-    const { match: { params: { id, department_id } } } = this.props
+    const { match: { params: { id, category_id } } } = this.props
     return (
       <Modal
         open={this.state.open}
@@ -69,10 +69,20 @@ class ItemView extends React.Component {
       >
         <Modal.Header>Update This Item</Modal.Header>
         <Modal.Content>
-          <ItemForm id={id} department_id={department_id} close={this.showModal} update={this.updateItem} />
+          <ItemForm id={id} category_id={category_id} close={this.showModal} update={this.updateItem} />
         </Modal.Content>
       </Modal>
     )
+  }
+
+  hover(e) {
+    e.target.style.border = '2px solid #ececec'
+    e.target.style.borderRadius = '7px'
+  }
+
+  clearHover(e) {
+    e.target.style.border = 'none'
+    e.target.style.borderRadius = 'none'
   }
 
   render() {
@@ -91,17 +101,43 @@ class ItemView extends React.Component {
             case 2: return <Image src={gshirtW} />
             case 3: return <Image src={gshirtWB} />
             default: return <Image src={gshirt} />
+            // default: return <Image src={image} />
           }
           })()}
 
 {/* placeholder for db images */}
-          <Mini style={{ }}>
-          <div> <Image src={gshirt} style={{ cursor: 'pointer'}} onClick={ () =>  this.setState({ currentImage: 0 }) } /> </div>
-          <div> <Image src={gshirtB} style={{ cursor: 'pointer'}} onClick={ () => this.setState({ currentImage: 1 }) }/> </div>
-          <div> <Image src={gshirtW} style={{ cursor: 'pointer'}} onClick={ () =>  this.setState({ currentImage: 2 }) }/> </div>
-          <div> <Image src={gshirtWB} style={{ cursor: 'pointer'}} onClick={ () => this.setState({ currentImage: 3 }) }/> </div>
-          </Mini>
+      <Mini style={{ }}>
+        <div> <Image src={gshirt}
+          style={{ cursor: 'pointer'}}
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
+          onClick={ () =>  this.setState({ currentImage: 0 }) }
+          /> </div>
+        <div> <Image src={gshirtB}
+          style={{ cursor: 'pointer' }} 
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
+          onClick={ () => this.setState({ currentImage: 1 }) }
+          />
         </div>
+        <div>
+          <Image src={gshirtW}
+          style={{ cursor: 'pointer'}}
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
+          onClick={ () =>  this.setState({ currentImage: 2 }) }
+          />
+        </div>
+        <div> 
+          <Image src={gshirtWB}
+          style={{ cursor: 'pointer'}}
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
+          onClick={ () => this.setState({ currentImage: 3 }) }
+          />
+        </div>
+      </Mini>
+    </div>
         
         {/* possiblity to make below section into second Item/Cart Form and render here instead */}
 
@@ -125,21 +161,22 @@ class ItemView extends React.Component {
             </Form>
           <Button size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}> Add to Cart </Button>
 
-          {/* definitely need to change absolute positioning here for responsiveness */}
           {/* crud actions below should be hidden for regular users */}
           {/* edit item */}
-          <i style={{ cursor: 'pointer', position: 'absolute', right: '350px', bottom: '50px' }}
+          <div>
+          <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-75px' }}
           aria-hidden="true"
           class="icon pencil large" 
           onClick={() => this.showModal()}
           />
           {/* delete item */}
           <i 
-          style={{ cursor: 'pointer', position: 'absolute', right: '300px', bottom: '50px' }}
+          style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-75px' }}
           aria-hidden="true"
           class="icon trash large"
           onClick={this.handleDelete}
           />
+          </div>
         </div>
 
       </Grid>
