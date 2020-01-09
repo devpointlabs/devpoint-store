@@ -58,7 +58,6 @@ class CategoryView extends React.Component {
           {i.price}
           <br />
           <Button onClick={() => this.deleteItem(i.id)}>Delete</Button>
-
         </Link>
       </Grid.Column>
     ));
@@ -72,16 +71,22 @@ class CategoryView extends React.Component {
           <Card.Group itemsPerRow={1}>
             <Card>
               <Card.Content>
-                <Image src={this.state.category.image}  />
+                <Image src={this.state.category.image} />
               </Card.Content>
             </Card>
           </Card.Group>
-          <ItemForm category_id={this.props.match.params.id} add={this.add}/>
-        </Container>   
-        {this.renderItems() }
+          <ItemForm category_id={this.props.match.params.id} add={this.add} />
+          <Grid>
+            <Grid.Row relaxed columns={4}>
+              {this.renderItems()}
+            </Grid.Row>
+          </Grid>
+        </Container>
       </>
     );
   }
 }
 
 export default CategoryView;
+
+
