@@ -70,7 +70,7 @@ class ItemView extends React.Component {
           </Mini>
         </div>
         
-        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '500px', width: '450px', padding: '40px'}}>
+        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '550px', width: '450px', padding: '40px'}}>
           <Header as='h1'> Neat Shirt </Header> {/* item.name */}
           <Header as='h2' style={{ color: '#A9A9A9' }}> $25.00 </Header> {/* item.price */}
           <Header as='h3'> Size </Header> {/* item.size */}
