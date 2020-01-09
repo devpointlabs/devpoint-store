@@ -4,33 +4,50 @@ import Devlogo from "./Images/devlabLogo.png";
 class Footer extends React.Component {
   render() {
     return (
+      <>
       <div
         class="ui inverted vertical footer segment"
         style={{
           fontSize: "75px",
-          height: "60px",
+          height: "40px",
           backgroundColor: "#121212",
           width: "100vw",
           bottom: "0",
           display: "flex",
           position: 'static',
           left: "0",
-          alignItems: 'center'
+          alignItems: 'center',
+          
+          // justifyContent: 'space-around'
             }}>
         
             <img
-            src={Devlogo} style={{height: '150px'}}
+            src={Devlogo} alt='Devpoint labs' style={{height: '150px',}}
             />
-            <h4
+            <h5
             class="ui center aligned inverted header"
             style={{ color: "white" }}>
 
             370 S. 300 E. SLC, Utah 84111 / 801-448-7240 /
             contact@devpointlabs.com
-            </h4>
+            </h5>
+      </div>
+        <div class='ui inverted vertical footer segment' style={{ 
+          justifyContent: 'flex-end',
+          display: "flex", 
+          padding: '5 px',
+          }} >
+          <h5> &copy; 2020 DevPoint labs 
+              <a href='https://www.devpointlabs.com/dpl-terms-of-service' 
+              target='_blank'>Terms</a> 
+               and  
+              <a href='https://www.devpointlabs.com/dpl-privacy-policy' 
+                target='_blank'>Policy</a>
+          </h5>
         </div>
-    );
+        </>
+    )
   }
 }
 
-export default Footer;
+export default Footer
