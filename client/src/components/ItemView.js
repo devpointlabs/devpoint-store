@@ -11,13 +11,6 @@ import { Container, Button, Image, Header, Dropdown, Form, TextArea } from 'sema
 
 // below are size options to make demo work, will need to change for real data later
 
-
-// layout for function
-
-// currentimage = 0
-// have images 0-3
-// onclick changes current image to 0-3
-
 const sizeOptions = [
   {
     key: 'S',
@@ -59,6 +52,7 @@ class ItemView extends React.Component {
     <Container>
       <Grid>
         <div> 
+          {/* will need to adjust function for item.image */}
         {(() => {
         switch (this.state.currentImage) {
           case 1:   return <Image src={gshirtB} />;
