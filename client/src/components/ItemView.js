@@ -125,21 +125,22 @@ class ItemView extends React.Component {
             </Form>
           <Button size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}> Add to Cart </Button>
 
-          {/* definitely need to change absolute positioning here for responsiveness */}
           {/* crud actions below should be hidden for regular users */}
           {/* edit item */}
-          <i style={{ cursor: 'pointer', position: 'absolute', right: '350px', bottom: '50px' }}
+          <div>
+          <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-75px' }}
           aria-hidden="true"
           class="icon pencil large" 
           onClick={() => this.showModal()}
           />
           {/* delete item */}
           <i 
-          style={{ cursor: 'pointer', position: 'absolute', right: '300px', bottom: '50px' }}
+          style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-75px' }}
           aria-hidden="true"
           class="icon trash large"
           onClick={this.handleDelete}
           />
+          </div>
         </div>
 
       </Grid>
