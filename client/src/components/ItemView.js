@@ -75,6 +75,16 @@ class ItemView extends React.Component {
     )
   }
 
+  hover(e) {
+    e.target.style.border = '2px solid #ececec'
+    e.target.style.borderRadius = '7px'
+  }
+
+  clearHover(e) {
+    e.target.style.border = 'none'
+    e.target.style.borderRadius = 'none'
+  }
+
   render() {
     // const { match: { params: { id, category_id } } } = this.props
     const { name, desc, price, image } = this.state.item
@@ -99,22 +109,30 @@ class ItemView extends React.Component {
       <Mini style={{ }}>
         <div> <Image src={gshirt}
           style={{ cursor: 'pointer'}}
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
           onClick={ () =>  this.setState({ currentImage: 0 }) }
           /> </div>
         <div> <Image src={gshirtB}
-          style={{ cursor: 'pointer'}} 
+          style={{ cursor: 'pointer' }} 
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
           onClick={ () => this.setState({ currentImage: 1 }) }
           />
         </div>
         <div>
           <Image src={gshirtW}
           style={{ cursor: 'pointer'}}
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
           onClick={ () =>  this.setState({ currentImage: 2 }) }
           />
         </div>
         <div> 
           <Image src={gshirtWB}
           style={{ cursor: 'pointer'}}
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
           onClick={ () => this.setState({ currentImage: 3 }) }
           />
         </div>
