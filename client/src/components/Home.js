@@ -2,10 +2,6 @@ import React from "react"
 import axios from "axios"
 import {  Container, Card, Image } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
-import tshirt from './Images/tshirt.png'
-import hoodie from './Images/hoodie.png'
-import hats from './Images/hats.png'
-import stickers from './Images/stickers.png'
 import '../styles/home.css'
 
 

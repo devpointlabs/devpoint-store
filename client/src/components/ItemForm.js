@@ -50,7 +50,7 @@ class ItemForm extends React.Component {
           <Form.Input
             name='name'
             placeholder='Item Name'
-            autofocus
+            autoFocus
             value={name}
             onChange={this.handleChange}
           />
