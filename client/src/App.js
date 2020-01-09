@@ -25,7 +25,7 @@ const App = () => (
       <Route exact path="/Contact" component={Contact}/>
       <Route exact path="/CategoryForm" component={CategoryForm} />
       <Route exact path="/categories/:id" component={CategoryView} />
-      <Route exact path='/categories/:category_id/items/:id' component={ItemView} />
+      <Route exact path='/api/categories/:category_id/items/:id' component={ItemView} />
       <Route component={NoMatch} />
     </Switch>
   </FetchUser>
