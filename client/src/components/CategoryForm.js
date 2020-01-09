@@ -3,13 +3,13 @@ import axios from "axios"
 import { Form, Header, Button, } from "semantic-ui-react"
 
 class CategoryForm extends React.Component {
-  state = { name: "", image: "", categories: []  }
+  state = { name: "", image: "", categories: [ ]  }
 
 // pull any other added categories
   componentDidMount() {
     axios.get("/api/categories")
     .then( res => {
-      this.setState({ categories: [ res.data], });
+      this.setState({ categories: [ ...res.data], });
     })
     .catch( err => {
       console.log(err)
@@ -24,12 +24,12 @@ class CategoryForm extends React.Component {
   }
 
   handleChange = (e) => {
-    this.setState({ name: e.target.value, })
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   // add to API and reset state
   addItem = (name, image) => {
-    axios.post('/api/categories', { name, image })
+    axios.post('/api/categories', { name, image, })
     .then( res => {
         const { categories, } = this.state
         this.setState({ categories: [...categories, res.data], })
@@ -69,6 +69,7 @@ class CategoryForm extends React.Component {
           label="Category"
           placeholder="Add A Category"
           required
+          name="name"
           value={this.state.name}
           onChange={this.handleChange}
         />
@@ -77,6 +78,7 @@ class CategoryForm extends React.Component {
           label="Image"
           placeholder="Add a URL"
           required
+          name="image"
           value={this.state.image}
           onChange={this.handleChange}
         />
