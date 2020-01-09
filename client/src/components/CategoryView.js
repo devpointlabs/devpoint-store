@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import ItemForm from "./ItemForm";
 import { Link } from "react-router-dom";
-import { Image, Card, Container, Button, Grid } from "semantic-ui-react";
+import { Image, Card, Container, Button, Grid, Segment } from "semantic-ui-react";
 
 class CategoryView extends React.Component {
   state = { category: {}, items: [] };
@@ -50,16 +50,21 @@ class CategoryView extends React.Component {
   renderItems() {
     const { id, } = this.props.match.params;
     return this.state.items.map(i => (
-      <Grid.Column>
+      <>
+
+      <Grid.Column style={{display: "flex", justifyContent: "center"}}>
         <Link to={`/api/categories/${id}/items/${i.id}`}>
           <Image src={i.image} />
-          {i.name}
+        <h4 style={{textAlign: "center"} }>   {i.name}</h4>
+
+          <h4 style={{textAlign: "center"}}> ${i.price}.00 </h4>
           <br />
-          {i.price}
           <br />
-          <Button onClick={() => this.deleteItem(i.id)}>Delete</Button>
         </Link>
+          {/* <Button onClick={() => this.deleteItem(i.id)}>Delete</Button> */}
       </Grid.Column>
+          <br />
+          </>
     ));
   }
 
@@ -75,9 +80,13 @@ class CategoryView extends React.Component {
               </Card.Content>
             </Card>
           </Card.Group>
+        <Segment>
           <ItemForm category_id={this.props.match.params.id} add={this.add} />
-          <Grid>
-            <Grid.Row relaxed columns={4}>
+        </Segment>
+          <hr />
+          <br />
+          <Grid >
+            <Grid.Row padded relaxed columns={4}>
               {this.renderItems()}
             </Grid.Row>
           </Grid>
