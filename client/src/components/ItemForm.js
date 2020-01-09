@@ -38,6 +38,7 @@ class ItemForm extends React.Component {
           this.props.add(res.data)
         })
     }
+    this.props.close()
   }
   
   render() {
