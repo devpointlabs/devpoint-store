@@ -61,7 +61,7 @@ class ItemView extends React.Component {
   showModal = () => this.setState({ open: !this.state.open})
 
   itemModal = () => {
-    const { match: { params: { id, department_id } } } = this.props
+    const { match: { params: { id, category_id } } } = this.props
     return (
       <Modal
         open={this.state.open}
@@ -69,7 +69,7 @@ class ItemView extends React.Component {
       >
         <Modal.Header>Update This Item</Modal.Header>
         <Modal.Content>
-          <ItemForm id={id} department_id={department_id} close={this.showModal} update={this.updateItem} />
+          <ItemForm id={id} category_id={category_id} close={this.showModal} update={this.updateItem} />
         </Modal.Content>
       </Modal>
     )
@@ -91,17 +91,35 @@ class ItemView extends React.Component {
             case 2: return <Image src={gshirtW} />
             case 3: return <Image src={gshirtWB} />
             default: return <Image src={gshirt} />
+            // default: return <Image src={image} />
           }
           })()}
 
 {/* placeholder for db images */}
-          <Mini style={{ }}>
-          <div> <Image src={gshirt} style={{ cursor: 'pointer'}} onClick={ () =>  this.setState({ currentImage: 0 }) } /> </div>
-          <div> <Image src={gshirtB} style={{ cursor: 'pointer'}} onClick={ () => this.setState({ currentImage: 1 }) }/> </div>
-          <div> <Image src={gshirtW} style={{ cursor: 'pointer'}} onClick={ () =>  this.setState({ currentImage: 2 }) }/> </div>
-          <div> <Image src={gshirtWB} style={{ cursor: 'pointer'}} onClick={ () => this.setState({ currentImage: 3 }) }/> </div>
-          </Mini>
+      <Mini style={{ }}>
+        <div> <Image src={gshirt}
+          style={{ cursor: 'pointer'}}
+          onClick={ () =>  this.setState({ currentImage: 0 }) }
+          /> </div>
+        <div> <Image src={gshirtB}
+          style={{ cursor: 'pointer'}} 
+          onClick={ () => this.setState({ currentImage: 1 }) }
+          />
         </div>
+        <div>
+          <Image src={gshirtW}
+          style={{ cursor: 'pointer'}}
+          onClick={ () =>  this.setState({ currentImage: 2 }) }
+          />
+        </div>
+        <div> 
+          <Image src={gshirtWB}
+          style={{ cursor: 'pointer'}}
+          onClick={ () => this.setState({ currentImage: 3 }) }
+          />
+        </div>
+      </Mini>
+    </div>
         
         {/* possiblity to make below section into second Item/Cart Form and render here instead */}
 
