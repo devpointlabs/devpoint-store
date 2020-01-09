@@ -33,6 +33,18 @@ class CategoryView extends React.Component {
       });
   };
 
+  // function to delete item
+  deleteItem = (id) => {
+    axios.delete(`/api/categories/${this.props.match.params.id}/items/${id}`)
+      .then( res => {
+        const { items, } = this.state;
+        this.setState({ items: items.filter(i => i.id !== id), })
+      })
+  }
+
+  add = (data) => {
+    this.setState({...this.state, items: [...this.state.items, data]})
+  }
 
   // list of all item names
   renderItems() {
@@ -60,17 +72,13 @@ class CategoryView extends React.Component {
           <Card.Group itemsPerRow={1}>
             <Card>
               <Card.Content>
-                <Image src={this.state.category.image} />
+                <Image src={this.state.category.image}  />
               </Card.Content>
             </Card>
           </Card.Group>
-          <ItemForm id={this.props.match.params} />
-          <Grid>
-            <Grid.Row relaxed columns={4}>
-              {this.renderItems()}
-            </Grid.Row>
-          </Grid>
-        </Container>
+          <ItemForm category_id={this.props.match.params.id} add={this.add}/>
+        </Container>   
+        {this.renderItems() }
       </>
     );
   }
