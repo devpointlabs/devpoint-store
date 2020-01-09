@@ -36,7 +36,7 @@ class Home extends React.Component {
       <Card.Group itemsPerRow={1}>
       <Card>
         <Card.Content>
-          <Link to={`/categories/c.id`}  >
+          <Link to={`/categories/${c.id}`}  >
             <Image src={c.image} id='shirtpic'/>
           </Link>
         </Card.Content>
