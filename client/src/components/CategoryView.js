@@ -33,6 +33,7 @@ class CategoryView extends React.Component {
       });
   };
 
+
   // list of all item names
   renderItems() {
     const { id, category_id } = this.props.match.params;
@@ -45,6 +46,7 @@ class CategoryView extends React.Component {
           {i.price}
           <br />
           <Button onClick={() => this.deleteItem(i.id)}>Delete</Button>
+
         </Link>
       </Grid.Column>
     ));
