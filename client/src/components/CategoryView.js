@@ -3,6 +3,7 @@ import axios from "axios";
 import ItemForm from "./ItemForm";
 import { Link } from "react-router-dom";
 import { Image, Card, Container, Button, Grid } from "semantic-ui-react";
+import '../styles/catView.css'
 
 class CategoryView extends React.Component {
   state = { category: {}, items: [] };
@@ -60,7 +61,8 @@ class CategoryView extends React.Component {
           <Card.Group itemsPerRow={1}>
             <Card>
               <Card.Content>
-                <Image src={this.state.category.image} />
+                <Image id ='mainimage'src={this.state.category.image} />
+                <h1 id='shirty'>{this.state.category.name}</h1>
               </Card.Content>
             </Card>
           </Card.Group>
