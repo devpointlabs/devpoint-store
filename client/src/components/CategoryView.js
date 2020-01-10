@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import ItemForm from "./ItemForm";
 import { Link } from "react-router-dom";
-import { Image, Card, Container, Button, Grid } from "semantic-ui-react";
+import { Image, Card, Container, Button, Grid, Segment } from "semantic-ui-react";
 import '../styles/catView.css'
 
 
