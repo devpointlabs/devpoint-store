@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { AuthConsumer } from '../providers/AuthProvider';
 import { Link, NavLink } from 'react-router-dom';
 import { Button, Icon, Dropdown, } from "semantic-ui-react";
+import minilogo from '../components/Images/DevPoint_Labs.png'
+import '../App.css';
 import styled from "styled-components";
 import '../App.css';
 
@@ -115,9 +117,10 @@ const Navbar = (props) => {
               >
                 <div>
                   <img
-                    src="https://media.licdn.com/dms/image/C510BAQEaODeG-ziDdQ/company-logo_200_200/0?e=2159024400&v=beta&t=aHik_r9QdKRvn_OC_Ng1e-O0G9f58i-DiHsgmu81FhI"
-                    height="55"
-                    width="55"
+                    src={minilogo}
+                    // "https://media.licdn.com/dms/image/C510BAQEaODeG-ziDdQ/company-logo_200_200/0?e=2159024400&v=beta&t=aHik_r9QdKRvn_OC_Ng1e-O0G9f58i-DiHsgmu81FhI"
+                    height="60"
+                    width="60"
                     class="navbar"
                   >
                   </img> .SHOP( )
