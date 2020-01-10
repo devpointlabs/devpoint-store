@@ -10,7 +10,6 @@ import { Container, Button, Image, Header, Dropdown, Form, Modal } from 'semanti
 
 // TODO: make responsive
 // TODO: modify + add code to be dynamic to data when db is made
-// TODO: make item form / update actions work - tries to add instead of update
 
 // below are size options to make demo work, will need to change for real data later
 
@@ -144,6 +143,7 @@ class ItemView extends React.Component {
         {/* will need to figure out functions for size/quantity */}
         {/* when cart is set up */}
           {this.itemModal()}
+
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '550px', width: '450px', padding: '40px'}}>
           <Header as='h1'> { name } </Header>
           <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
@@ -164,18 +164,18 @@ class ItemView extends React.Component {
           {/* crud actions below should be hidden for regular users */}
           {/* edit item */}
           <div>
-          <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-75px' }}
-          aria-hidden="true"
-          class="icon pencil large" 
-          onClick={() => this.showModal()}
-          />
+            <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-75px' }}
+            aria-hidden="true"
+            class="icon pencil large" 
+            onClick={() => this.showModal()}
+            />
           {/* delete item */}
-          <i 
-          style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-75px' }}
-          aria-hidden="true"
-          class="icon trash large"
-          onClick={this.handleDelete}
-          />
+            <i 
+            style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-75px' }}
+            aria-hidden="true"
+            class="icon trash large"
+            onClick={this.handleDelete}
+            />
           </div>
         </div>
 
