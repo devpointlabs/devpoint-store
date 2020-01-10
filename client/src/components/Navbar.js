@@ -22,12 +22,12 @@ const Navbar = (props) => {
   const userOptions = () => {
     switch (selection) {
       case 'Contact':
-        setSelection('')
         props.history.push('/Contact')
+        setSelection('')
         break;
       case "Register":
-        setSelection('')
         props.history.push('/Register')
+        setSelection('')
         break;
       case "Login":
         setSelection('')
@@ -41,17 +41,8 @@ const Navbar = (props) => {
         setSelection('')
         props.history.push('/categories/4')
         break;
-      // case "":
-      //   setSelection('')
-      //   props.history.push('/')
-      //   break;
-      // case "":
-      //   setSelection('')
-      //   props.history.push('/')
-      //   break;
-    }
+      }
   }
-
 
   const rightNavItems = (auth) => {
     if (auth.user) {
@@ -84,7 +75,7 @@ const Navbar = (props) => {
                 </Link>
               </Button>
               <Button style={cust}>
-                <Link to='/register' >
+                <Link to='register' >
                   <h3 >
                     <div
                       active={props.location.pathname === '/register'}
@@ -93,19 +84,11 @@ const Navbar = (props) => {
                 </Link>
               </Button>
               <Button style={cust}>
-                <Link to='/categories/2'>
+                <Link to='categories/2'>
                   <h3>
                     <Nav
                       active={props.location.pathname === '/categories/2'} />
                   </h3>Hats
-                </Link>
-              </Button>
-              <Button style={cust}>
-                <Link to='/categories/4'>
-                  <h3>
-                    <Nav
-                      active={props.location.pathname === '/categories/4'} />
-                  </h3>Stickers
                 </Link>
               </Button>
             </div>
@@ -119,50 +102,47 @@ const Navbar = (props) => {
       {auth => (
         <Nav>
           <div>
-            <Button style={home}>
+            <div style={home}>
               <Link to="/">
                 <div>
                   <img
                     src="https://media.licdn.com/dms/image/C510BAQEaODeG-ziDdQ/company-logo_200_200/0?e=2159024400&v=beta&t=aHik_r9QdKRvn_OC_Ng1e-O0G9f58i-DiHsgmu81FhI"
-                    height="60"
-                    width="60"
+                    height="55"
+                    width="55"
                     class="navbar"
                   >
-                  </img> .SHOP( )
+                  </img> .Shop( )
                 </div>
               </Link>
-            </Button>
+            </div>
           </div>
           <div>
-            <div>
-              <Button style={cust}>
+            <div style={cust}>
+              <div>
                 <Link to='/'>
                   <h3>
                     <Nav
-                    //what are you adding on this button 
                     />
                     All products</h3>
                 </Link>
-              </Button>
-              <Button style={cust}>
+              </div>
+              <div>
                 <Link to='/categories/1'>
                   <h3>
                     <Nav
-                    //what are you adding on this button 
                     />
                     T-Shirts</h3>
                 </Link>
-              </Button>
-              <Button style={cust}>
+              </div>
+              <div>
                 <Link to='/categories/3'>
                   <h3>
                     <Nav
-                    //what are you adding on this button 
                     />
                     Hoodies</h3>
                 </Link>
-              </Button>
-              <Dropdown
+              </div>
+              <Dropdown text='Menu'
                 as="h3"
                 placeholder='More'
                 options={menuOptions}
@@ -171,14 +151,14 @@ const Navbar = (props) => {
                 simple item
               />
               {selection != '' ? userOptions() : null}
-              <Button style={cust}>
+              <div>
                 <Link to="/Cart">
                   <h3>
                     <Icon name='cart arrow down'>
                     </Icon>Cart
                   </h3>
                 </Link>
-              </Button>
+              </div>
             </div>
           </div>
         </Nav>
@@ -198,21 +178,16 @@ const Nav = styled.div`
   width: 100%;
   justify-content: space-between;
   flex-direction: row;
-
 `
 const cust = {
-  paddingTop: '95px',
+  paddingTop: '105px',
   backgroundColor: 'white',
-  color: 'black',
+  fontColor: 'black',
   fontSize: '30px',
-  justifyContent: 'right',
-  direction: 'rtl',
-  textAlign: 'right',
-  flexStart: 'right',
-  alignItems: 'right',
-  position: 'right',
-  positionRight: '100px',
-  flex: 'right',
+  justifyContent: 'spaceBetween',
+  paddingRight: '100px',
+  display: 'flex',
+  justifyContent: 'flexEnd'
 }
 
 const home = {
@@ -223,20 +198,9 @@ const home = {
   fontSize: '30px'
 }
 
-const left = {
-  paddingleft: '350',
-
+const text = {
+  color: 'black',
 }
-
-class Rend extends React.Component {
-  valueRender = (element, value) => {
-    if (!value) {
-      return element;
-    }
-    const child = []
-  }
-}
-
 
 export default withRouter(Navbar)
 

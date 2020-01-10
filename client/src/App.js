@@ -16,7 +16,6 @@ import CategoryForm from './components/CategoryForm'
 
 const App = () => (
   <>
-<<<<<<< HEAD
     <Navbar />
       <FetchUser>
        <Switch>
@@ -35,24 +34,6 @@ const App = () => (
       </FetchUser>
       <br />
     <Footer />
-=======
-  <Navbar />
-  <FetchUser>
-    <Switch>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/register' component={Register} />
-      <Route exact path="/Cart" component={Cart} />
-      <Route exact path="/Contact" component={Contact}/>
-      <Route exact path="/CategoryForm" component={CategoryForm} />
-      <Route exact path="/categories/:id" component={CategoryView} />
-      <Route exact path='/categories/:category_id/items/:id' component={ItemView} />
-      <Route component={NoMatch} />
-    </Switch>
-  </FetchUser>
-  <br />
-  <Footer />
->>>>>>> 06b2e17c3e6089086416a9ea5abb944faf5f5468
   </>
 )
 

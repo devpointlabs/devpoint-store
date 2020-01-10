@@ -11,7 +11,6 @@ import { Container, Button, Image, Header, Dropdown, Form, Modal } from 'semanti
 // TODO: make responsive
 // TODO: modify + add code to be dynamic to data when db is made
 // TODO: make item form / update actions work - tries to add instead of update
-
 // below are size options to make demo work, will need to change for real data later
 
 const sizeOptions = [
