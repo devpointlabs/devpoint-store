@@ -49,7 +49,8 @@ class Home extends React.Component {
       <Card>
        <Card.Content>
          <Link to={`/categories/${c.id}`}  >
-          <Image src={c.image} id='shirtpic'/>
+          <Image src={c.image} id='restimages'/>
+           <h1 id='shirty'>{c.name}</h1>
          </Link>
         </Card.Content>
       </Card>  
