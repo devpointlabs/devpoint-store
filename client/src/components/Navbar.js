@@ -1,9 +1,10 @@
-import React, { useState, } from 'react'
-import { AuthConsumer } from '../providers/AuthProvider'
-import { Link, withRouter } from 'react-router-dom'
+import React, { useState, } from 'react';
+import { withRouter } from 'react-router-dom';
+import { AuthConsumer } from '../providers/AuthProvider';
+import { Link, NavLink } from 'react-router-dom';
 import { Button, Icon, Dropdown, } from "semantic-ui-react";
-import '../App.css';
 import styled from "styled-components";
+import '../App.css';
 
 
 const Navbar = (props) => {
@@ -16,7 +17,6 @@ const Navbar = (props) => {
     { key: 4, text: 'Register', value: 'Register' },
     { key: 5, text: 'Login', value: 'Login' },
   ]
-
   const handleChange = (e, { value, }, ) => setSelection(value)
 
   const userOptions = () => {
@@ -24,24 +24,29 @@ const Navbar = (props) => {
       case 'Contact':
         props.history.push('/Contact')
         setSelection('')
+        // location.reload();
         break;
       case "Register":
         props.history.push('/Register')
         setSelection('')
+        // location.reload();
         break;
       case "Login":
         setSelection('')
         props.history.push('/login')
+        // location.reload();
         break;
       case "Hats":
         setSelection('')
         props.history.push('/categories/2')
+        // location.reload();
         break;
       case "Stickers":
         setSelection('')
         props.history.push('/categories/4')
+        // location.reload();
         break;
-      }
+    }
   }
 
   const rightNavItems = (auth) => {
@@ -49,7 +54,7 @@ const Navbar = (props) => {
       return (
         <>
           <header>
-            <Nav>
+            <div>
               <h3>
                 <div
                   style={cust}
@@ -57,14 +62,14 @@ const Navbar = (props) => {
                   onClick={() => auth.handleLogout(props.history)}
                 />
               </h3>
-            </Nav>
+            </div>
           </header>
         </>
       )
     } else {
       return (
         <>
-          <Nav>
+          <div>
             <div>
               <Button style={cust}>
                 <Link to='/login'>
@@ -92,7 +97,7 @@ const Navbar = (props) => {
                 </Link>
               </Button>
             </div>
-          </Nav>
+          </div>
         </>
       )
     }
@@ -100,10 +105,14 @@ const Navbar = (props) => {
   return (
     <AuthConsumer>
       {auth => (
-        <Nav>
+        <div class="texty">
           <div>
             <div style={home}>
-              <Link to="/">
+              <NavLink
+                to="/"
+                className="nav-link"
+                activeClassName="active"
+              >
                 <div>
                   <img
                     src="https://media.licdn.com/dms/image/C510BAQEaODeG-ziDdQ/company-logo_200_200/0?e=2159024400&v=beta&t=aHik_r9QdKRvn_OC_Ng1e-O0G9f58i-DiHsgmu81FhI"
@@ -111,38 +120,57 @@ const Navbar = (props) => {
                     width="55"
                     class="navbar"
                   >
-                  </img> .Shop( )
+                  </img> .SHOP( )
                 </div>
-              </Link>
+              </NavLink>
             </div>
           </div>
-          <div>
-            <div style={cust}>
-              <div>
-                <Link to='/'>
-                  <h3>
-                    <Nav
-                    />
-                    All products</h3>
-                </Link>
-              </div>
-              <div>
-                <Link to='/categories/1'>
-                  <h3>
-                    <Nav
-                    />
-                    T-Shirts</h3>
-                </Link>
-              </div>
-              <div>
-                <Link to='/categories/3'>
-                  <h3>
-                    <Nav
-                    />
-                    Hoodies</h3>
-                </Link>
-              </div>
-              <Dropdown text='Menu'
+          <div style={cust}>
+            <div>
+              <NavLink
+                to='/'
+                className="nav-link"
+                activeClassName="active"
+              >
+                <h3>
+                  <Nav
+                  />
+                  All Products</h3>
+              </NavLink>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <div>
+              <NavLink
+                to='/categories/1'
+                className="nav-link"
+                activeClassName="active"
+              >
+                <h3>
+                  <Nav
+                  />
+                  T-Shirts</h3>
+              </NavLink>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <div>
+              <NavLink
+                to='/categories/3'
+                className="nav-link"
+                activeClassName="active"
+              >
+                <h3>
+                  <Nav
+                   className="nav-link"
+                   activeClassName="active"
+                  />
+                  Hoodies</h3>
+              </NavLink>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            {selection != '' ? userOptions() : null}
+            <div style={lift} >
+              <Dropdown
+                text='More'
                 as="h3"
                 placeholder='More'
                 options={menuOptions}
@@ -150,22 +178,23 @@ const Navbar = (props) => {
                 value={selection}
                 simple item
               />
-              {selection != '' ? userOptions() : null}
-              <div>
-                <Link to="/Cart">
-                  <h3>
-                    <Icon name='cart arrow down'>
-                    </Icon>Cart
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <div>
+              <Link to="/Cart">
+                <h3>
+                  <Icon name='cart arrow down'>
+                  </Icon>Cart
                   </h3>
-                </Link>
-              </div>
+              </Link>
             </div>
           </div>
-        </Nav>
+        </div>
       )}
     </AuthConsumer>
   )
 }
+// const Spacer = styled.div(space)
 
 const Nav = styled.div`
   box-sizing: border-box;
@@ -180,27 +209,31 @@ const Nav = styled.div`
   flex-direction: row;
 `
 const cust = {
-  paddingTop: '105px',
-  backgroundColor: 'white',
-  fontColor: 'black',
-  fontSize: '30px',
-  justifyContent: 'spaceBetween',
-  paddingRight: '100px',
   display: 'flex',
-  justifyContent: 'flexEnd'
+  paddingBottom: '55px',
+  backgroundColor: 'white',
+  Color: 'black',
+  fontSize: '30px',
+  justifyContent: 'flex-End',
+  paddingRight: '150px',
+  // justifyContent: 'flexEnd'
 }
 
 const home = {
   backgroundColor: 'white',
   paddingTop: '60px',
-  paddingLeft: '85px',
+  paddingLeft: '105px',
   color: 'black',
-  fontSize: '30px'
+  fontSize: '27px'
 }
 
 const text = {
   color: 'black',
 }
 
-export default withRouter(Navbar)
+const lift = {
+  position: 'realitive',
+  paddingTop: '1000[x'
+}
 
+export default withRouter(Navbar)
