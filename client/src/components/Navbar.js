@@ -1,10 +1,12 @@
-import React, { useState, } from 'react'
-import { AuthConsumer } from '../providers/AuthProvider'
-import { Link, withRouter } from 'react-router-dom'
+import React, { useState, } from 'react';
+import { withRouter } from 'react-router-dom';
+import { AuthConsumer } from '../providers/AuthProvider';
+import { Link, NavLink } from 'react-router-dom';
 import { Button, Icon, Dropdown, } from "semantic-ui-react";
 import minilogo from '../components/Images/DevPoint_Labs.png'
 import '../App.css';
 import styled from "styled-components";
+import '../App.css';
 
 
 const Navbar = (props) => {
@@ -17,49 +19,44 @@ const Navbar = (props) => {
     { key: 4, text: 'Register', value: 'Register' },
     { key: 5, text: 'Login', value: 'Login' },
   ]
-
   const handleChange = (e, { value, }, ) => setSelection(value)
 
   const userOptions = () => {
     switch (selection) {
       case 'Contact':
-        setSelection('')
         props.history.push('/Contact')
+        setSelection('')
+        // location.reload();
         break;
       case "Register":
-        setSelection('')
         props.history.push('/Register')
+        setSelection('')
+        // location.reload();
         break;
       case "Login":
         setSelection('')
         props.history.push('/login')
+        // location.reload();
         break;
       case "Hats":
         setSelection('')
         props.history.push('/categories/2')
+        // location.reload();
         break;
       case "Stickers":
         setSelection('')
         props.history.push('/categories/4')
+        // location.reload();
         break;
-      // case "":
-      //   setSelection('')
-      //   props.history.push('/')
-      //   break;
-      // case "":
-      //   setSelection('')
-      //   props.history.push('/')
-      //   break;
     }
   }
-
 
   const rightNavItems = (auth) => {
     if (auth.user) {
       return (
         <>
           <header>
-            <Nav>
+            <div>
               <h3>
                 <div
                   style={cust}
@@ -67,14 +64,14 @@ const Navbar = (props) => {
                   onClick={() => auth.handleLogout(props.history)}
                 />
               </h3>
-            </Nav>
+            </div>
           </header>
         </>
       )
     } else {
       return (
         <>
-          <Nav>
+          <div>
             <div>
               <Button style={cust}>
                 <Link to='/login'>
@@ -85,7 +82,7 @@ const Navbar = (props) => {
                 </Link>
               </Button>
               <Button style={cust}>
-                <Link to='/register' >
+                <Link to='register' >
                   <h3 >
                     <div
                       active={props.location.pathname === '/register'}
@@ -94,23 +91,15 @@ const Navbar = (props) => {
                 </Link>
               </Button>
               <Button style={cust}>
-                <Link to='/categories/2'>
+                <Link to='categories/2'>
                   <h3>
                     <Nav
                       active={props.location.pathname === '/categories/2'} />
                   </h3>Hats
                 </Link>
               </Button>
-              <Button style={cust}>
-                <Link to='/categories/4'>
-                  <h3>
-                    <Nav
-                      active={props.location.pathname === '/categories/4'} />
-                  </h3>Stickers
-                </Link>
-              </Button>
             </div>
-          </Nav>
+          </div>
         </>
       )
     }
@@ -118,10 +107,14 @@ const Navbar = (props) => {
   return (
     <AuthConsumer>
       {auth => (
-        <Nav>
+        <div class="texty">
           <div>
-            <Button style={home}>
-              <Link to="/">
+            <div style={home}>
+              <NavLink
+                to="/"
+                className="nav-link"
+                activeClassName="active"
+              >
                 <div>
                   <img
                     src={minilogo}
@@ -132,39 +125,55 @@ const Navbar = (props) => {
                   >
                   </img> .SHOP( )
                 </div>
-              </Link>
-            </Button>
+              </NavLink>
+            </div>
           </div>
-          <div>
+          <div style={cust}>
             <div>
-              <Button style={cust}>
-                <Link to='/'>
-                  <h3>
-                    <Nav
-                    //what are you adding on this button 
-                    />
-                    All products</h3>
-                </Link>
-              </Button>
-              <Button style={cust}>
-                <Link to='/categories/1'>
-                  <h3>
-                    <Nav
-                    //what are you adding on this button 
-                    />
-                    T-Shirts</h3>
-                </Link>
-              </Button>
-              <Button style={cust}>
-                <Link to='/categories/3'>
-                  <h3>
-                    <Nav
-                    //what are you adding on this button 
-                    />
-                    Hoodies</h3>
-                </Link>
-              </Button>
+              <NavLink
+                to='/'
+                className="nav-link"
+                activeClassName="active"
+              >
+                <h3>
+                  <Nav
+                  />
+                  All Products</h3>
+              </NavLink>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <div>
+              <NavLink
+                to='/categories/1'
+                className="nav-link"
+                activeClassName="active"
+              >
+                <h3>
+                  <Nav
+                  />
+                  T-Shirts</h3>
+              </NavLink>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <div>
+              <NavLink
+                to='/categories/3'
+                className="nav-link"
+                activeClassName="active"
+              >
+                <h3>
+                  <Nav
+                   className="nav-link"
+                   activeClassName="active"
+                  />
+                  Hoodies</h3>
+              </NavLink>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            {selection != '' ? userOptions() : null}
+            <div style={lift} >
               <Dropdown
+                text='More'
                 as="h3"
                 placeholder='More'
                 options={menuOptions}
@@ -172,22 +181,23 @@ const Navbar = (props) => {
                 value={selection}
                 simple item
               />
-              {selection != '' ? userOptions() : null}
-              <Button style={cust}>
-                <Link to="/Cart">
-                  <h3>
-                    <Icon name='cart arrow down'>
-                    </Icon>Cart
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <div>
+              <Link to="/Cart">
+                <h3>
+                  <Icon name='cart arrow down'>
+                  </Icon>Cart
                   </h3>
-                </Link>
-              </Button>
+              </Link>
             </div>
           </div>
-        </Nav>
+        </div>
       )}
     </AuthConsumer>
   )
 }
+// const Spacer = styled.div(space)
 
 const Nav = styled.div`
   box-sizing: border-box;
@@ -200,45 +210,33 @@ const Nav = styled.div`
   width: 100%;
   justify-content: space-between;
   flex-direction: row;
-
 `
 const cust = {
-  paddingTop: '95px',
+  display: 'flex',
+  paddingBottom: '55px',
   backgroundColor: 'white',
-  color: 'black',
+  Color: 'black',
   fontSize: '30px',
-  justifyContent: 'right',
-  direction: 'rtl',
-  textAlign: 'right',
-  flexStart: 'right',
-  alignItems: 'right',
-  position: 'right',
-  positionRight: '100px',
-  flex: 'right',
+  justifyContent: 'flex-End',
+  paddingRight: '150px',
+  // justifyContent: 'flexEnd'
 }
 
 const home = {
   backgroundColor: 'white',
   paddingTop: '60px',
-  paddingLeft: '85px',
+  paddingLeft: '105px',
   color: 'black',
-  fontSize: '30px'
+  fontSize: '27px'
 }
 
-const left = {
-  paddingleft: '350',
-
+const text = {
+  color: 'black',
 }
 
-class Rend extends React.Component {
-  valueRender = (element, value) => {
-    if (!value) {
-      return element;
-    }
-    const child = []
-  }
+const lift = {
+  position: 'realitive',
+  paddingTop: '1000[x'
 }
-
 
 export default withRouter(Navbar)
-

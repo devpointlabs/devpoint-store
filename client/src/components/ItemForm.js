@@ -15,7 +15,7 @@ class ItemForm extends React.Component {
         })
         .catch(err => {
           console.log(err.response)
-        })
+      })
   }
 
   handleChange = (e) => { 
