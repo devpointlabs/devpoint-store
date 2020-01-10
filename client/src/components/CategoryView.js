@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Image, Card, Container, Button, Grid } from "semantic-ui-react";
 import '../styles/catView.css'
 
+
 class CategoryView extends React.Component {
   state = { category: {}, items: [] };
 
@@ -34,22 +35,38 @@ class CategoryView extends React.Component {
       });
   };
 
+  // function to delete item
+  deleteItem = (id) => {
+    axios.delete(`/api/categories/${this.props.match.params.id}/items/${id}`)
+      .then( res => {
+        const { items, } = this.state;
+        this.setState({ items: items.filter(i => i.id !== id), })
+      })
+  }
+
+  add = (data) => {
+    this.setState({...this.state, items: [...this.state.items, data]})
+  }
 
   // list of all item names
   renderItems() {
     const { id, } = this.props.match.params;
     return this.state.items.map(i => (
-      <Grid.Column>
+      <>
+
+      <Grid.Column style={{display: "flex", justifyContent: "center"}}>
         <Link to={`/api/categories/${id}/items/${i.id}`}>
           <Image src={i.image} />
-          {i.name}
-          <br />
-          {i.price}
-          <br />
-          <Button onClick={() => this.deleteItem(i.id)}>Delete</Button>
+        <h4 style={{textAlign: "center"} }>   {i.name}</h4>
 
+          <h4 style={{textAlign: "center"}}> ${i.price}.00 </h4>
+          <br />
+          <br />
         </Link>
+          {/* <Button onClick={() => this.deleteItem(i.id)}>Delete</Button> */}
       </Grid.Column>
+          <br />
+          </>
     ));
   }
 
@@ -66,9 +83,13 @@ class CategoryView extends React.Component {
               </Card.Content>
             </Card>
           </Card.Group>
-          <ItemForm id={this.props.match.params} />
-          <Grid>
-            <Grid.Row relaxed columns={4}>
+        <Segment>
+          <ItemForm category_id={this.props.match.params.id} add={this.add} />
+        </Segment>
+          <hr />
+          <br />
+          <Grid >
+            <Grid.Row padded relaxed columns={4}>
               {this.renderItems()}
             </Grid.Row>
           </Grid>
@@ -79,3 +100,5 @@ class CategoryView extends React.Component {
 }
 
 export default CategoryView;
+
+
