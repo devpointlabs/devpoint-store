@@ -4,12 +4,13 @@ import { AuthConsumer } from '../providers/AuthProvider';
 import { Link, NavLink } from 'react-router-dom';
 import { Button, Icon, Dropdown, } from "semantic-ui-react";
 import minilogo from '../components/Images/DevPoint_Labs.png'
-import '../App.css';
 import styled from "styled-components";
-import '../App.css';
+import { Switch, Route } from 'react-router-dom'
 
+import '../App.css';
 
 const Navbar = (props) => {
+
   const [selection, setSelection] = useState('')
 
   const menuOptions = [
@@ -94,8 +95,10 @@ const Navbar = (props) => {
                 <Link to='categories/2'>
                   <h3>
                     <Nav
-                      active={props.location.pathname === '/categories/2'} />
-                  </h3>Hats
+                    onClick={document.getElementById('/categories/2')}
+                       />
+                  </h3>
+                  Hats
                 </Link>
               </Button>
             </div>
@@ -107,75 +110,81 @@ const Navbar = (props) => {
   return (
     <AuthConsumer>
       {auth => (
-        <div class="texty">
-          <div>
+        <div>
+          <div class="text">
             <div style={home}>
               <NavLink
-                to="/"
-                className="nav-link"
+                to="/" exact
                 activeClassName="active"
+                className="nav-link"
               >
-                <div>
+                <div style={text}>
                   <img
                     src={minilogo}
-                    // "https://media.licdn.com/dms/image/C510BAQEaODeG-ziDdQ/company-logo_200_200/0?e=2159024400&v=beta&t=aHik_r9QdKRvn_OC_Ng1e-O0G9f58i-DiHsgmu81FhI"
                     height="60"
                     width="60"
                     class="navbar"
                   >
-                  </img> .SHOP( )
+                  </img>
+                  .SHOP( )
                 </div>
               </NavLink>
             </div>
           </div>
-          <div style={cust}>
+          {/* navbar begins here  */}
+          <div
+            color="black"
+            style={cust}>
             <div>
               <NavLink
-                to='/'
-                className="nav-link"
+                to='/' exact
                 activeClassName="active"
+                className="nav-link"
+                active={props.location.pathname === '/'}
               >
-                <h3>
+                <h3 style={text}>
                   <Nav
                   />
                   All Products</h3>
               </NavLink>
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <div>
+            <div color="black">
               <NavLink
-                to='/categories/1'
-                className="nav-link"
+                to='/categories/1' exact
                 activeClassName="active"
+                className="nav-link"
+                onClick={document.getElementById('/categories/1')}
               >
-                <h3>
+                <h3 style={text}>
                   <Nav
                   />
-                  T-Shirts</h3>
+                  T-Shirts
+                  </h3>
               </NavLink>
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <div>
+            <div color="black">
               <NavLink
-                to='/categories/3'
-                className="nav-link"
+                to={'/categories/3'} exact
                 activeClassName="active"
+                className="nav-link"
+                onClick={document.getElementById('/categories/3')}
               >
-                <h3>
-                  <Nav
-                   className="nav-link"
-                   activeClassName="active"
-                  />
-                  Hoodies</h3>
+                <h3 style={text}>
+                  Hoodies
+                  </h3>
               </NavLink>
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             {selection != '' ? userOptions() : null}
-            <div style={lift} >
+            <div
+              style={lift} >
               <Dropdown
+                style={text}
                 text='More'
                 as="h3"
-                placeholder='More'
+                // placeholder='More'
                 options={menuOptions}
                 onChange={handleChange}
                 value={selection}
@@ -184,9 +193,15 @@ const Navbar = (props) => {
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
-              <Link to="/Cart">
-                <h3>
-                  <Icon name='cart arrow down'>
+              <Link
+                to="/Cart"
+                onClick={document.getElementById('/Cart')}
+              >
+                <h3
+                  style={text}>
+                  <Icon
+                    style={text}
+                    name='cart arrow down'>
                   </Icon>Cart
                   </h3>
               </Link>
@@ -197,7 +212,6 @@ const Navbar = (props) => {
     </AuthConsumer>
   )
 }
-// const Spacer = styled.div(space)
 
 const Nav = styled.div`
   box-sizing: border-box;
@@ -215,11 +229,10 @@ const cust = {
   display: 'flex',
   paddingBottom: '55px',
   backgroundColor: 'white',
-  Color: 'black',
+  color: 'black',
   fontSize: '30px',
   justifyContent: 'flex-End',
   paddingRight: '150px',
-  // justifyContent: 'flexEnd'
 }
 
 const home = {
@@ -236,7 +249,6 @@ const text = {
 
 const lift = {
   position: 'realitive',
-  paddingTop: '1000[x'
 }
 
 export default withRouter(Navbar)
