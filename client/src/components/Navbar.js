@@ -12,6 +12,8 @@ import axios from 'axios';
 const Navbar = (props) => {
   const [selection, setSelection] = useState('')
   const [categories, setCategories] = useState([])
+  //define c 
+  // const options = categories.map( c => { return { T-shirts: c, Hats: c, Hoodies: c, }} );
 
   const menuOptions = [
     { key: 1, text: 'Hats', value: 'Hats' },
@@ -28,6 +30,7 @@ const Navbar = (props) => {
       })
   }, []);
 
+  //delete category
   // deleteCategory = id => {
   //   axios
   //     .delete(`/api/categories/${category_id}/item/${id}`)
@@ -37,6 +40,18 @@ const Navbar = (props) => {
   //     });
   // };
 
+  //this is also needed figure out function
+
+  // getCategories = () =>{
+  //   const{ T-shirts, Hats, hoddies} = this.state;
+  //   axios.get(`/api/categories/${category}?`)
+  //   .then(res =>{
+  //     cosnst { categories, } = res.data;
+  //     this.ListeningStateChangedEvent({
+  //       categories: [... this.state.categories, ...categories],
+  //     })
+  //   });
+  // }
 
 
   const handleChange = (e, { value, }, ) => setSelection(value)
@@ -117,7 +132,7 @@ const Navbar = (props) => {
               <Button style={cust}>
                 <Link
                   to='/categories/2'
-                  // to={`/categories/${c.id}`}
+                // to={`/categories/${c.id}`}
                 >
                   <h3>
                     <Nav
@@ -178,6 +193,7 @@ const Navbar = (props) => {
             <div color="black">
               <NavLink
                 to='/categories/1'
+                //call catergorie id
                 // to={`/categories/${c.id}`}
                 id='1'
                 activeClassName="active"
@@ -195,6 +211,7 @@ const Navbar = (props) => {
             <div color="black">
               <NavLink
                 to='/categories/3' exact
+                //call catergorie id
                 // to={`/categories/${c.id}`}
                 id="3"
                 activeClassName="active"
