@@ -11,22 +11,29 @@ import axios from 'axios';
 
 const Navbar = (props) => {
   const [selection, setSelection] = useState('')
-  const [categories, setCategories] = useState([])
-  //define c 
+  const [tShirts, setTshirts] = useState({})
+  const [hoodies, setHoodies] = useState({})
+  const [hats, setHats] = useState({})
+  const [stickers, setStickers] = useState({})
+
   // const options = categories.map( c => { return { T-shirts: c, Hats: c, Hoodies: c, }} );
 
   const menuOptions = [
     { key: 1, text: 'Hats', value: 'Hats' },
     { key: 2, text: 'Stickers', value: 'Stickers' },
     { key: 3, text: 'Contact', value: 'Contact' },
-    { key: 4, text: 'Register', value: 'Register' },
-    { key: 5, text: 'Login', value: 'Login' },
+    { key: 4, text: 'AdminPage', value: 'Login' },
+    { key: 5, text: 'Register', value: 'Register' },
+    { key: 6, text: 'Login', value: 'Login' },
   ]
 
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
-        setCategories(res.data)
+        setTshirts(res.data[0])
+        setHats(res.data[1])
+        setHoodies(res.data[2])
+        setStickers(res.data[3])
       })
   }, []);
 
@@ -56,222 +63,188 @@ const Navbar = (props) => {
   const handleChange = (e, { value, }, ) => setSelection(value)
 
   const userOptions = () => {
-    switch (selection) {
-      case 'Contact':
-        props.history.push('/Contact')
-        setSelection('')
-        // location.reload();
-        break;
+    //   switch (selection) {
+    //     case 'Contact':
+    //       props.history.push('/Contact')
+    //       setSelection('')
+    //       // location.reload();
+    //       break;
 
-      case "Register":
-        props.history.push('/Register')
-        setSelection('')
-        // location.reload();
-        break;
+    //     case "Register":
+    //       props.history.push('/Register')
+    //       setSelection('')
+    //       // location.reload();
+    //       break;
 
-      case "Login":
-        setSelection('')
-        props.history.push('/login')
-        // location.reload();
-        break;
+    //     case "Login":
+    //       props.history.push('/login')
+    //       setSelection('')
+    //       // location.reload();
+    //       break;
 
-      case "Hats":
-        setSelection('')
-        props.history.push('/categories/2')
-        // location.reload();
-        break;
+    //     case "Hats":
+    //       props.history.push('/categories/2')
+    //       setSelection('')
+    //       // location.reload();
+    //       break;
 
-      case "Stickers":
-        setSelection('')
-        props.history.push('/categories/4')
-        // location.reload();
-        break;
-    }
+    //     case "Stickers":
+    //       props.history.push('/categories/4')
+    //       setSelection('')
+    //       // location.reload();
+    //       break;
+    //   }
   }
 
-  const rightNavItems = (auth) => {
-    if (auth.user) {
-      return useState.categories.map(i => (
-        <>
-          <header>
-            <div>
-              <h3>
-                <div
-                  style={cust}
-                  name='/logout'
-                  onClick={() => auth.handleLogout(props.history)}
+  // const rightNavItems = (auth) => {
+  //   if (auth.user) {
+  //     return (
+  //       <>
+  //         <header>
+  //           <div>
+  //             <h3>
+  //               <div
+  //                 style={cust}
+  //                 name='/logout'
+  //                 onClick={() => auth.handleLogout(props.history)}
+  //               />
+  //             </h3>
+  //           </div>
+  //         </header>
+  //       </>
+  //     );
+  //   } 
+  //   else {
+  //     return (
+  //       <>
+  //         <div>
+  //           <div>
+  //             <Button style={cust}>
+  //               <Link to='/login'>
+  //                 <h3>
+  //                   <div
+  //                     active={props.location.pathname === '/login'} 
+  //                   />
+  //                 </h3>
+  //               </Link>
+  //             </Button>
+  //             <Button style={cust}>
+  //               <Link to='/register'>
+  //                 <h3 >
+  //                   <div
+  //                     active={props.location.pathname === '/register'}
+  //                   />
+  //                 </h3>
+  //               </Link>
+  //             </Button>
+  // <Button style={cust}>
+  //   <Link to='/categories/2'>
+  //     {/* `/categories/${c.id}` */}
+  //     <h3>
+  //       <div id="2"
+  //       />
+  //     </h3>
+  //   </Link>
+  // </Button>
+  //           </div>
+  //         </div>
+  //       </>
+  //     )
+  //   }
+// }
+
+return (
+  <AuthConsumer>
+    {auth => (
+      <div id='whole navbar'>
+        <div id='left side navbar'>
+          <div style={home}>
+            <NavLink
+              to="/" exact
+              activeClassName="active"
+              className="nav-link"
+            >
+              <div style={text}>
+                <img
+                  src={minilogo}
+                  height="60"
+                  width="60"
+                  class="navbar"
                 />
-              </h3>
-            </div>
-          </header>
-        </>
-      ));
-    } else {
-      return (
-        <>
-          <div>
-            <div>
-              <Button style={cust}>
-                <Link to='/login'>
-                  <h3>
-                    <Nav
-                      active={props.location.pathname === '/login'} />
-                  </h3>login
-                </Link>
-              </Button>
-              <Button style={cust}>
-                <Link to='/register' >
-                  <h3 >
-                    <div
-                      active={props.location.pathname === '/register'}
-                    />register
-                  </h3>
-                </Link>
-              </Button>
-              <Button style={cust}>
-                <Link
-                  to='/categories/2'
-                // to={`/categories/${c.id}`}
-                >
-                  <h3>
-                    <Nav
-                      id="2"
-                    />
-                  </h3>
-                  Hats
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </>
-      )
-    }
-  }
-  return (
-    <AuthConsumer>
-      {auth => (
-        <div>
-          <div class="text">
-            <div style={home}>
-              <NavLink
-                to="/" exact
-                activeClassName="active"
-                className="nav-link"
-              >
-                <div style={text}>
-                  <img
-                    src={minilogo}
-                    height="60"
-                    width="60"
-                    class="navbar"
-                  >
-                  </img>
-                  .SHOP( )
+                .SHOP( )
                 </div>
-              </NavLink>
-            </div>
-          </div>
-          {/* navbar begins here  */}
-          <div
-            color="black"
-            style={cust}>
-            <div>
-              <NavLink
-                to='/' exact
-                activeClassName="active"
-                className="nav-link"
-                active={props.location.pathname === '/'}
-              >
-                <h3 style={text}>
-                  <Nav
-                  />
-                  All Products</h3>
-              </NavLink>
-            </div>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <div color="black">
-              <NavLink
-                to='/categories/1'
-                //call catergorie id
-                // to={`/categories/${c.id}`}
-                id='1'
-                activeClassName="active"
-                className="nav-link"
-                active={props.location.pathname === '/categories/1'}
-              >
-                <h3 style={text}>
-                  <Nav
-                  />
-                  T-Shirts
-                  </h3>
-              </NavLink>
-            </div>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <div color="black">
-              <NavLink
-                to='/categories/3' exact
-                //call catergorie id
-                // to={`/categories/${c.id}`}
-                id="3"
-                activeClassName="active"
-                className="nav-link"
-                active={props.location.pathname === '/categories/3'}
-              >
-                <h3 style={text}>
-                  Hoodies
-                  </h3>
-              </NavLink>
-            </div>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            {selection != '' ? userOptions() : null}
-            <div
-              style={lift} >
-              <Dropdown
-                style={text}
-                text='More'
-                as="h3"
-                options={menuOptions}
-                onChange={handleChange}
-                value={selection}
-                simple item
-              />
-            </div>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <div>
-              <Link
-                to="/Cart"
-                id='Cart'
-                active={props.location.pathname === '/Cart'}
-              >
-                <h3
-                  style={text}>
-                  <Icon
-                    style={text}
-                    name='cart arrow down'>
-                  </Icon>
-                  Cart
-                  </h3>
-              </Link>
-            </div>
+            </NavLink>
           </div>
         </div>
-      )}
-    </AuthConsumer>
-  )
+
+        <div id='right side navbar' style={cust}>
+          <div>
+            <NavLink
+              to='/' exact
+            >
+              <h3 style={text}>
+                <div
+                />
+                All Products</h3>
+            </NavLink>
+          </div>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+          <div color="black">
+            <NavLink to='/categories/1'>
+              {/* to={`/categories/${c.id}` */}
+              <h3 style={text}>
+                T-Shirts
+                </h3>
+            </NavLink>
+          </div>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+          <div color="black">
+            <NavLink
+              to='/categories/3'
+            // to={`/categories/${c.id}`}
+            >
+              <h3 style={text}>
+                Hoodies
+              </h3>
+            </NavLink>
+          </div>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          {/* {selection != '' ? userOptions() : null} */}
+          <div
+            style={lift} >
+            <Dropdown
+              style={text}
+              text='More'
+              as="h3"
+              options={menuOptions}
+              onChange={handleChange}
+              value={selection}
+              simple item
+            />
+          </div>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <div>
+            <Link
+              to="/Cart"
+              active={props.location.pathname === '/Cart'}
+            >
+              <h3 style={text}>
+                <Icon
+                  name='cart arrow down'>
+                </Icon>
+                Cart
+              </h3>
+            </Link>
+          </div>
+        </div>
+      </div>
+    )}
+  </AuthConsumer>
+)
 }
 
-const Nav = styled.div`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  display: flex;
-  color: black;
-  fontSize: 30px;
-  width: 100%;
-  justify-content: space-between;
-  flex-direction: row;
-`
 const cust = {
   display: 'flex',
   paddingBottom: '55px',

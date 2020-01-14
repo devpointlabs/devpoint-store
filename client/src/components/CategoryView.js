@@ -43,13 +43,12 @@ class CategoryView extends React.Component {
     const { id, } = this.props.match.params;
     return this.state.items.map(i => (
       <>
-
       <Grid.Column style={{display: "flex", justifyContent: "center"}}>
         <Link to={`/api/categories/${id}/items/${i.id}`}>
           <Image src={i.image} />
-        <h4 style={{textAlign: "center"} }>   {i.name}</h4>
+        <h4 style={{textAlign: "center"} }>{i.name}</h4>
 
-          <h4 style={{textAlign: "center"}}> ${i.price}.00 </h4>
+          <h4 style={{textAlign: "center"}}>${i.price}.00</h4>
           <br />
           <br />
         </Link>
