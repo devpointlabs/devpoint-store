@@ -4,29 +4,26 @@ import styled from 'styled-components'
 import { Image, Header, Container, Button } from 'semantic-ui-react'
 
 class Cart extends React.Component {
-  // will need to pass in or grab items/item variants
+  // will need to pass in or grab items/item variants that were added to cart
 
   // handleDelete = () => {
   // }
 
-  //  item map function
-      //  each item will be in its own white segment
-      // segments will exist in a container
   showItems() {
     // map through items to make dynamic
     return (
       <>
       <div style={{ backgroundColor: 'white', overflow: 'hidden', position: 'relative'}}>
         <Image src={gshirt} style={{ height: '130px', width: '130px', padding: '10px', float: 'left' }}/>
-        <Header as='h2' style={{ position: 'relative', left: '10px', top: '60px'}} > shirt wow, medium x1 </Header>
-        <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '10px', left: '-30px'}}> $25.00 </Header>
-        <Button veritcal fluid color='grey' floated='right' style={{ borderRadius: '0px' }}> 
+        <Button color='grey' floated='right' style={{ borderRadius: '0px', height: '140px', width: '60px' }}> 
           <i 
             color='white'
             class="icon trash large"
             onClick={this.handleDelete}
-          /> 
-        </Button>
+            /> 
+         </Button>
+        <Header as='h2' style={{ position: 'relative', left: '10px', top: '60px'}} > shirt wow, medium x1 </Header>
+        <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '10px', left: '-30px'}}> $25.00 </Header>
       </div>
       </>
       )
@@ -46,7 +43,7 @@ class Cart extends React.Component {
       <br />
       </Page>
       <Header as='h2' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Total: $25.00 </Header>
-      <Button floated='right' color='black' style={{ borderRadius: '0px', position: 'relative', left: '-25px'}}> Checkout </Button>
+      <Button size='huge' floated='right' color='black' style={{ borderRadius: '0px', position: 'relative', left: '-25px'}}> Checkout </Button>
       <br />
       <br />
       <br />
@@ -59,8 +56,6 @@ class Cart extends React.Component {
 
 const Page = styled.body`
   background-color: rgba(0, 0, 0, 0.03);
-  height: '1000px';
-  width: '1000px';
 `
 
 export default Cart;
