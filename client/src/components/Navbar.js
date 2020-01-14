@@ -53,7 +53,6 @@ const Navbar = (props) => {
   //   });
   // }
 
-
   const handleChange = (e, { value, }, ) => setSelection(value)
 
   const userOptions = () => {
