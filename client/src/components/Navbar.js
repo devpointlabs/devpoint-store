@@ -1,17 +1,17 @@
-import React, { useState, } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect, } from 'react';
+import { withRouter, } from 'react-router-dom';
 import { AuthConsumer } from '../providers/AuthProvider';
 import { Link, NavLink } from 'react-router-dom';
 import { Button, Icon, Dropdown, } from "semantic-ui-react";
 import minilogo from '../components/Images/DevPoint_Labs.png'
 import styled from "styled-components";
-import { Switch, Route } from 'react-router-dom'
-
 import '../App.css';
+import CategoryForm from './CategoryForm';
+import axios from 'axios';
 
 const Navbar = (props) => {
-
   const [selection, setSelection] = useState('')
+  const [categories, setCategories] = useState([])
 
   const menuOptions = [
     { key: 1, text: 'Hats', value: 'Hats' },
@@ -20,6 +20,25 @@ const Navbar = (props) => {
     { key: 4, text: 'Register', value: 'Register' },
     { key: 5, text: 'Login', value: 'Login' },
   ]
+
+  useEffect(() => {
+    axios.get("/api/categories")
+      .then(res => {
+        setCategories(res.data)
+      })
+  }, []);
+
+  // deleteCategory = id => {
+  //   axios
+  //     .delete(`/api/categories/${category_id}/item/${id}`)
+  //     .then(res => {
+  //       const {categories} = useState;
+  //       setSelection({ categories: categories.filter(c => c.id !==id) });
+  //     });
+  // };
+
+
+
   const handleChange = (e, { value, }, ) => setSelection(value)
 
   const userOptions = () => {
@@ -29,21 +48,25 @@ const Navbar = (props) => {
         setSelection('')
         // location.reload();
         break;
+
       case "Register":
         props.history.push('/Register')
         setSelection('')
         // location.reload();
         break;
+
       case "Login":
         setSelection('')
         props.history.push('/login')
         // location.reload();
         break;
+
       case "Hats":
         setSelection('')
         props.history.push('/categories/2')
         // location.reload();
         break;
+
       case "Stickers":
         setSelection('')
         props.history.push('/categories/4')
@@ -54,21 +77,21 @@ const Navbar = (props) => {
 
   const rightNavItems = (auth) => {
     if (auth.user) {
-      return (
+      return useState.categories.map(i => (
         <>
           <header>
             <div>
               <h3>
                 <div
                   style={cust}
-                  name='logout'
+                  name='/logout'
                   onClick={() => auth.handleLogout(props.history)}
                 />
               </h3>
             </div>
           </header>
         </>
-      )
+      ));
     } else {
       return (
         <>
@@ -83,7 +106,7 @@ const Navbar = (props) => {
                 </Link>
               </Button>
               <Button style={cust}>
-                <Link to='register' >
+                <Link to='/register' >
                   <h3 >
                     <div
                       active={props.location.pathname === '/register'}
@@ -92,11 +115,14 @@ const Navbar = (props) => {
                 </Link>
               </Button>
               <Button style={cust}>
-                <Link to='categories/2'>
+                <Link
+                  to='/categories/2'
+                  // to={`/categories/${c.id}`}
+                >
                   <h3>
                     <Nav
-                    onClick={document.getElementById('/categories/2')}
-                       />
+                      id="2"
+                    />
                   </h3>
                   Hats
                 </Link>
@@ -151,10 +177,12 @@ const Navbar = (props) => {
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div color="black">
               <NavLink
-                to='/categories/1' exact
+                to='/categories/1'
+                // to={`/categories/${c.id}`}
+                id='1'
                 activeClassName="active"
                 className="nav-link"
-                onClick={document.getElementById('/categories/1')}
+                active={props.location.pathname === '/categories/1'}
               >
                 <h3 style={text}>
                   <Nav
@@ -166,10 +194,12 @@ const Navbar = (props) => {
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div color="black">
               <NavLink
-                to={'/categories/3'} exact
+                to='/categories/3' exact
+                // to={`/categories/${c.id}`}
+                id="3"
                 activeClassName="active"
                 className="nav-link"
-                onClick={document.getElementById('/categories/3')}
+                active={props.location.pathname === '/categories/3'}
               >
                 <h3 style={text}>
                   Hoodies
@@ -184,7 +214,6 @@ const Navbar = (props) => {
                 style={text}
                 text='More'
                 as="h3"
-                // placeholder='More'
                 options={menuOptions}
                 onChange={handleChange}
                 value={selection}
@@ -195,14 +224,16 @@ const Navbar = (props) => {
             <div>
               <Link
                 to="/Cart"
-                onClick={document.getElementById('/Cart')}
+                id='Cart'
+                active={props.location.pathname === '/Cart'}
               >
                 <h3
                   style={text}>
                   <Icon
                     style={text}
                     name='cart arrow down'>
-                  </Icon>Cart
+                  </Icon>
+                  Cart
                   </h3>
               </Link>
             </div>

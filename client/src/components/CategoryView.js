@@ -13,8 +13,8 @@ class CategoryView extends React.Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     axios
-      .get(`/api/categories/${id}`)
-      .then(res => {
+    .get(`/api/categories/${id}`)
+    .then(res => {
         this.setState({ category: res.data });
       })
       .catch(err => {
@@ -24,16 +24,6 @@ class CategoryView extends React.Component {
       .get(`/api/categories/${id}/items`)
       .then(res => this.setState({ items: res.data }));
   }
-
-  // function to delete item
-  deleteItem = id => {
-    axios
-      .delete(`/api/categories/${this.props.match.params.id}/items/${id}`)
-      .then(res => {
-        const { items } = this.state;
-        this.setState({ items: items.filter(i => i.id !== id) });
-      });
-  };
 
   // function to delete item
   deleteItem = (id) => {
