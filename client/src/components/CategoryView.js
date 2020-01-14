@@ -79,6 +79,7 @@ class CategoryView extends React.Component {
             <Card>
               <Card.Content>
                 <Image id ='mainimage'src={this.state.category.image} />
+                <div id="shadowy"></div>
                 <h1 id='shirty'>{this.state.category.name}</h1>
               </Card.Content>
             </Card>

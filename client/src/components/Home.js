@@ -27,8 +27,9 @@ class Home extends React.Component {
     
     <Card id='card1'>
     <Card.Content>
-      <Link to={`/categories/${c.id}`}  >
+      <Link to={`/categories/${c.id}`} >
         <Image src={c.image} id='shirtpic'/>
+        <div id="shadow1"></div>
         <h1 id='shirty'>T-Shirt</h1>
       </Link>
       </Card.Content>
@@ -47,14 +48,14 @@ class Home extends React.Component {
     return(
     
       <Card>
-       <Card.Content>
-         <Link to={`/categories/${c.id}`}  >
-          <Image src={c.image} id='restimages'/>
+       <Card.Content >                 
+         <Link to={`/categories/${c.id}`} >
+          <Image  src={c.image} id='restimages'/>
+           <div id="shadow"></div>
            <h1 id='shirty'>{c.name}</h1>
          </Link>
         </Card.Content>
-      </Card>  
-       
+      </Card>         
     )
   })
 }
@@ -65,7 +66,7 @@ class Home extends React.Component {
         <Card.Group itemsPerRow={1}>  
           {this.renderImages()}
         </Card.Group>
-        <Card.Group itemsPerRow={2}>
+        <Card.Group itemsPerRow={2} >
           {this.renderImagessmall()}
         </Card.Group>
       </Container>
