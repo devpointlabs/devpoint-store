@@ -35,14 +35,15 @@ class Footer extends React.Component {
         <div class='ui inverted vertical footer segment' style={{ 
           justifyContent: 'flex-end',
           display: "flex", 
-          padding: '5 px',
+          padding: '10 px',
+          
           }} >
           <h5> &copy; 2020 DevPoint labs 
               <a href='https://www.devpointlabs.com/dpl-terms-of-service' 
-              target='_blank'> Terms </a> 
+              target='_blank' style={{ color: "white", }} >  Terms  </a> 
                and  
               <a href='https://www.devpointlabs.com/dpl-privacy-policy' 
-                target='_blank'> Policy </a>
+                target='_blank'style={{ color: "white", }} >  Policy  </a>
           </h5>
         </div>
         </>

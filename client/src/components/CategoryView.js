@@ -57,9 +57,9 @@ class CategoryView extends React.Component {
       <Grid.Column style={{display: "flex", justifyContent: "center"}}>
         <Link to={`/api/categories/${id}/items/${i.id}`}>
           <Image src={i.image} />
-        <h4 style={{textAlign: "center"} }>   {i.name}</h4>
+        <h4 style={{textAlign: "center", color: 'black', fontWeight: 'bold' } }>   {i.name}</h4>
 
-          <h4 style={{textAlign: "center"}}> ${i.price}.00 </h4>
+          <h4 style={{textAlign: "center", color: 'black'}}> ${i.price}.00 </h4>
           <br />
           <br />
         </Link>
