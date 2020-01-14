@@ -3,15 +3,15 @@ import axios from 'axios'
 import { Form } from 'semantic-ui-react'
 
 class ItemForm extends React.Component {
-  state = { name: '', price: '', desc: '', image: ''}
+  state = { category_id: '', name: '', price: '', desc: '', image: ''}
 
   componentDidMount() {
     const { id, category_id, } = this.props
     if (id && category_id)
       axios.get(`/api/categories/${category_id}/items/${id}`)
         .then(res => {
-          const { name, desc, price, image, } = res.data
-          this.setState({ name, desc, price, image })
+          const { category_id, name, desc, price, image, } = res.data
+          this.setState({ category_id, name, desc, price, image })
         })
         .catch(err => {
           console.log(err.response)
@@ -40,6 +40,8 @@ class ItemForm extends React.Component {
     }
     // this.props.close()
   }
+
+  // const categoryOptions = 
   
   render() {
     const { name, desc, price, image, } = this.state
@@ -48,6 +50,12 @@ class ItemForm extends React.Component {
       <>
       <Form onSubmit={this.handleSubmit}>
         <Form.Group>
+          <Form.Dropdown
+          placeholder='Select Friend'
+          fluid
+          selection
+          // options={categoryOptions}
+          />
           <Form.Input
             name='name'
             placeholder='Item Name'
