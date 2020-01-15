@@ -4,11 +4,8 @@ import {  Container, Card, Image, Grid } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import '../styles/home.css'
 
-
-
-
 class Home extends React.Component {
-  state = {  categories: [ ]  }
+  state = {  categories: [ ] }
 
   componentDidMount() {
     axios.get("/api/categories")
@@ -34,12 +31,9 @@ class Home extends React.Component {
         </Link>
       </Card.Content>
     </Card>    
-   
-
     )}
   })
 }
-
 
   renderImagessmall = () => {
     
@@ -55,7 +49,9 @@ class Home extends React.Component {
             <h1 id='shirty'>{c.name}</h1>
          </Link>
         </Card.Content>
+
       </Card>         
+
     )
   })
 }
@@ -73,7 +69,6 @@ class Home extends React.Component {
         </Card.Group>
         </div>
       </Container>
-
 )}}
 
 

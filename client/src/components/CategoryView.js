@@ -12,11 +12,38 @@ class CategoryView extends React.Component {
 
   // Mount used to make API calls to update state
   componentDidMount() {
+    this.axiosCall();
+  }
+
+
+  componentDidUpdate(prevProps) {
+    const { id } = this.props.match.params;
+    if (id != this.state.category.id) this.axiosCall();
+  }
+
+
+  axiosCall() {
     const { id } = this.props.match.params;
     axios
       .get(`/api/categories/${id}`)
       .then(res => {
         this.setState({ category: res.data });
+        console.log(this.state.category)
+      })
+      .catch(console.log);
+    axios
+      .get(`/api/categories/${id}/items`)
+      .then(res => this.setState({ items: res.data }));
+  }
+
+  
+  newMethod = () => {
+    const { id } = this.category.id;
+    axios
+      .get(`/api/categories/${id}`)
+      .then(res => {
+        this.setState({ category: res.data });
+        console.log(this.state.category)
       })
       .catch(err => {
         console.log(err);
@@ -26,27 +53,18 @@ class CategoryView extends React.Component {
       .then(res => this.setState({ items: res.data }));
   }
 
-  // function to delete item
-  deleteItem = id => {
-    axios
-      .delete(`/api/categories/${this.props.match.params.id}/items/${id}`)
-      .then(res => {
-        const { items } = this.state;
-        this.setState({ items: items.filter(i => i.id !== id) });
-      });
-  };
 
-  // function to delete item
   deleteItem = (id) => {
     axios.delete(`/api/categories/${this.props.match.params.id}/items/${id}`)
-      .then( res => {
+      .then(res => {
         const { items, } = this.state;
         this.setState({ items: items.filter(i => i.id !== id), })
       })
   }
 
+
   add = (data) => {
-    this.setState({...this.state, items: [...this.state.items, data]})
+    this.setState({ ...this.state, items: [...this.state.items, data] })
   }
 
   // list of all item names
@@ -54,20 +72,19 @@ class CategoryView extends React.Component {
     const { id, } = this.props.match.params;
     return this.state.items.map(i => (
       <>
+        <Grid.Column style={{ display: "flex", justifyContent: "center" }}>
+          <Link to={`/api/categories/${id}/items/${i.id}`}>
+            <Image src={i.image} />
+            <h4 style={{ textAlign: "center", color: 'black', fontWeight: 'bold' }}>   {i.name}</h4>
 
-      <Grid.Column style={{display: "flex", justifyContent: "center"}}>
-        <Link to={`/api/categories/${id}/items/${i.id}`}>
-          <Image src={i.image} />
-        <h4 style={{textAlign: "center"} }>   {i.name}</h4>
-
-          <h4 style={{textAlign: "center"}}> ${i.price}.00 </h4>
-          <br />
-          <br />
-        </Link>
+            <h4 style={{ textAlign: "center", color: 'black' }}> ${i.price}.00 </h4>
+            <br />
+            <br />
+          </Link>
           {/* <Button onClick={() => this.deleteItem(i.id)}>Delete</Button> */}
-      </Grid.Column>
-          <br />
-          </>
+        </Grid.Column>
+        <br />
+      </>
     ));
   }
 
@@ -88,6 +105,7 @@ class CategoryView extends React.Component {
           <Card.Group itemsPerRow={1}>
             <Card>
               <Card.Content>
+
                 <Image id ='mainimage'src={this.state.category.image} />
                 <div id="shadowy"></div>
                 <h1 id='cardname'>{this.state.category.name}</h1>
@@ -108,6 +126,7 @@ class CategoryView extends React.Component {
         <Segment>
           <ItemForm category_id={this.props.match.params.id} add={this.add} />
         </Segment>
+
           <hr />
           <br />
           <Grid >
