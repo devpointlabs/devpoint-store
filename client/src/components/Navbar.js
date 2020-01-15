@@ -30,7 +30,7 @@ const Navbar = (props) => {
     { key: 1, text: 'Hats', value: 'Hats' },
     { key: 2, text: 'Stickers', value: 'Stickers' },
     { key: 3, text: 'Contact', value: 'Contact' },
-    { key: 4, text: 'AdminPage', value: 'Login' },
+    { key: 4, text: 'AdminPage', value: 'AdminPage' },
     { key: 5, text: 'Register', value: 'Register' },
     { key: 6, text: 'Login', value: 'Login' },
   ]
@@ -51,6 +51,11 @@ const Navbar = (props) => {
 
       case 'Contact':
         props.history.push('/Contact')
+        setSelection('')
+        break;
+      
+      case 'AdminPage':
+        props.history.push('/AdminPage')
         setSelection('')
         break;
 
