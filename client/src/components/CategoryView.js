@@ -73,14 +73,7 @@ class CategoryView extends React.Component {
 
 
   render() {
-    // const options = [
-    //   { key: 1, text: 'Price: Low to High', value: 1 },
-    //   { key: 2, text: 'Price: High to Low', value: 2 },
-    //   { key: 3, text: 'Best Selling', value: 3 },
-    //   { key: 4, text: 'On sale', value: 4 },
-      
 
-    // ]
 
     const options = [
       { key: 1, text: 'Price: Low to High', value: 1 },
