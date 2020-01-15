@@ -2,12 +2,13 @@ import React from "react";
 import axios from "axios";
 import ItemForm from "./ItemForm";
 import { Link } from "react-router-dom";
-import { Image, Card, Container, Button, Grid, Segment } from "semantic-ui-react";
+import { Image, Card, Container, Button, Grid, Segment,Dropdown } from "semantic-ui-react";
 import '../styles/catView.css'
 
 
 class CategoryView extends React.Component {
   state = { category: {}, items: [] };
+  
 
   // Mount used to make API calls to update state
   componentDidMount() {
@@ -89,6 +90,14 @@ class CategoryView extends React.Component {
 
 
   render() {
+
+
+    const options = [
+      { key: 1, text: 'Price: Low to High', value: 1 },
+      { key: 2, text: 'Price: High to Low', value: 2 },
+      { key: 3, text: 'Most Popular', value: 3 },
+      { key: 4, text: 'On Sale', value: 4 },
+    ]
     return (
       <>
         <Container>
@@ -96,14 +105,28 @@ class CategoryView extends React.Component {
           <Card.Group itemsPerRow={1}>
             <Card>
               <Card.Content>
-                <Image id='mainimage' src={this.state.category.image} />
-                <h1 id='shirty'>{this.state.category.name}</h1>
+
+                <Image id ='mainimage'src={this.state.category.image} />
+                <div id="shadowy"></div>
+                <h1 id='cardname'>{this.state.category.name}</h1>
+                <h3 id='sorty'>Sort By:</h3>
+                <Button.Group
+                 id='sortbutton'
+                 inverted color='black'>
+                  <Dropdown
+                    className='button icon'
+                    floating
+                    options={options}
+                    placeholder='Select an Option' />
+                </Button.Group>
               </Card.Content>
             </Card>
           </Card.Group>
-          <Segment>
-            <ItemForm category_id={this.props.match.params.id} add={this.add} />
-          </Segment>
+   
+        <Segment>
+          <ItemForm category_id={this.props.match.params.id} add={this.add} />
+        </Segment>
+
           <hr />
           <br />
           <Grid >
@@ -116,6 +139,10 @@ class CategoryView extends React.Component {
     );
   }
 }
+
+
+
+
 
 export default CategoryView;
 
