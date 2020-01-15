@@ -14,10 +14,12 @@ class CategoryView extends React.Component {
     this.axiosCall();
   }
 
+
   componentDidUpdate(prevProps) {
     const { id } = this.props.match.params;
     if (id != this.state.category.id) this.axiosCall();
   }
+
 
   axiosCall() {
     const { id } = this.props.match.params;
@@ -33,7 +35,7 @@ class CategoryView extends React.Component {
       .then(res => this.setState({ items: res.data }));
   }
 
-
+  
   newMethod = () => {
     const { id } = this.category.id;
     axios
@@ -50,6 +52,7 @@ class CategoryView extends React.Component {
       .then(res => this.setState({ items: res.data }));
   }
 
+
   deleteItem = (id) => {
     axios.delete(`/api/categories/${this.props.match.params.id}/items/${id}`)
       .then(res => {
@@ -57,6 +60,7 @@ class CategoryView extends React.Component {
         this.setState({ items: items.filter(i => i.id !== id), })
       })
   }
+
 
   add = (data) => {
     this.setState({ ...this.state, items: [...this.state.items, data] })
@@ -82,6 +86,7 @@ class CategoryView extends React.Component {
       </>
     ));
   }
+
 
   render() {
     return (

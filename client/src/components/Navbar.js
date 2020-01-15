@@ -1,7 +1,7 @@
 import React, { useState, useEffect, } from 'react';
 import { withRouter, } from 'react-router-dom';
 import { AuthConsumer } from '../providers/AuthProvider';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, } from 'react-router-dom';
 import { Button, Icon, Dropdown, } from "semantic-ui-react";
 import minilogo from '../components/Images/DevPoint_Labs.png'
 import styled from "styled-components";
@@ -66,54 +66,55 @@ const Navbar = (props) => {
     }
   }
 
-  // const rightNavItems = (auth) => {
-  //   if (auth.user) {
-  //     return (
-  //       <>
-  //         <header>
-  //           <div>
-  //             <h3>
-  //               <div
-  //                 style={cust}
-  //                 name='/logout'
-  //                 onClick={() => auth.handleLogout(props.history)}
-  //               />
-  //             </h3>
-  //           </div>
-  //         </header>
-  //       </>
-  //     );
-  //   } 
-  //   else {
-  //     return (
-  //       <>
-  //         <div>
-  //           <div>
-  //             <Button style={cust}>
-  //               <Link to='/login'>
-  //                 <h3>
-  //                   <div
-  //                     active={props.location.pathname === '/login'} 
-  //                   />
-  //                 </h3>
-  //               </Link>
-  //             </Button>
-  //             <Button style={cust}>
-  //               <Link to='/register'>
-  //                 <h3 >
-  //                   <div
-  //                     active={props.location.pathname === '/register'}
-  //                   />
-  //                 </h3>
-  //               </Link>
-  //             </Button>
-  //           </div>
-  //         </div>
-  //       </>
-  //     )
-  //   }
-  // }
+  //define rightNavItems
 
+  const rightNavItems = () => {
+    const { auth: { user, handleLogout, }, location, } = this.props;
+
+    if (user) {
+      return (
+        <header>
+          <div>
+            <h3>
+              <div
+                style={cust}
+                name='logout'
+                onClick={() => handleLogout(this.props.history)}
+              />
+            </h3>
+          </div>
+        </header>
+      )
+    } else {
+      return (
+       
+          <div>
+            <Button style={cust}>
+              <h3>
+                <Link
+                  to='/login'
+                  id='login'
+                  active={props.location.pathname === '/login'}
+                >
+                </Link>
+              </h3>
+            </Button>
+            <Button style={cust}>
+              <h3 >
+                <Link
+                  to='/register'
+                  id='register'
+                  active={props.location.pathname === '/register'}
+                >
+                </Link>
+                  { this.rightNavItems() }
+              </h3>
+            </Button>
+          </div>
+      )
+    }
+  }
+// render() {
   return (
     <AuthConsumer>
       {auth => (
@@ -124,20 +125,19 @@ const Navbar = (props) => {
                 to="/" exact
                 activeClassName="active"
                 className="nav-link"
-              >
+                >
                 <div style={text}>
                   <img
                     src={minilogo}
                     height="60"
                     width="60"
                     class="navbar"
-                  />
+                    />
                   .SHOP( )
                 </div>
               </NavLink>
             </div>
           </div>
-
           <div id='right side navbar' style={cust}>
             <div>
               <NavLink to='/' exact>
@@ -146,9 +146,7 @@ const Navbar = (props) => {
               </h3>
               </NavLink>
             </div>
-
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-
             <div>
               <NavLink to={`/categories/${tShirts.id}`}>
                 <h3 style={text}>
@@ -156,9 +154,7 @@ const Navbar = (props) => {
               </h3>
               </NavLink>
             </div>
-
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-
             <div>
               <NavLink to={`/categories/${hoodies.id}`}>
                 <h3 style={text}>
@@ -166,11 +162,8 @@ const Navbar = (props) => {
               </h3>
               </NavLink>
             </div>
-
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-
             {selection != '' ? userOptions() : null}
-
             <div style={lift} >
               <Dropdown
                 style={text}
@@ -180,14 +173,14 @@ const Navbar = (props) => {
                 onChange={handleChange}
                 value={selection}
                 simple item
-              />
+                />
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
               <Link
                 to="/Cart"
                 active={props.location.pathname === '/Cart'}
-              >
+                >
                 <h3 style={text}>
                   <Icon
                     name='cart arrow down'>
@@ -201,7 +194,8 @@ const Navbar = (props) => {
       )}
     </AuthConsumer>
   )
-}
+  }
+// }
 
 const cust = {
   display: 'flex',
