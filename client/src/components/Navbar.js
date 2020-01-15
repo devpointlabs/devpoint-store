@@ -18,6 +18,16 @@ const Navbar = (props) => {
 
   // const options = categories.map( c => { return { T-shirts: c, Hats: c, Hoodies: c, }} );
 
+  useEffect(() => {
+    axios.get("/api/categories")
+    .then(res => {
+      setTshirts(res.data[0])
+      setHats(res.data[1])
+      setHoodies(res.data[2])
+      setStickers(res.data[3])
+    })
+  }, []);
+  
   const menuOptions = [
     { key: 1, text: 'Hats', value: 'Hats' },
     { key: 2, text: 'Stickers', value: 'Stickers' },
@@ -27,73 +37,35 @@ const Navbar = (props) => {
     { key: 6, text: 'Login', value: 'Login' },
   ]
 
-  useEffect(() => {
-    axios.get("/api/categories")
-      .then(res => {
-        setTshirts(res.data[0])
-        setHats(res.data[1])
-        setHoodies(res.data[2])
-        setStickers(res.data[3])
-      })
-  }, []);
-
-  //delete category
-  // deleteCategory = id => {
-  //   axios
-  //     .delete(`/api/categories/${category_id}/item/${id}`)
-  //     .then(res => {
-  //       const {categories} = useState;
-  //       setSelection({ categories: categories.filter(c => c.id !==id) });
-  //     });
-  // };
-
-  //this is also needed figure out function
-
-  // getCategories = () =>{
-  //   const{ T-shirts, Hats, hoddies} = this.state;
-  //   axios.get(`/api/categories/${category}?`)
-  //   .then(res =>{
-  //     cosnst { categories, } = res.data;
-  //     this.ListeningStateChangedEvent({
-  //       categories: [... this.state.categories, ...categories],
-  //     })
-  //   });
-  // }
-
   const handleChange = (e, { value, }, ) => setSelection(value)
 
   const userOptions = () => {
-    //   switch (selection) {
-    //     case 'Contact':
-    //       props.history.push('/Contact')
-    //       setSelection('')
-    //       // location.reload();
-    //       break;
+      switch (selection) {
+        case "Hats":
+          props.history.push(`/categories/${hats.id}`)
+          setSelection('')
+          break;
 
-    //     case "Register":
-    //       props.history.push('/Register')
-    //       setSelection('')
-    //       // location.reload();
-    //       break;
+        case "Stickers":
+          props.history.push(`/categories/${stickers.id}`)
+          setSelection('')
+          break;
+          
+        case 'Contact':
+          props.history.push('/Contact')
+          setSelection('')
+          break;
 
-    //     case "Login":
-    //       props.history.push('/login')
-    //       setSelection('')
-    //       // location.reload();
-    //       break;
+        case "Register":
+          props.history.push('/Register')
+          setSelection('')
+          break;
 
-    //     case "Hats":
-    //       props.history.push('/categories/2')
-    //       setSelection('')
-    //       // location.reload();
-    //       break;
-
-    //     case "Stickers":
-    //       props.history.push('/categories/4')
-    //       setSelection('')
-    //       // location.reload();
-    //       break;
-    //   }
+        case "Login":
+          props.history.push('/login')
+          setSelection('')
+          break;
+      }
   }
 
   // const rightNavItems = (auth) => {
@@ -137,15 +109,6 @@ const Navbar = (props) => {
   //                 </h3>
   //               </Link>
   //             </Button>
-  // <Button style={cust}>
-  //   <Link to='/categories/2'>
-  //     {/* `/categories/${c.id}` */}
-  //     <h3>
-  //       <div id="2"
-  //       />
-  //     </h3>
-  //   </Link>
-  // </Button>
   //           </div>
   //         </div>
   //       </>
@@ -179,41 +142,38 @@ return (
 
         <div id='right side navbar' style={cust}>
           <div>
-            <NavLink
-              to='/' exact
-            >
+            <NavLink to='/' exact>
               <h3 style={text}>
-                <div
-                />
-                All Products</h3>
+                All Products
+              </h3>
             </NavLink>
           </div>
+
           <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-          <div color="black">
-            <NavLink to='/categories/1'>
-              {/* to={`/categories/${c.id}` */}
+          <div>
+            <NavLink to={`/categories/${tShirts.id}`}>
               <h3 style={text}>
                 T-Shirts
-                </h3>
+              </h3>
             </NavLink>
           </div>
+
           <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-          <div color="black">
-            <NavLink
-              to='/categories/3'
-            // to={`/categories/${c.id}`}
-            >
+          <div>
+            <NavLink to={`/categories/${hoodies.id}`}> 
               <h3 style={text}>
                 Hoodies
               </h3>
             </NavLink>
           </div>
+
           <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          {/* {selection != '' ? userOptions() : null} */}
-          <div
-            style={lift} >
+
+          {selection != '' ? userOptions() : null}
+
+          <div style={lift} >
             <Dropdown
               style={text}
               text='More'
