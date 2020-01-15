@@ -2,8 +2,6 @@ import axios from 'axios'
 import ItemForm from './ItemForm'
 import gshirt from './Images/gshirt.jpg'
 import gshirtB from './Images/gshirt-b.jpg'
-import gshirtW from './Images/gshirt-w.jpg'
-import gshirtWB from './Images/gshirt-wb.jpg'
 import React from 'react'
 import styled from 'styled-components'
 import { Container, Button, Image, Header, Dropdown, Form, Modal } from 'semantic-ui-react'
@@ -96,8 +94,6 @@ class ItemView extends React.Component {
           {(() => {
           switch (this.state.currentImage) {
             case 1: return <Image src={gshirtB} />
-            case 2: return <Image src={gshirtW} />
-            case 3: return <Image src={gshirtWB} />
             default: return <Image src={gshirt} />
             // default: return <Image src={image} />
           }
@@ -106,7 +102,7 @@ class ItemView extends React.Component {
 {/* placeholder for db images */}
       <Mini style={{ }}>
         <div> <Image src={gshirt}
-          style={{ cursor: 'pointer'}}
+          style={{ cursor: 'pointer' }}
           onMouseOver={this.hover}
           onMouseLeave={ this.clearHover }
           onClick={ () =>  this.setState({ currentImage: 0 }) }
@@ -118,22 +114,6 @@ class ItemView extends React.Component {
           onClick={ () => this.setState({ currentImage: 1 }) }
           />
         </div>
-        <div>
-          <Image src={gshirtW}
-          style={{ cursor: 'pointer'}}
-          onMouseOver={this.hover}
-          onMouseLeave={ this.clearHover }
-          onClick={ () =>  this.setState({ currentImage: 2 }) }
-          />
-        </div>
-        <div> 
-          <Image src={gshirtWB}
-          style={{ cursor: 'pointer'}}
-          onMouseOver={this.hover}
-          onMouseLeave={ this.clearHover }
-          onClick={ () => this.setState({ currentImage: 3 }) }
-          />
-        </div>
       </Mini>
     </div>
         
@@ -143,7 +123,7 @@ class ItemView extends React.Component {
         {/* when cart is set up */}
           {this.itemModal()}
 
-        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '550px', width: '450px', padding: '40px'}}>
+        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', position: 'relative', height: '550px', width: '450px', padding: '40px'}}>
           <Header as='h1'> { name } </Header>
           <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
           <Header as='h3'> Size </Header>
@@ -191,6 +171,7 @@ class ItemView extends React.Component {
 
 const Grid = styled.div`
   display: grid;
+  position: relative;
   grid-template-columns: repeat(2, 450px);
   grid-template-rows: repeat(2, 225px);
   grid-gap: 50px;
@@ -199,9 +180,9 @@ const Grid = styled.div`
 
 const Mini = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 80px);
+  grid-template-columns: repeat(4, 90px);
   grid-template-rows: repeat(4, 40px);
-  margin: 20px 20px 20px 70px;
+  margin: 20px 20px 20px 140px;
 `
 
 const Desc = styled.div`

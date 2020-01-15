@@ -33,6 +33,7 @@ class Cart extends React.Component {
     return (
       <>
       <Page>
+        <br />
         <Container>
         <Header as='h1'> Cart </Header>
         { this.showItems() }
