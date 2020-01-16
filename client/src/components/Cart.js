@@ -5,6 +5,10 @@ import { Image, Header, Container, Button } from 'semantic-ui-react'
 
 class Cart extends React.Component {
   // will need to pass in or grab items/item variants that were added to cart
+      state = {
+        products: [],
+        cart: [],
+    }
 
   // handleDelete = () => {
   // }
