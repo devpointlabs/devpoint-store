@@ -1,9 +1,17 @@
-import React from 'react'
 import axios from 'axios'
+import React, { useState, useEffect, } from 'react';
 import { Form } from 'semantic-ui-react'
+import { Link, NavLink, } from 'react-router-dom';
+
 
 class ItemForm extends React.Component {
-  state = { category_id: '', name: '', price: '', desc: '', image: ''}
+  state = {
+    category_id: '',
+    name: '',
+    price: '',
+    desc: '',
+    image: '',
+  }
 
   componentDidMount() {
     const { id, category_id, } = this.props
@@ -15,77 +23,91 @@ class ItemForm extends React.Component {
         })
         .catch(err => {
           console.log(err.response)
-      })
+        })
   }
 
-  handleChange = (e) => { 
-     const { target: { name, value } } = e
-     this.setState({ [name]: value })
+  handleChange = (e) => {
+    const { target: { name, value } } = e
+    this.setState({ [name]: value })
   }
-  
+//e.currentTarget.id
+  handleDropdown = (e) => {
+    this.setState({category_id: e.currentTarget.id})
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
-    const item = { ...this.state }
+    const { name, price, desc, } = this.state
+    const item = { name, price, desc, }
     const { id, category_id, } = this.props
     if (id && category_id) {
-      axios.put(`/api/categories/${category_id}/items/${id}`, item)
+      axios.put(`/api/categories/${this.state.category_id}/items/${id}`, item)
         .then(res => {
           this.props.update(res.data)
         })
     } else {
-      axios.post(`/api/categories/${category_id}/items`, item)
+      
+      axios.post(`/api/categories/${this.state.category_id}/items`, item)
         .then(res => {
-          this.props.add(res.data)
+          //clear the form function or redirect to itemView or custom component 
         })
     }
-    // this.props.close()
+    // /api/categories/:category_id/items(.:format)
   }
 
-  // const categoryOptions = 
-  
+  CategoryOptions = [
+    { key: 1, text: 'TShirts', value: 'TShirts', id: 1 },
+    { key: 2, text: 'Hoodies', value: 'Hoodies', id: 3 },
+    { key: 3, text: 'Hats', value: 'Hats', id: 2 },
+    { key: 4, text: 'Stickers', value: 'Stickers', id: 4 },
+  ]
+
   render() {
     const { name, desc, price, image, } = this.state
-    
+
     return (
       <>
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Group>
-          <Form.Dropdown
-          placeholder='Select Friend'
-          fluid
-          selection
-          // options={categoryOptions}
-          />
-          <Form.Input
-            name='name'
-            placeholder='Item Name'
-            autoFocus
-            value={name}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name='price'
-            placeholder='Item Price'
-            value={price}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name='desc'
-            placeholder='Item Description'
-            value={desc}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name='image'
-            placeholder='Image URL'
-            value={image}
-            onChange={this.handleChange}
-          />
-          <Form.Button>
-            Submit
+        <h1>New Item</h1>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group>
+
+            <Form.Dropdown
+              placeholder='Category'
+              fluid
+              selection
+              options={this.CategoryOptions}
+              onChange={this.handleDropdown}
+            />
+            <Form.Input
+              name='name'
+              placeholder='Item Name'
+              autoFocus
+              value={name}
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              name='price'
+              placeholder='Item Price'
+              value={price}
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              name='desc'
+              placeholder='Item Description'
+              value={desc}
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              name='image'
+              placeholder='Image URL'
+              value={image}
+              onChange={this.handleChange}
+            />
+            <Form.Button>
+              Submit
           </Form.Button>
-        </Form.Group>
-      </Form>
+          </Form.Group>
+        </Form>
       </>
     )
   }

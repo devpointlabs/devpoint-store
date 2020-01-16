@@ -105,7 +105,6 @@ class CategoryView extends React.Component {
           <Card.Group itemsPerRow={1}>
             <Card>
               <Card.Content>
-
                 <Image id ='mainimage'src={this.state.category.image} />
                 <div id="shadowy"></div>
                 <h1 id='cardname'>{this.state.category.name}</h1>
@@ -118,7 +117,7 @@ class CategoryView extends React.Component {
                     floating
                     options={options}
                     placeholder='Select an Option' />
-                </Button.Group>
+                </Button.Group>        
               </Card.Content>
             </Card>
           </Card.Group>
