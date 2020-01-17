@@ -60,12 +60,12 @@ const Navbar = (props) => {
   const userOptions = () => {
     switch (selection) {
       case "Hats":
-        props.history.push(`/categories/${hats.id}`)
+        props.history.push(`/categories/${Hats.id}`)
         setSelection('')
         break;
 
       case "Stickers":
-        props.history.push(`/categories/${stickers.id}`)
+        props.history.push(`/categories/${Stickers.id}`)
         setSelection('')
         break;
 
