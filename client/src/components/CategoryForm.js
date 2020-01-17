@@ -51,7 +51,9 @@ class CategoryForm extends React.Component {
        <ul>
          <li>
            {c.name}
-           <Button onClick={ () => this.deleteCategory(c.id)}>Delete</Button>
+           <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+           <Button color="red" onClick={ () => this.deleteCategory(c.id)}>Delete</Button>
+           <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
          </li>
        </ul>
      </div>
@@ -73,7 +75,6 @@ class CategoryForm extends React.Component {
           value={this.state.name}
           onChange={this.handleChange}
         />
-
        <Form.Input
           label="Image"
           placeholder="Add a URL"
@@ -82,10 +83,13 @@ class CategoryForm extends React.Component {
           value={this.state.image}
           onChange={this.handleChange}
         />
+        < br />
+        < br />
           <Form.Button color="blue">Submit</Form.Button>
+          <br />
+           {/* {this.renderCategory() } */}
         </Form>
       </div>
-       {this.renderCategory() }
       </>
     )
   }
