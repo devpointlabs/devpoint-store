@@ -5,13 +5,7 @@ import { Link, NavLink, } from 'react-router-dom';
 
 
 class ItemForm extends React.Component {
-  state = {
-    category_id: '',
-    name: '',
-    price: '',
-    desc: '',
-    image: '',
-  }
+  state = {category_id: '',name: '',price: '',desc: '', image: '', }
 
   componentDidMount() {
     const { id, category_id, } = this.props
@@ -46,7 +40,6 @@ class ItemForm extends React.Component {
           this.props.update(res.data)
         })
     } else {
-      
       axios.post(`/api/categories/${this.state.category_id}/items`, item)
         .then(res => {
           //clear the form function or redirect to itemView or custom component 
@@ -103,7 +96,7 @@ class ItemForm extends React.Component {
               value={image}
               onChange={this.handleChange}
             />
-            <Form.Button>
+            <Form.Button color="blue">
               Submit
           </Form.Button>
           </Form.Group>
