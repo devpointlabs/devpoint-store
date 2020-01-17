@@ -1,7 +1,11 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 
-class ProductProvider extends React.Component {
+
+export const ProductContext = React.createContext();
+export const ProductConsumer = ProductContext.Consumer
+
+export class ProductProvider extends React.Component {
   state = {
     itemVarients: [],
     cart: [],
@@ -132,13 +136,9 @@ class ProductProvider extends React.Component {
       }}>
         {this.props.children}
       </ProductContext.Provider>
-
     )
   }
 
-
 }
-
-const ProductContext = React.createContext();
-const ProductConsumer = ProductContext.Consumer
-export { ProductProvider, ProductConsumer }
+// const ProductConsumer = ProductContext.Consumer
+// export { ProductProvider, ProductConsumer, }
