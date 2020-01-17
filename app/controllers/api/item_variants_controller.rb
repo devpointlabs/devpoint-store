@@ -1,6 +1,6 @@
 class Api::ItemVariantsController < ApplicationController
   before_action :set_item
-  before_action: :set_item_variant, only: [:update, :destroy, :show]
+  before_action :set_item_variant, only: [:update, :destroy, :show]
   
   def index
     render json: @item.item_variants

@@ -4,7 +4,7 @@ import gshirt from './Images/gshirt.jpg'
 import gshirtB from './Images/gshirt-b.jpg'
 import React from 'react'
 import styled from 'styled-components'
-import { Container, Button, Image, Header, Dropdown, Form, Modal } from 'semantic-ui-react'
+import { Container, Button, Image, Header, Dropdown, Form, Modal, Grid } from 'semantic-ui-react'
 
 // TODO: make responsive
 // TODO: modify + add code to be dynamic to data when db is made
@@ -29,18 +29,23 @@ const sizeOptions = [
 ]
 
 class ItemView extends React.Component {
-  state = { item: {}, currentImage: 0, open: false }
+  state = { item: {}, itemVariants: [], currentImage: 0, open: false }
 
   componentDidMount() {
     const { match: { params: { id, category_id } } } = this.props
+    
     axios.get(`/api/categories/${category_id}/items/${id}`)
     .then( res => {
         this.setState({ item: res.data })
     })
-    .catch(err => {
+    axios.get(`/api/items/${id}/item_variants`)
+    .then( res => {
+      this.setState({ itemVariants: res.data })
+    })
+    .catch( err => {
       console.log(err)
     })
-}
+  }
 
   updateItem = (item) => {
     this.setState({ item })
@@ -88,26 +93,26 @@ class ItemView extends React.Component {
   return(
     <>
     <Container>
-      <Grid>
+      <Grid stackable centered columns={2}>
         <div> 
           {/* will need to adjust function for item.image */}
           {(() => {
           switch (this.state.currentImage) {
             case 1: return <Image src={gshirtB} />
-            default: return <Image src={gshirt} />
+            default: return <Image style={{ height: '490px', width: '450px'}} src={image} />
             // default: return <Image src={image} />
           }
           })()}
 
 {/* placeholder for db images */}
       <Mini style={{ }}>
-        <div> <Image src={gshirt}
+        <div> <Image src={image}
           style={{ cursor: 'pointer' }}
           onMouseOver={this.hover}
           onMouseLeave={ this.clearHover }
           onClick={ () =>  this.setState({ currentImage: 0 }) }
           /> </div>
-        <div> <Image src={gshirtB}
+        <div> <Image src={this.state.itemVariants.back_image}
           style={{ cursor: 'pointer' }} 
           onMouseOver={this.hover}
           onMouseLeave={ this.clearHover }
@@ -123,7 +128,7 @@ class ItemView extends React.Component {
         {/* when cart is set up */}
           {this.itemModal()}
 
-        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', position: 'relative', height: '550px', width: '450px', padding: '40px'}}>
+        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', position: 'relative', height: '590px', width: '450px', padding: '40px', textAlign: 'left'}}>
           <Header as='h1'> { name } </Header>
           <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
           <Header as='h3'> Size </Header>
@@ -143,14 +148,14 @@ class ItemView extends React.Component {
           {/* crud actions below should be hidden for regular users */}
           {/* edit item */}
           <div>
-            <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-75px' }}
+            <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-125px' }}
             aria-hidden="true"
             class="icon pencil large" 
             onClick={() => this.showModal()}
             />
           {/* delete item */}
             <i 
-            style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-75px' }}
+            style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-125px' }}
             aria-hidden="true"
             class="icon trash large"
             onClick={this.handleDelete}
@@ -158,25 +163,24 @@ class ItemView extends React.Component {
           </div>
         </div>
 
-      </Grid>
-
-      <Desc>
+      <div style={{ textAlign: 'left', backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '200px', width: '600px', padding: '25px', margin: '10px 0px 100px 80px' }} >
         <p> { desc } </p>
-      </Desc>
+      </div>
+      </Grid>
     </Container>
     </>
     )
   }
 }
 
-const Grid = styled.div`
-  display: grid;
-  position: relative;
-  grid-template-columns: repeat(2, 450px);
-  grid-template-rows: repeat(2, 225px);
-  grid-gap: 50px;
-  margin: 50px 25px 25px 50px;
-`
+// const Grid = styled.div`
+//   display: grid;
+//   position: relative;
+//   grid-template-columns: repeat(2, 450px);
+//   grid-template-rows: repeat(2, 225px);
+//   grid-gap: 50px;
+//   margin: 50px 25px 25px 50px;
+// `
 
 const Mini = styled.div`
   display: grid;
@@ -185,12 +189,12 @@ const Mini = styled.div`
   margin: 20px 20px 20px 140px;
 `
 
-const Desc = styled.div`
-  background-color: rgba(0, 0, 0, 0.03);
-  height: 200px;
-  width: 600px;
-  padding: 25px;
-  margin: 100px 10px 10px 250px;
-`
+// const Desc = styled.div`
+//   background-color: rgba(0, 0, 0, 0.03);
+//   height: 200px;
+//   width: 600px;
+//   padding: 25px;
+//   margin: auto;
+// `
 
 export default ItemView
