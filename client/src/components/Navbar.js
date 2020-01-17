@@ -60,12 +60,12 @@ const Navbar = (props) => {
   const userOptions = () => {
     switch (selection) {
       case "Hats":
-        props.history.push(`/categories/${Hats.id}`)
+        props.history.push(`/categories/${hats.id}`)
         setSelection('')
         break;
 
       case "Stickers":
-        props.history.push(`/categories/${Stickers.id}`)
+        props.history.push(`/categories/${stickers.id}`)
         setSelection('')
         break;
 
@@ -94,6 +94,7 @@ const Navbar = (props) => {
     }
   }
 
+ 
   return (
     <AuthConsumer>
       {auth => (
