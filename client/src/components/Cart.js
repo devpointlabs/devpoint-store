@@ -15,11 +15,6 @@ class Cart extends React.Component {
     cartTotal: 0
   }
 
-  componentDidMount() {
-    this.setState({ itemVarients: [...this.context.itemVarients] })
-    console.log(this.state)
-  }
-
 
 
   showItems() {
@@ -41,7 +36,7 @@ class Cart extends React.Component {
       </>
     )
   }
-
+// if cart is empty render EMPTY otherwise render cart items
   renderCart() {
 
     if (this.context.cart.length >= 1) {
@@ -58,12 +53,13 @@ class Cart extends React.Component {
       )
     }
   }
-
+ 
 
 
   render() {
 
     return (
+     
       //    <>
       // <Page>
       //     <Container>
@@ -89,6 +85,7 @@ class Cart extends React.Component {
 
       //    </> 
       <div>
+        
         {this.renderCart()}
 
       </div>
