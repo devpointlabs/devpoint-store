@@ -1,9 +1,13 @@
 class Api::ItemVariantsController < ApplicationController
-  before_action :set_item
+  before_action :set_item, except: [:allItemV] 
   before_action :set_item_variant, only: [:update, :destroy, :show]
   
   def index
     render json: @item.item_variants
+  end
+
+  def allItemV
+    render json: ItemVariant.all
   end
 
   def show
