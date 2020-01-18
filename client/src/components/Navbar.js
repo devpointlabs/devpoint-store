@@ -54,7 +54,6 @@ const Navbar = (props) => {
     }
   }
 
-
   const handleChange = (e, { value, }, ) => setSelection(value)
 
   const userOptions = () => {
@@ -94,7 +93,7 @@ const Navbar = (props) => {
     }
   }
 
- 
+
   return (
     <AuthConsumer>
       {auth => (
