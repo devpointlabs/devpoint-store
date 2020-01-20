@@ -1,50 +1,37 @@
 import axios from 'axios'
 import ItemForm from './ItemForm'
-import gshirt from './Images/gshirt.jpg'
-import gshirtB from './Images/gshirt-b.jpg'
 import React from 'react'
 import styled from 'styled-components'
+import { ProductContext } from '../providers/ProductProvider'
 import { Container, Button, Image, Header, Dropdown, Form, Modal, Grid } from 'semantic-ui-react'
 
 // TODO: make responsive
 // TODO: modify + add code to be dynamic to data when db is made
-// below are size options to make demo work, will need to change for real data later
 
-const sizeOptions = [
-  {
-    key: 'S',
-    text: 'S',
-    value: 'S'
-  },
-  {
-    key: 'M',
-    text: 'M',
-    value: 'M'
-  },
-  {
-    key: 'L',
-    text: 'L',
-    value: 'L'
-  }
-]
 
 class ItemView extends React.Component {
-  state = { item: {}, itemVariants: {}, currentImage: 0, open: false }
+  state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '' }
 
   componentDidMount() {
     const { match: { params: { id, category_id } } } = this.props
     
     axios.get(`/api/categories/${category_id}/items/${id}`)
-    .then( res => {
+      .then(res => {
         this.setState({ item: res.data })
-    })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
     axios.get(`/api/items/${id}/item_variants`)
-    .then( res => {
-      this.setState({ itemVariants: res.data })
-    })
-    .catch( err => {
-      console.log(err)
-    })
+      .then(res => {
+        this.setState({ itemVariants: [...res.data], });
+        console.log(this.state.itemVariants)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    console.log(this.context)
   }
 
   updateItem = (item) => {
@@ -54,12 +41,12 @@ class ItemView extends React.Component {
   handleDelete = () => {
     const { id, category_id } = this.props.match.params
     axios.delete(`/api/categories/${category_id}/items/${id}`)
-    .then( res => {
-      this.props.history.push(`/categories/${category_id}`)
-  })
-}
+      .then(res => {
+        this.props.history.push(`/categories/${category_id}`)
+      })
+  }
 
-  showModal = () => this.setState({ open: !this.state.open})
+  showModal = () => this.setState({ open: !this.state.open })
 
   itemModal = () => {
     const { match: { params: { id, category_id } } } = this.props
@@ -86,41 +73,58 @@ class ItemView extends React.Component {
     e.target.style.borderRadius = 'none'
   }
 
+  handleChange = (e) => {
+    this.setState({ selection: e.currentTarget.id })
+  }
+
+  itemDisplay = () => {
+    return this.state.itemVariants.map( i =>(
+    <div> 
+    {(() => {
+    switch (this.state.currentImage) {
+      case 1: return <Image style={{ height: '490px', width: '450px'}} src={i.back_image} />
+      default: return <Image style={{ height: '490px', width: '450px'}} src={this.state.item.image} />
+    }
+    })()}
+
+{/* need function to determine if there is a back image or not and display/not display */}
+
+    <Mini style={{ }}>
+      <div> <Image src={this.state.item.image}
+        style={{ cursor: 'pointer' }}
+        onMouseOver={this.hover}
+        onMouseLeave={ this.clearHover }
+        onClick={ () =>  this.setState({ currentImage: 0 }) }
+        /> </div>
+      <div> <Image src={i.back_image}
+        style={{ cursor: 'pointer' }} 
+        onMouseOver={this.hover}
+        onMouseLeave={ this.clearHover }
+        onClick={ () => this.setState({ currentImage: 1 }) }
+        />
+      </div>
+    </Mini>
+    </div>
+    ))
+  }
+
   render() {
-    // const { match: { params: { id, category_id } } } = this.props
     const { name, desc, price, image } = this.state.item
+    const { itemVariants } = this.state
+
+    const ivList = itemVariants.map((itemVariant, i) => ({
+      key: itemVariant.id,
+      text: itemVariant.size,
+      value: itemVariant.id,
+      id: itemVariant.id
+    }))
 
   return(
     <>
     <Container>
       <Grid stackable centered columns={2}>
-        <div> 
-          {/* will need to adjust function for item.image */}
-          {(() => {
-          switch (this.state.currentImage) {
-            case 1: return <Image src={gshirtB} />
-            default: return <Image style={{ height: '490px', width: '450px'}} src={image} />
-            // default: return <Image src={image} />
-          }
-          })()}
 
-{/* placeholder for db images */}
-      <Mini style={{ }}>
-        <div> <Image src={image}
-          style={{ cursor: 'pointer' }}
-          onMouseOver={this.hover}
-          onMouseLeave={ this.clearHover }
-          onClick={ () =>  this.setState({ currentImage: 0 }) }
-          /> </div>
-        <div> <Image src={this.state.itemVariants.back_image}
-          style={{ cursor: 'pointer' }} 
-          onMouseOver={this.hover}
-          onMouseLeave={ this.clearHover }
-          onClick={ () => this.setState({ currentImage: 1 }) }
-          />
-        </div>
-      </Mini>
-    </div>
+        {this.itemDisplay()}
         
         {/* possiblity to make below section into second Item/Cart Form and render here instead */}
 
@@ -132,20 +136,27 @@ class ItemView extends React.Component {
           <Header as='h1'> { name } </Header>
           <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
           <Header as='h3'> Size </Header>
-            <Dropdown
-            placeholder='Select Size'
-            selection
-            options={sizeOptions}
-            style={{ backgroundColor: '#ececec' }}
-            />
+          <Form>
+                <Dropdown
+                  placeholder='Select Size'
+                  options={ivList}
+                  selection
+
+                  onChange={this.handleChange}
+                  value={ivList.value}
+                  style={{ backgroundColor: '#ececec' }}
+                />
+          </Form>
+
           <Header as='h3'> Quantity </Header>
             <Form>
-              {/* might an onchange function here + in style */}
+              {/* might need an onchange function here to pass value to cart */}
               <Form.TextArea defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
             </Form>
           <Button size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}> Add to Cart </Button>
 
           {/* crud actions below should be hidden for regular users */}
+
           {/* edit item */}
           <div>
             <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-125px' }}
@@ -153,6 +164,7 @@ class ItemView extends React.Component {
             class="icon pencil large" 
             onClick={() => this.showModal()}
             />
+
           {/* delete item */}
             <i 
             style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-125px' }}
@@ -163,7 +175,7 @@ class ItemView extends React.Component {
           </div>
         </div>
 
-      <div style={{ textAlign: 'left', position: 'relative', backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '200px', width: '600px', padding: '25px', margin: '10px 0px 100px 80px' }} >
+      <div style={{ textAlign: 'left', position: 'relative', backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '200px', width: '500px', padding: '25px', margin: '10px 10px 50px 10px' }} >
         <p> { desc } </p>
       </div>
       </Grid>
@@ -173,15 +185,6 @@ class ItemView extends React.Component {
   }
 }
 
-// const Grid = styled.div`
-//   display: grid;
-//   position: relative;
-//   grid-template-columns: repeat(2, 450px);
-//   grid-template-rows: repeat(2, 225px);
-//   grid-gap: 50px;
-//   margin: 50px 25px 25px 50px;
-// `
-
 const Mini = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 90px);
@@ -189,12 +192,5 @@ const Mini = styled.div`
   margin: 20px 20px 20px 140px;
 `
 
-// const Desc = styled.div`
-//   background-color: rgba(0, 0, 0, 0.03);
-//   height: 200px;
-//   width: 600px;
-//   padding: 25px;
-//   margin: auto;
-// `
-
+ItemView.contextType = ProductContext
 export default ItemView

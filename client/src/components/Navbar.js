@@ -1,12 +1,12 @@
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { withRouter, } from 'react-router-dom';
 import { AuthConsumer } from '../providers/AuthProvider';
+import { AuthContext } from '../providers/AuthProvider';
 import { Link, NavLink, } from 'react-router-dom';
 import { Button, Icon, Dropdown, } from "semantic-ui-react";
 import minilogo from '../components/Images/DevPoint_Labs.png'
 import styled from "styled-components";
 import '../App.css';
-import CategoryForm from './CategoryForm';
 import axios from 'axios';
 
 const Navbar = (props) => {
@@ -15,6 +15,8 @@ const Navbar = (props) => {
   const [hoodies, setHoodies] = useState({})
   const [hats, setHats] = useState({})
   const [stickers, setStickers] = useState({})
+  const context = useContext(AuthContext)
+
 
   useEffect(() => {
     axios.get("/api/categories")
@@ -26,14 +28,32 @@ const Navbar = (props) => {
       })
   }, []);
 
-  const menuOptions = [
-    { key: 1, text: 'Hats', value: 'Hats' },
-    { key: 2, text: 'Stickers', value: 'Stickers' },
-    { key: 3, text: 'Contact', value: 'Contact' },
-    { key: 4, text: 'AdminPage', value: 'AdminPage' },
-    { key: 5, text: 'Register', value: 'Register' },
-    { key: 6, text: 'Login', value: 'Login' },
-  ]
+  const options = () => {
+    if (context.user) {
+      return (
+        [
+          { key: 1, text: 'Hats', value: 'Hats' },
+          { key: 2, text: 'Stickers', value: 'Stickers' },
+          { key: 3, text: 'Contact', value: 'Contact' },
+          { key: 4, text: 'AdminPage', value: 'AdminPage' },
+          { key: 5, text: 'Register', value: 'Register' },
+          { key: 6, text: 'Logout', value: 'Logout' },
+        ]
+      )
+    } else {
+      return (
+        [
+          { key: 1, text: 'Hats', value: 'Hats' },
+          { key: 2, text: 'Stickers', value: 'Stickers' },
+          { key: 3, text: 'Contact', value: 'Contact' },
+          { key: 4, text: 'AdminPage', value: 'AdminPage' },
+          { key: 5, text: 'Register', value: 'Register' },
+          { key: 6, text: 'Login', value: 'Login' },
+        ]
+      )
+    }
+  }
+
 
   const handleChange = (e, { value, }, ) => setSelection(value)
 
@@ -53,7 +73,7 @@ const Navbar = (props) => {
         props.history.push('/Contact')
         setSelection('')
         break;
-      
+
       case 'AdminPage':
         props.history.push('/AdminPage')
         setSelection('')
@@ -63,63 +83,17 @@ const Navbar = (props) => {
         props.history.push('/Register')
         setSelection('')
         break;
-
-      case "Login":
+      case (context.user === null && "Login"):
         props.history.push('/login')
+        setSelection('')
+        break;
+      case (context.user && "Logout"):
+        context.handleLogout(props.history)
         setSelection('')
         break;
     }
   }
 
-  //define rightNavItems
-
-  const rightNavItems = () => {
-    const { auth: { user, handleLogout, }, location, } = this.props;
-
-    if (user) {
-      return (
-        <header>
-          <div>
-            <h3>
-              <div
-                style={cust}
-                name='logout'
-                onClick={() => handleLogout(this.props.history)}
-              />
-            </h3>
-          </div>
-        </header>
-      )
-    } else {
-      return (
-       
-          <div>
-            <Button style={cust}>
-              <h3>
-                <Link
-                  to='/login'
-                  id='login'
-                  active={props.location.pathname === '/login'}
-                >
-                </Link>
-              </h3>
-            </Button>
-            <Button style={cust}>
-              <h3 >
-                <Link
-                  to='/register'
-                  id='register'
-                  active={props.location.pathname === '/register'}
-                >
-                </Link>
-                  { this.rightNavItems() }
-              </h3>
-            </Button>
-          </div>
-      )
-    }
-  }
-// render() {
   return (
     <AuthConsumer>
       {auth => (
@@ -130,14 +104,14 @@ const Navbar = (props) => {
                 to="/" exact
                 activeClassName="active"
                 className="nav-link"
-                >
+              >
                 <div style={text}>
                   <img
                     src={minilogo}
                     height="60"
                     width="60"
                     class="navbar"
-                    />
+                  />
                   .SHOP( )
                 </div>
               </NavLink>
@@ -148,7 +122,7 @@ const Navbar = (props) => {
               <NavLink to='/' exact>
                 <h3 style={text}>
                   All Products
-              </h3>
+               </h3>
               </NavLink>
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -156,7 +130,7 @@ const Navbar = (props) => {
               <NavLink to={`/categories/${tShirts.id}`}>
                 <h3 style={text}>
                   T-Shirts
-              </h3>
+               </h3>
               </NavLink>
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -164,7 +138,7 @@ const Navbar = (props) => {
               <NavLink to={`/categories/${hoodies.id}`}>
                 <h3 style={text}>
                   Hoodies
-              </h3>
+               </h3>
               </NavLink>
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -174,18 +148,18 @@ const Navbar = (props) => {
                 style={text}
                 text='More'
                 as="h3"
-                options={menuOptions}
+                options={options()}
                 onChange={handleChange}
                 value={selection}
                 simple item
-                />
+              />
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
               <Link
                 to="/Cart"
                 active={props.location.pathname === '/Cart'}
-                >
+              >
                 <h3 style={text}>
                   <Icon
                     name='cart arrow down'>
@@ -199,8 +173,7 @@ const Navbar = (props) => {
       )}
     </AuthConsumer>
   )
-  }
-// }
+}
 
 const cust = {
   display: 'flex',
@@ -229,3 +202,6 @@ const lift = {
 }
 
 export default withRouter(Navbar)
+
+
+
