@@ -5,9 +5,7 @@ import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
 import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
 
-// TODO: make responsive
-// TODO: modify + add code to be dynamic to data when db is made
-
+//TODO: figure out how to get more than one size in size options lol
 
 class ItemView extends React.Component {
   state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '' }
@@ -56,9 +54,9 @@ class ItemView extends React.Component {
         onClose={() => this.showModal()}
       >
         <Modal.Header>Update This Item</Modal.Header>
-        <Modal.Content>
-          <ItemForm id={id} category_id={category_id} close={this.showModal} update={this.updateItem} />
-        </Modal.Content>
+          <Modal.Content>
+            <ItemForm id={id} category_id={category_id} close={this.showModal} update={this.updateItem} />
+          </Modal.Content>
       </Modal>
     )
   }
@@ -76,42 +74,41 @@ class ItemView extends React.Component {
   handleChange = (e) => {
     this.setState({ selection: e.currentTarget.id })
   }
+  
+  // need function to determine if there is a back image or not and display/not display
 
   itemDisplay = () => {
     return this.state.itemVariants.map( i =>(
-    <div> 
-    {(() => {
-    switch (this.state.currentImage) {
-      case 1: return <Image style={{ height: '500px', width: '450px'}} src={i.back_image} />
-      default: return <Image style={{ height: '500px', width: '450px'}} src={this.state.item.image} />
-    }
-    })()}
-
-{/* need function to determine if there is a back image or not and display/not display */}
-
-    <Mini>
-      <div> <Image src={this.state.item.image}
-        style={{ cursor: 'pointer', height: '100px' }}
-        onMouseOver={this.hover}
-        onMouseLeave={ this.clearHover }
-        onClick={ () =>  this.setState({ currentImage: 0 }) }
-        /> </div>
-      <div> <Image src={i.back_image}
-        style={{ cursor: 'pointer', height: '100px' }} 
-        onMouseOver={this.hover}
-        onMouseLeave={ this.clearHover }
-        onClick={ () => this.setState({ currentImage: 1 }) }
-        />
+      <div> 
+        {(() => {
+        switch (this.state.currentImage) {
+        case 1: return <Image style={{ height: '500px', width: '450px'}} src={i.back_image} />
+        default: return <Image style={{ height: '500px', width: '450px'}} src={this.state.item.image} />
+        }
+        })()}
+      <Mini>
+        <div> <Image src={this.state.item.image}
+          style={{ cursor: 'pointer', height: '100px' }}
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
+          onClick={ () =>  this.setState({ currentImage: 0 }) }
+          /> 
+        </div>
+        <div> <Image src={i.back_image}
+          style={{ cursor: 'pointer', height: '100px' }} 
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
+          onClick={ () => this.setState({ currentImage: 1 }) }
+          />
+        </div>
+      </Mini>
       </div>
-    </Mini>
-    </div>
     ))
   }
 
   render() {
     const { name, desc, price } = this.state.item
     const { itemVariants } = this.state
-
     const ivList = itemVariants.map((itemVariant) => ({
       key: itemVariant.id,
       text: itemVariant.size,
@@ -119,46 +116,42 @@ class ItemView extends React.Component {
       id: itemVariant.id
     }))
 
-
   return(
     <>
     <Container>
       <Grid stackable centered columns={2}>
-
         {this.itemDisplay()}
+        {this.itemModal()}
         
-        {/* possiblity to make below section into second Item/Cart Form and render here instead */}
-
-        {/* will need to figure out functions for size/quantity */}
-        {/* when cart is set up */}
-          {this.itemModal()}
+        {/* possiblity to make below section into second Item/Cart Form component and render here instead */}
+        {/* we should also change price to a float in the db so we can write { price } instead of { price }.00 */}
 
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', position: 'relative', height: '620px', width: '450px', padding: '40px', textAlign: 'left'}}>
           <Header as='h1'> { name } </Header>
           <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
           <Header as='h3'> Size </Header>
-          <Form>
-                <Dropdown
-                  placeholder='Select Size'
-                  options={ivList}
-                  selection
-
-                  onChange={this.handleChange}
-                  value={ivList.value}
-                />
-          </Form>
-
+            <Form>
+              <Dropdown
+              placeholder='Select Size'
+              options={ivList}
+              selection
+              onChange={this.handleChange}
+              value={ivList.value}
+              />
+            </Form>
           <Header as='h3'> Quantity </Header>
             <Form>
               {/* might need an onchange function here to pass value to cart */}
               <Input defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
             </Form>
-          <Button animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
-            <Button.Content visible> Add to Cart </Button.Content> 
-            <Button.Content hidden>
-              <Icon name='cart' />
+            <Button animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
+              <Button.Content visible>
+                Add to Cart 
+              </Button.Content> 
+              <Button.Content hidden>
+                <Icon name='cart' />
               </Button.Content>
-              </Button>
+            </Button>
 
           {/* crud actions below should be hidden for regular users */}
 
