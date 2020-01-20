@@ -3,7 +3,7 @@ import ItemForm from './ItemForm'
 import React from 'react'
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
-import { Container, Button, Image, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
+import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
 
 // TODO: make responsive
 // TODO: modify + add code to be dynamic to data when db is made
@@ -82,8 +82,8 @@ class ItemView extends React.Component {
     <div> 
     {(() => {
     switch (this.state.currentImage) {
-      case 1: return <Image style={{ height: '490px', width: '450px'}} src={i.back_image} />
-      default: return <Image style={{ height: '490px', width: '450px'}} src={this.state.item.image} />
+      case 1: return <Image style={{ height: '500px', width: '450px'}} src={i.back_image} />
+      default: return <Image style={{ height: '500px', width: '450px'}} src={this.state.item.image} />
     }
     })()}
 
@@ -91,13 +91,13 @@ class ItemView extends React.Component {
 
     <Mini>
       <div> <Image src={this.state.item.image}
-        style={{ cursor: 'pointer', height: '110px' }}
+        style={{ cursor: 'pointer', height: '100px' }}
         onMouseOver={this.hover}
         onMouseLeave={ this.clearHover }
         onClick={ () =>  this.setState({ currentImage: 0 }) }
         /> </div>
       <div> <Image src={i.back_image}
-        style={{ cursor: 'pointer', height: '110px' }} 
+        style={{ cursor: 'pointer', height: '100px' }} 
         onMouseOver={this.hover}
         onMouseLeave={ this.clearHover }
         onClick={ () => this.setState({ currentImage: 1 }) }
@@ -133,7 +133,7 @@ class ItemView extends React.Component {
         {/* when cart is set up */}
           {this.itemModal()}
 
-        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', position: 'relative', height: '590px', width: '450px', padding: '40px', textAlign: 'left'}}>
+        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', position: 'relative', height: '620px', width: '450px', padding: '40px', textAlign: 'left'}}>
           <Header as='h1'> { name } </Header>
           <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
           <Header as='h3'> Size </Header>
@@ -145,22 +145,26 @@ class ItemView extends React.Component {
 
                   onChange={this.handleChange}
                   value={ivList.value}
-                  style={{ backgroundColor: '#ececec' }}
                 />
           </Form>
 
           <Header as='h3'> Quantity </Header>
             <Form>
               {/* might need an onchange function here to pass value to cart */}
-              <Input defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
+              <Input defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
             </Form>
-          <Button size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}> Add to Cart </Button>
+          <Button animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
+            <Button.Content visible> Add to Cart </Button.Content> 
+            <Button.Content hidden>
+              <Icon name='cart' />
+              </Button.Content>
+              </Button>
 
           {/* crud actions below should be hidden for regular users */}
 
           {/* edit item */}
           <div>
-            <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-125px' }}
+            <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-150px' }}
             aria-hidden="true"
             class="icon pencil large" 
             onClick={() => this.showModal()}
@@ -168,7 +172,7 @@ class ItemView extends React.Component {
 
           {/* delete item */}
             <i 
-            style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-125px' }}
+            style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-150px' }}
             aria-hidden="true"
             class="icon trash large"
             onClick={this.handleDelete}
