@@ -198,7 +198,8 @@ const text = {
 }
 
 const lift = {
-  position: 'realitive',
+  display: 'flex',
+  alignItems: 'flex-start'
 }
 
 export default withRouter(Navbar)

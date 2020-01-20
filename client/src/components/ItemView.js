@@ -3,7 +3,7 @@ import ItemForm from './ItemForm'
 import React from 'react'
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
-import { Container, Button, Image, Header, Dropdown, Form, Modal, Grid } from 'semantic-ui-react'
+import { Container, Button, Image, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
 
 // TODO: make responsive
 // TODO: modify + add code to be dynamic to data when db is made
@@ -119,6 +119,7 @@ class ItemView extends React.Component {
       id: itemVariant.id
     }))
 
+
   return(
     <>
     <Container>
@@ -151,7 +152,7 @@ class ItemView extends React.Component {
           <Header as='h3'> Quantity </Header>
             <Form>
               {/* might need an onchange function here to pass value to cart */}
-              <Form.TextArea defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
+              <Input defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
             </Form>
           <Button size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}> Add to Cart </Button>
 
