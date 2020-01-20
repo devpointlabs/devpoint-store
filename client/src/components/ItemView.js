@@ -29,7 +29,7 @@ const sizeOptions = [
 ]
 
 class ItemView extends React.Component {
-  state = { item: {}, itemVariants: [], currentImage: 0, open: false }
+  state = { item: {}, itemVariants: {}, currentImage: 0, open: false }
 
   componentDidMount() {
     const { match: { params: { id, category_id } } } = this.props
@@ -163,7 +163,7 @@ class ItemView extends React.Component {
           </div>
         </div>
 
-      <div style={{ textAlign: 'left', backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '200px', width: '600px', padding: '25px', margin: '10px 0px 100px 80px' }} >
+      <div style={{ textAlign: 'left', position: 'relative', backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '200px', width: '600px', padding: '25px', margin: '10px 0px 100px 80px' }} >
         <p> { desc } </p>
       </div>
       </Grid>
