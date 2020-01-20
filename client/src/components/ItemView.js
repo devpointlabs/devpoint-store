@@ -89,15 +89,15 @@ class ItemView extends React.Component {
 
 {/* need function to determine if there is a back image or not and display/not display */}
 
-    <Mini style={{ }}>
+    <Mini>
       <div> <Image src={this.state.item.image}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', height: '110px' }}
         onMouseOver={this.hover}
         onMouseLeave={ this.clearHover }
         onClick={ () =>  this.setState({ currentImage: 0 }) }
         /> </div>
       <div> <Image src={i.back_image}
-        style={{ cursor: 'pointer' }} 
+        style={{ cursor: 'pointer', height: '110px' }} 
         onMouseOver={this.hover}
         onMouseLeave={ this.clearHover }
         onClick={ () => this.setState({ currentImage: 1 }) }
@@ -109,10 +109,10 @@ class ItemView extends React.Component {
   }
 
   render() {
-    const { name, desc, price, image } = this.state.item
+    const { name, desc, price } = this.state.item
     const { itemVariants } = this.state
 
-    const ivList = itemVariants.map((itemVariant, i) => ({
+    const ivList = itemVariants.map((itemVariant) => ({
       key: itemVariant.id,
       text: itemVariant.size,
       value: itemVariant.id,
