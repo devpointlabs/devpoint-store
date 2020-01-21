@@ -6,7 +6,7 @@
     )
 
     sleeve = [ 'Long Sleeve Tee', 'Short Sleeve Tee' ]
-    price = [ 25, 20 ]
+    price = [ 25.00, 20.00 ]
     sleeveImage = [
       'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958293/longsleevefront_mfokvd.jpg',
       'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958317/shortsleeve2_fqroqm.jpg']
@@ -39,26 +39,36 @@ end
 1.times do
   cat = Category.create(
     name: 'Hoodies',
-    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519422/shirtimage_lsexnh.jpg',
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958618/hoodie1_kbvtue.jpg',
     full_width: 'false'
     )
 
+
+      hoodieStyle = [ 'Black hoodie', 'Grey hoodie' ]
+      hoodiePrice = [ 35.99, 49.99 ]
+      hoodieImage = [
+        'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958618/hoodie1_kbvtue.jpg',
+        'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958630/hoodiefront2_o0qskk.jpg']
+
   2.times do
     item = Item.create(
-      name: 'Hoodie',
-      price: 35,
+      name: hoodieStyle[0] ,
+      price: hoodiePrice[0],
       desc: Faker::Lorem.paragraph(sentence_count: 3),
-      image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958317/shortsleeve2_fqroqm.jpg',
+      image: hoodieImage[0],
       category_id: cat.id
       )
+      hoodieStyle.delete_at(0)
+      hoodiePrice.delete_at(0)
+      hoodieImage.delete_at(0)
 
     size = [ 'Small', 'Medium', 'Large' ]
     3.times do
       ItemVariant.create(
         size: size[0],
         quantity: '3',
-        image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958317/shortsleeve2_fqroqm.jpg',
-        back_image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958309/shortsleevefront_mvg81i.jpg',
+        image: item.image,
+        back_image: '',
         item_id: item.id
         )
         size.delete_at(0)
