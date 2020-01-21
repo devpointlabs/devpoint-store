@@ -39,6 +39,7 @@ class ItemForm extends React.Component {
         .then(res => {
           this.props.update(res.data)
         })
+      this.props.close()
     } else {
       axios.post(`/api/categories/${this.state.category_id}/items`, item)
         .then(res => {

@@ -1,23 +1,19 @@
 import axios from 'axios'
 import ItemForm from './ItemForm'
-import gshirt from './Images/gshirt.jpg'
-import gshirtB from './Images/gshirt-b.jpg'
-import gshirtW from './Images/gshirt-w.jpg'
-import gshirtWB from './Images/gshirt-wb.jpg'
 import React from 'react'
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
-import { Container, Button, Image, Header, Dropdown, Form, Modal } from 'semantic-ui-react'
 
-// TODO: make responsive
-// TODO: modify + add code to be dynamic to data when db is made
-// below are size options to make demo work, will need to change for real data later
+import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
+
+//TODO: figure out how to get more than one size in size options lol
 
 class ItemView extends React.Component {
   state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '' }
 
   componentDidMount() {
     const { match: { params: { id, category_id } } } = this.props
+    
     axios.get(`/api/categories/${category_id}/items/${id}`)
       .then(res => {
         this.setState({ item: res.data })
@@ -59,9 +55,9 @@ class ItemView extends React.Component {
         onClose={() => this.showModal()}
       >
         <Modal.Header>Update This Item</Modal.Header>
-        <Modal.Content>
-          <ItemForm id={id} category_id={category_id} close={this.showModal} update={this.updateItem} />
-        </Modal.Content>
+          <Modal.Content>
+            <ItemForm id={id} category_id={category_id} close={this.showModal} update={this.updateItem} />
+          </Modal.Content>
       </Modal>
     )
   }
@@ -76,86 +72,67 @@ class ItemView extends React.Component {
     e.target.style.borderRadius = 'none'
   }
 
-
   handleChange = (e) => {
     this.setState({ selection: e.currentTarget.id })
   }
+  
+  // need function to determine if there is a back image or not and display/not display
+
+  itemDisplay = () => {
+    return this.state.itemVariants.map( i =>(
+      <div> 
+        {(() => {
+        switch (this.state.currentImage) {
+        case 1: return <Image style={{ height: '500px', width: '450px'}} src={i.back_image} />
+        default: return <Image style={{ height: '500px', width: '450px'}} src={this.state.item.image} />
+        }
+        })()}
+      <Mini>
+        <div> <Image src={this.state.item.image}
+          style={{ cursor: 'pointer', height: '100px' }}
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
+          onClick={ () =>  this.setState({ currentImage: 0 }) }
+          /> 
+        </div>
+        <div> <Image src={i.back_image}
+          style={{ cursor: 'pointer', height: '100px' }} 
+          onMouseOver={this.hover}
+          onMouseLeave={ this.clearHover }
+          onClick={ () => this.setState({ currentImage: 1 }) }
+          />
+        </div>
+      </Mini>
+      </div>
+    ))
+  }
 
   render() {
-    // const { match: { params: { id, category_id } } } = this.props
-    const { name, desc, price, image, } = this.state.item
+    const { name, desc, price } = this.state.item
     const { itemVariants } = this.state
-
-
-    const ivList = itemVariants.map((itemVariant, i) => ({
+    const ivList = itemVariants.map((itemVariant) => ({
       key: itemVariant.id,
       text: itemVariant.size,
       value: itemVariant.id,
       id: itemVariant.id
     }))
 
-    return (
-      <>
-        <Container>
-          <Grid>
-            <div>
-              {/* will need to adjust function for item.image */}
-              {(() => {
-                switch (this.state.currentImage) {
-                  case 1: return <Image src={this.state.item.image} />
-                  case 2: return <Image src={gshirtW} />
-                  case 3: return <Image src={gshirtWB} />
-                  default: return <Image src={gshirt} />
-                  // default: return <Image src={image} />
-                }
-              })()}
 
-              {/* placeholder for db images */}
-              <Mini style={{}}>
-                <div> <Image src={gshirt}
-                  style={{ cursor: 'pointer' }}
-                  onMouseOver={this.hover}
-                  onMouseLeave={this.clearHover}
-                  onClick={() => this.setState({ currentImage: 0 })}
-                /> </div>
-                <div> <Image src={gshirtB}
-                  style={{ cursor: 'pointer' }}
-                  onMouseOver={this.hover}
-                  onMouseLeave={this.clearHover}
-                  onClick={() => this.setState({ currentImage: 1 })}
-                />
-                </div>
-                <div>
-                  <Image src={gshirtW}
-                    style={{ cursor: 'pointer' }}
-                    onMouseOver={this.hover}
-                    onMouseLeave={this.clearHover}
-                    onClick={() => this.setState({ currentImage: 2 })}
-                  />
-                </div>
-                <div>
-                  <Image src={gshirtWB}
-                    style={{ cursor: 'pointer' }}
-                    onMouseOver={this.hover}
-                    onMouseLeave={this.clearHover}
-                    onClick={() => this.setState({ currentImage: 3 })}
-                  />
-                </div>
-              </Mini>
-            </div>
+  return(
+    <>
+    <Container>
+      <Grid stackable centered columns={2}>
+        {this.itemDisplay()}
+        {this.itemModal()}
+        
+        {/* possiblity to make below section into second Item/Cart Form component and render here instead */}
+        {/* we should also change price to a float in the db so we can write { price } instead of { price }.00 */}
 
-            {/* possiblity to make below section into second Item/Cart Form and render here instead */}
-
-            {/* will need to figure out functions for size/quantity */}
-            {/* when cart is set up */}
-            {this.itemModal()}
-
-            <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '550px', width: '450px', padding: '40px' }}>
-
-              <Header as='h1'> {name} </Header>
-              <Header as='h2' style={{ color: '#A9A9A9' }}> $ {price}.00 </Header>
-              <Header as='h3'> Size </Header>
-              <Form>
+        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', position: 'relative', height: '620px', width: '450px', padding: '40px', textAlign: 'left'}}>
+          <Header as='h1'> { name } </Header>
+          <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
+          <Header as='h3'> Size </Header>
+            <Form>
                 <Dropdown
                   placeholder='Select Size'
                   // options= {sizeOptions}
@@ -166,65 +143,58 @@ class ItemView extends React.Component {
                   value={ivList.value}
                   style={{ backgroundColor: '#ececec' }}
                 />
-              </Form>
+            </Form>
+          <Header as='h3'> Quantity </Header>
+            <Form>
+              {/* might need an onchange function here to pass value to cart */}
+              <Input defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
+            </Form>
+            <Button onClick={() => this.context.addToCart(this.state.selection)} animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
+              <Button.Content visible>
+                Add to Cart 
+              </Button.Content> 
+              <Button.Content hidden>
+                <Icon name='cart' />
+              </Button.Content>
+            </Button>
 
-              <Header as='h3'> Quantity </Header>
-              <Form>
-                {/* might an onchange function here + in style */}
-                <Form.TextArea defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
-              </Form>
-              <Button onClick={() => this.context.addToCart(this.state.selection)} size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px' }}> Add to Cart </Button>
+          {/* crud actions below should be hidden for regular users */}
 
-              {/* crud actions below should be hidden for regular users */}
-              {/* edit item */}
-              <div>
-                <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-75px' }}
-                  aria-hidden="true"
-                  class="icon pencil large"
-                  onClick={() => this.showModal()}
-                />
-                {/* delete item */}
-                <i
-                  style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-75px' }}
-                  aria-hidden="true"
-                  class="icon trash large"
-                  onClick={this.handleDelete}
-                />
-              </div>
-            </div>
+          {/* edit item */}
+          <div>
+            <i style={{ cursor: 'pointer', position: 'relative', right: '-300px', bottom: '-150px' }}
+            aria-hidden="true"
+            class="icon pencil large" 
+            onClick={() => this.showModal()}
+            />
 
-          </Grid>
+          {/* delete item */}
+            <i 
+            style={{ cursor: 'pointer', position: 'relative', right: '-325px', bottom: '-150px' }}
+            aria-hidden="true"
+            class="icon trash large"
+            onClick={this.handleDelete}
+            />
+          </div>
+        </div>
 
-          <Desc>
-            <p> {desc} </p>
-          </Desc>
-        </Container>
-      </>
+      <div style={{ textAlign: 'left', position: 'relative', backgroundColor: 'rgba(0, 0, 0, 0.03)', height: '200px', width: '500px', padding: '25px', margin: '10px 10px 50px 10px' }} >
+        <p> { desc } </p>
+      </div>
+      </Grid>
+    </Container>
+    </>
+
     )
   }
 }
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 450px);
-  grid-template-rows: repeat(2, 225px);
-  grid-gap: 50px;
-  margin: 50px 25px 25px 50px;
-`
-
 const Mini = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 80px);
+  grid-template-columns: repeat(4, 90px);
   grid-template-rows: repeat(4, 40px);
-  margin: 20px 20px 20px 70px;
+  margin: 20px 20px 20px 140px;
 `
 
-const Desc = styled.div`
-  background-color: rgba(0, 0, 0, 0.03);
-  height: 200px;
-  width: 600px;
-  padding: 25px;
-  margin: 100px 10px 10px 250px;
-`
 ItemView.contextType = ProductContext
 export default ItemView

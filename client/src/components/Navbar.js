@@ -54,7 +54,6 @@ const Navbar = (props) => {
     }
   }
 
-
   const handleChange = (e, { value, }, ) => setSelection(value)
 
   const userOptions = () => {
@@ -93,6 +92,7 @@ const Navbar = (props) => {
         break;
     }
   }
+
 
   return (
     <AuthConsumer>
@@ -198,7 +198,8 @@ const text = {
 }
 
 const lift = {
-  position: 'realitive',
+  display: 'flex',
+  alignItems: 'flex-start'
 }
 
 export default withRouter(Navbar)

@@ -33,13 +33,13 @@ class Login extends React.Component {
             onChange={this.handleChange}
           />
           <Form.Input
-          label='Password'
-          required
-          name='password'
-          value={password}
-          type='password'
-          placeholder='Password'
-          onChange={this.handleChange}
+            size='large'
+            label='Password'
+            required
+            name='password'
+            value={password}
+            placeholder='Password'
+            onChange={this.handleChange}
           />
           <Segment textAlign='center' basic>
             <Button primary tpye='submit'> Submit </Button>
