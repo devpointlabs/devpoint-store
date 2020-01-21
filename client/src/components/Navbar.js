@@ -93,7 +93,7 @@ const Navbar = (props) => {
         break;
     }
   }
-
+  
   return (
     <AuthConsumer>
       {auth => (
