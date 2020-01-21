@@ -19,7 +19,6 @@
       category_id: cat.id
       )
       sleeve.delete_at(0)
-      price.delete_at(0)
       sleeveImage.delete_at(0)
 
     size = [ 'Small', 'Medium', 'Large' ]
@@ -29,9 +28,11 @@
         quantity: '3',
         image: item.image,
         back_image: ' ',
-        item_id: item.id
+        item_id: item.id,
+        price: price[0]
         )
         size.delete_at(0)
+        price.delete_at(0)
     end
   end
 end
@@ -59,7 +60,6 @@ end
       category_id: cat.id
       )
       hoodieStyle.delete_at(0)
-      hoodiePrice.delete_at(0)
       hoodieImage.delete_at(0)
 
     size = [ 'Small', 'Medium', 'Large' ]
@@ -69,9 +69,11 @@ end
         quantity: '3',
         image: item.image,
         back_image: '',
-        item_id: item.id
+        item_id: item.id,
+        price: hoodiePrice[0]
         )
         size.delete_at(0)
+        hoodiePrice.delete_at(0)
     end
   end
 end
@@ -104,7 +106,8 @@ end
         quantity:'3',
         image: item.image,
         back_image: " ",
-        item_id: item.id
+        item_id: item.id,
+        price: 15.00
         )
     end
   end 
@@ -132,7 +135,8 @@ end
         quantity: '5',
         image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
         back_image: '',
-        item_id: item.id
+        item_id: item.id,
+        price: 5.00
         )
     end
   end
