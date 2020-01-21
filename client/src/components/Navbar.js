@@ -4,6 +4,13 @@ import { Link, withRouter } from 'react-router-dom'
 import { Menu, Icon, Button } from "semantic-ui-react";
 
 const Navbar = (props) => {
+  state ={loggedIn: false,};
+
+  toggleAuth = () =>{
+    this.ListeningStateChangedEvent(state => {
+      return {loggedIn: !state.loggedIn, };
+    })
+  }
 
   const rightNavItems = (auth) => {
     if (auth.user) {
@@ -59,10 +66,8 @@ const Navbar = (props) => {
                 active={props.location.pathname === '/'}
               />
                 {/* <Icon name="home"></Icon> */}
-            
             </Link>
           </Button>
-
           <Button class="button">
             <Link to="/Cart">
               <Menu.Item>
