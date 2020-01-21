@@ -13,8 +13,6 @@ import { Container, Button, Image, Header, Dropdown, Form, Modal } from 'semanti
 // TODO: modify + add code to be dynamic to data when db is made
 // below are size options to make demo work, will need to change for real data later
 
-
-
 class ItemView extends React.Component {
   state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '' }
 
@@ -170,14 +168,12 @@ class ItemView extends React.Component {
                 />
               </Form>
 
-
-
               <Header as='h3'> Quantity </Header>
               <Form>
                 {/* might an onchange function here + in style */}
                 <Form.TextArea defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px', backgroundColor: '#ececec' }} placeholder='1' />
               </Form>
-              <Button size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px' }}> Add to Cart </Button>
+              <Button onClick={() => this.context.addToCart(this.state.selection)} size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px' }}> Add to Cart </Button>
 
               {/* crud actions below should be hidden for regular users */}
               {/* edit item */}
