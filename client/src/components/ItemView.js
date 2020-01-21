@@ -3,6 +3,7 @@ import ItemForm from './ItemForm'
 import React from 'react'
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
+
 import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
 
 //TODO: figure out how to get more than one size in size options lol
@@ -116,6 +117,7 @@ class ItemView extends React.Component {
       id: itemVariant.id
     }))
 
+
   return(
     <>
     <Container>
@@ -131,20 +133,23 @@ class ItemView extends React.Component {
           <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
           <Header as='h3'> Size </Header>
             <Form>
-              <Dropdown
-              placeholder='Select Size'
-              options={ivList}
-              selection
-              onChange={this.handleChange}
-              value={ivList.value}
-              />
+                <Dropdown
+                  placeholder='Select Size'
+                  // options= {sizeOptions}
+                  options={ivList}
+                  selection
+
+                  onChange={this.handleChange}
+                  value={ivList.value}
+                  style={{ backgroundColor: '#ececec' }}
+                />
             </Form>
           <Header as='h3'> Quantity </Header>
             <Form>
               {/* might need an onchange function here to pass value to cart */}
               <Input defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
             </Form>
-            <Button animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
+            <Button onClick={() => this.context.addToCart(this.state.selection)} animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
               <Button.Content visible>
                 Add to Cart 
               </Button.Content> 
@@ -179,6 +184,7 @@ class ItemView extends React.Component {
       </Grid>
     </Container>
     </>
+
     )
   }
 }
