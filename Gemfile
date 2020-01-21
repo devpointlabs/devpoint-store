@@ -25,12 +25,15 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Authentication
 gem 'devise_token_auth'
 
+gem 'cloudinary'
+
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
   # Generate fake testing data
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 end
+
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

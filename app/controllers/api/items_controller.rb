@@ -11,7 +11,7 @@ class Api::ItemsController < ApplicationController
   end
 
   def create
-    item = @category.item.new(item_params)
+    item = @category.items.new(item_params)
     if item.save
       render json: item
     else
@@ -32,8 +32,9 @@ class Api::ItemsController < ApplicationController
   end
 
   private
+
    def set_category
-    @category = Category.find(params[:category_id]
+    @category = Category.find(params[:category_id])
    end
 
    def set_item
@@ -41,7 +42,7 @@ class Api::ItemsController < ApplicationController
    end
 
    def item_params
-    params.require(:item).permit(:name, :price, :desc)
+    params.require(:item).permit(:name, :price, :desc, :image)
    end
    
 end

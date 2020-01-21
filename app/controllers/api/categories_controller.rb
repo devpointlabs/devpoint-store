@@ -1,34 +1,44 @@
 class Api::CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :destroy]
+  before_action :set_category, only: [:show, :update, :destroy]
 
   def index
-    @categories = Category.all
+    render json: Category.all
   end
 
   def show
-    @category = Category.find(params[:id])
+    render json: @category
   end
 
   def create
-    @category = Category.new(category_params)
-    if @category.save
-      redirect_to categories_path
+    category = Category.new(category_params)
+
+    if category.save
+      render json: category
     else
-      render :new
+      render json: category.errors
   end
 end
 
+  def update
+    if @category.update(category_params)
+      render json: @category
+    else
+      render json: @category.errors
+    end
+  end
+
   def destroy
     @category.destroy
-    redirect_to category_path
   end
 
   private
+  
    def set_category
     @category = Category.find(params[:id])
    end
 
    def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :image, :full_width)
    end
+
 end
