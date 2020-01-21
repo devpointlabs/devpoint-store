@@ -137,39 +137,3 @@ end
     end
   end
 end
-
-1.times do
-  cat = Category.create(
-    name: 'T-shirts',
-    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519422/shirtimage_lsexnh.jpg',
-    full_width: 'true'
-    )
-    sleeve = [ 'Long Sleeve Tee', 'Short Sleeve Tee' ]
-    price = [ 25, 20 ]
-    sleeveImage = [
-      'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958293/longsleevefront_mfokvd.jpg',
-      'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958317/shortsleeve2_fqroqm.jpg']
-  2.times do
-    item = Item.create(
-      name: sleeve[0],
-      price: price[0],
-      desc: Faker::Lorem.paragraph(sentence_count: 3),
-      image: sleeveImage[0],
-      category_id: cat.id
-      )
-      sleeve.delete_at(0)
-      price.delete_at(0)
-      sleeveImage.delete_at(0)
-    size = [ 'Small', 'Medium', 'Large' ]
-    3.times do
-      ItemVariant.create(
-        size: size[0],
-        quantity: '3',
-        image: item.image,
-        back_image: ' ',
-        item_id: item.id
-        )
-        size.delete_at(0)
-    end
-  end
-end
