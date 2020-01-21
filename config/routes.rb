@@ -10,12 +10,9 @@ Rails.application.routes.draw do
       resources :item_variants
     end
     
-    
-  
       get 'allItemV', to: 'item_variants#allItemV'
-    
-    
-  end
+      get '/contact', to: 'contact#contact'
+    end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
