@@ -33,15 +33,17 @@ class Footer extends React.Component {
 
           <div 
             class='ui inverted vertical footer segment' 
-            style={{ 
+            style={{ height: '35px',
               justifyContent: 'flex-end',
               display: "flex", 
+              
             }} >
 
             <div
               class='ui inverted vertical footer segment' 
               style={{
-                margin: '0px 25px 0px 0px'
+                bottom: '20px',
+                margin: '5px 25px 5px 5px'
               }}>
 
               <h5> &copy; 2020 DevPoint Labs 

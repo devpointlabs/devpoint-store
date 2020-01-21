@@ -25,12 +25,13 @@ export class ProductProvider extends React.Component {
   }
 
   getItem = (id) => {
-    const itemVarient = this.state.itemVarients.find(itemVarient => itemVarient.id === id)
+    const itemVarient = this.state.itemVarients.find(itemVarient => itemVarient.id == id)
     return itemVarient
   }
 
 
   addToCart = (id) => {
+    debugger
     let tempProducts = [...this.state.itemVarients]
     const index = tempProducts.indexOf(this.getItem(id))
     const itemVarient = tempProducts[index]
