@@ -10,22 +10,12 @@ import '../App.css';
 import axios from 'axios';
 
 const Navbar = (props) => {
-<<<<<<< HEAD
-  state ={loggedIn: false,};
-
-  toggleAuth = () =>{
-    this.ListeningStateChangedEvent(state => {
-      return {loggedIn: !state.loggedIn, };
-    })
-  }
-=======
   const [selection, setSelection] = useState('')
   const [tShirts, setTshirts] = useState({})
   const [hoodies, setHoodies] = useState({})
   const [hats, setHats] = useState({})
   const [stickers, setStickers] = useState({})
   const context = useContext(AuthContext)
->>>>>>> 8fcff7d1eb1d2cdebf59b3b6f410dc381f3aa5ce
 
 
   useEffect(() => {
@@ -52,30 +42,6 @@ const Navbar = (props) => {
       )
     } else {
       return (
-<<<<<<< HEAD
-        <>
-          <Menu.Menu position='right'>
-            <Button class="ui small button">
-             <h3><Link to='/login'>
-                <Menu.Item
-                  id='login'
-                  name='login'
-                  active={props.location.pathname === '/login'}
-                />
-              </Link></h3>
-            </Button>
-            <Button size="tiny">
-              <h3><Link to='/register'>
-                <Menu.Item
-                  id='register'
-                  name='register'
-                  active={props.location.pathname === '/register'}
-                />
-              </Link></h3>
-            </Button>
-          </Menu.Menu>
-        </>
-=======
         [
           { key: 1, text: 'Hats', value: 'Hats' },
           { key: 2, text: 'Stickers', value: 'Stickers' },
@@ -84,7 +50,6 @@ const Navbar = (props) => {
           { key: 5, text: 'Register', value: 'Register' },
           { key: 6, text: 'Login', value: 'Login' },
         ]
->>>>>>> 8fcff7d1eb1d2cdebf59b3b6f410dc381f3aa5ce
       )
     }
   }
@@ -188,22 +153,6 @@ const Navbar = (props) => {
                 value={selection}
                 simple item
               />
-<<<<<<< HEAD
-                {/* <Icon name="home"></Icon> */}
-            </Link>
-          </Button>
-          <Button class="button">
-            <Link to="/Cart">
-              <Menu.Item>
-                <h3><Icon name="cart arrow down"></Icon>Cart</h3>
-              </Menu.Item>
-            </Link>
-          </Button>
-          <Button class="button">
-            <Menu.Item>
-              <Link to="/Contact">
-                <h3><Icon name="phone"></Icon>Contact</h3>
-=======
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
@@ -217,7 +166,6 @@ const Navbar = (props) => {
                   </Icon>
                   Cart
               </h3>
->>>>>>> 8fcff7d1eb1d2cdebf59b3b6f410dc381f3aa5ce
               </Link>
             </div>
           </div>

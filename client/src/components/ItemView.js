@@ -1,15 +1,11 @@
 import axios from 'axios'
 import ItemForm from './ItemForm'
 import React from 'react'
-<<<<<<< HEAD
-import {Card, } from semantic-React;
-=======
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
 import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
 
 //TODO: figure out how to get more than one size in size options lol
->>>>>>> 8fcff7d1eb1d2cdebf59b3b6f410dc381f3aa5ce
 
 class ItemView extends React.Component {
   state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '' }
