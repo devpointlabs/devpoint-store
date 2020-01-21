@@ -36,20 +36,42 @@ class Cart extends React.Component {
       </>
     )
   }
+
+  renderCartfull() {
+    return this.context.cart.map(c => (
+      <div>
+        <ul>
+          <li>
+          <Image 
+            style={{
+              height: "40px",
+              width: '100px',
+            }}
+          src={c.image} /> 
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            {c.size}
+
+          </li>
+        </ul>
+      </div>
+    ))
+  }
 // if cart is empty render EMPTY otherwise render cart items
   renderCart() {
+
+    
 
     if (this.context.cart.length >= 1) {
       return (
 
-        <div>
-          has something in cart
-            </div>
+       
+       this.renderCartfull()
+           
       )
 
     } else {
       return (
-        <div>empty</div>
+       <div>EMPTY</div>
       )
     }
   }
