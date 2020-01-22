@@ -52,11 +52,16 @@ class Cart extends React.Component {
               width: '100px',
             }}
           src={c.image} /> 
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             {c.size}
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            {c.qty}
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            ${c.price}
 
           </li>
         </ul>
+        
       </div>
     ))
   }
@@ -110,11 +115,16 @@ class Cart extends React.Component {
       //    </div>
 
       //    </> 
+      <>
       <div>
         
         {this.renderCart()}
 
       </div>
+            <div> Price: {this.context.cartSubTotal}</div>
+            <div> Tax: {this.context.cartTax}</div>
+            <div> Final Price: {this.context.cartTotal}</div>
+            </>
 
     )
   }
