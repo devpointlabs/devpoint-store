@@ -15,20 +15,23 @@
       price: price[0],
       desc: Faker::Lorem.paragraph(sentence_count: 3),
       image: sleeveImage[0],
-      category_id: cat.id
+      category_id: cat.id,
+      back_image: 'https://img.huffingtonpost.com/asset/599dda7a1900002500dd5139.jpeg?ops=scalefit_630_noupscale'
       )
       sleeve.delete_at(0)
       price.delete_at(0)
       sleeveImage.delete_at(0)
-    size = [ 'Small', 'Medium', 'Large' ]
-    3.times do
-      ItemVariant.create(
-        size: size[0],
-        quantity: '3',
-        image: item.image,
-        item_id: item.id
-        )
-        size.delete_at(0)
+      size = [ 'Small', 'Medium', 'Large' ]
+      3.times do
+        ItemVariant.create(
+          size: size[0],
+          quantity: '3',
+          image: item.image,
+          item_id: item.id,
+          price: item.price
+          )
+          size.delete_at(0)
+
     end
   end
 end
@@ -59,7 +62,8 @@ end
         size:'one size fits all',
         quantity:'3',
         image: item.image,
-        item_id: item.id
+        item_id: item.id,
+        price: item.price
         )
     end
   end 
@@ -92,7 +96,8 @@ end
         size: size[0],
         quantity: '3',
         image: item.image,
-        item_id: item.id
+        item_id: item.id,
+        price: item.price
         )
         size.delete_at(0)
     end

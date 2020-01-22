@@ -3,10 +3,7 @@ import ItemForm from './ItemForm'
 import React from 'react'
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
-
 import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
-
-//TODO: figure out how to get more than one size in size options lol
 
 class ItemView extends React.Component {
   state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '' }
@@ -30,7 +27,6 @@ class ItemView extends React.Component {
       .catch(err => {
         console.log(err)
       })
-    console.log(this.context)
   }
 
   updateItem = (item) => {
@@ -76,39 +72,8 @@ class ItemView extends React.Component {
     this.setState({ selection: e.currentTarget.id })
   }
   
-  // need function to determine if there is a back image or not and display/not display
-
-  itemDisplay = () => {
-    return this.state.itemVariants.map( i =>(
-      <div> 
-        {(() => {
-        switch (this.state.currentImage) {
-        case 1: return <Image style={{ height: '500px', width: '450px'}} src={i.back_image} />
-        default: return <Image style={{ height: '500px', width: '450px'}} src={this.state.item.image} />
-        }
-        })()}
-      <Mini>
-        <div> <Image src={this.state.item.image}
-          style={{ cursor: 'pointer', height: '100px' }}
-          onMouseOver={this.hover}
-          onMouseLeave={ this.clearHover }
-          onClick={ () =>  this.setState({ currentImage: 0 }) }
-          /> 
-        </div>
-        <div> <Image src={i.back_image}
-          style={{ cursor: 'pointer', height: '100px' }} 
-          onMouseOver={this.hover}
-          onMouseLeave={ this.clearHover }
-          onClick={ () => this.setState({ currentImage: 1 }) }
-          />
-        </div>
-      </Mini>
-      </div>
-    ))
-  }
-
   render() {
-    const { name, desc, price } = this.state.item
+    const { name, desc, price, image, back_image } = this.state.item
     const { itemVariants } = this.state
     const ivList = itemVariants.map((itemVariant) => ({
       key: itemVariant.id,
@@ -117,20 +82,53 @@ class ItemView extends React.Component {
       id: itemVariant.id
     }))
 
-
   return(
     <>
     <Container>
       <Grid stackable centered columns={2}>
-        {this.itemDisplay()}
         {this.itemModal()}
+        <div> 
+        {(() => {
+        switch (this.state.currentImage) {
+        case 1: return <Image style={{ height: '500px', width: '450px'}} src={back_image} />
+        default: return <Image style={{ height: '500px', width: '450px'}} src={image} />
+        }
+        })()}
+      { back_image ? 
+        <Mini>
+        <div> <Image src={ image }
+          style={{ cursor: 'pointer', height: '100px' }}
+          onMouseOver={ this.hover }
+          onMouseLeave={ this.clearHover }
+          onClick={ () =>  this.setState({ currentImage: 0 }) }
+          /> 
+        </div>
+        <div> <Image src={ back_image }
+          style={{ cursor: 'pointer', height: '100px' }} 
+          onMouseOver={ this.hover }
+          onMouseLeave={ this.clearHover }
+          onClick={ () => this.setState({ currentImage: 1 }) }
+          />
+        </div>
+        </Mini>
+      :
+        <OneMini>
+        <div> <Image src={ image }
+          style={{ cursor: 'pointer', height: '100px', position: 'relative', display: 'float', alignItems: 'center' }}
+          onMouseOver={ this.hover }
+          onMouseLeave={ this.clearHover }
+          onClick={ () =>  this.setState({ currentImage: 0 }) }
+          /> 
+        </div> 
+        </OneMini>
+      }
+      </div>
         
         {/* possiblity to make below section into second Item/Cart Form component and render here instead */}
-        {/* we should also change price to a float in the db so we can write { price } instead of { price }.00 */}
 
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.03)', position: 'relative', height: '620px', width: '450px', padding: '40px', textAlign: 'left'}}>
           <Header as='h1'> { name } </Header>
-          <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price }.00 </Header>
+          <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price } </Header>
           <Header as='h3'> Size </Header>
             <Form>
                 <Dropdown
@@ -138,7 +136,6 @@ class ItemView extends React.Component {
                   // options= {sizeOptions}
                   options={ivList}
                   selection
-
                   onChange={this.handleChange}
                   value={ivList.value}
                   style={{ backgroundColor: '#ececec' }}
@@ -184,7 +181,6 @@ class ItemView extends React.Component {
       </Grid>
     </Container>
     </>
-
     )
   }
 }
@@ -194,6 +190,14 @@ const Mini = styled.div`
   grid-template-columns: repeat(4, 90px);
   grid-template-rows: repeat(4, 40px);
   margin: 20px 20px 20px 140px;
+`
+
+const OneMini = styled.div`
+  display: grid;
+  position: 'relative'
+  grid-template-columns: repeat(4, 90px);
+  grid-template-rows: repeat(4, 40px);
+  margin: 20px 20px 20px 180px;
 `
 
 ItemView.contextType = ProductContext
