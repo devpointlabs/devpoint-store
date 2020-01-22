@@ -10,9 +10,13 @@ Rails.application.routes.draw do
       resources :item_variants
     end
     
-      get 'allItemV', to: 'item_variants#allItemV'
-      get '/contact', to: 'contact#contact'
-    end
+    get 'allItemV', to: 'item_variants#allItemV'
+    get '/contact', to: 'contact#contact'
+    get '/braintree_token', to: 'braintree#token'
+    post '/payment', to: 'braintree#payment'
+  end
+
+    get '*other', to: 'static#index'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
