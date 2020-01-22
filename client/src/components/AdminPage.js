@@ -9,9 +9,10 @@ class AdminPage extends React.Component {
   render() {
     return (
       <>
+
       <CategoryForm/>
       <ItemForm category_id={this.state.categories}/>
-      <ItemVariantForm/>
+      {/* <ItemVariantForm/> */}
       </>
     )
   }
