@@ -26,10 +26,13 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise_token_auth'
 
 gem 'cloudinary'
+# Payments
+gem 'braintree'
 
 group :development, :test do
    # Email Opener
    gem 'letter_opener'
+   # Secure Environment Variables
    gem 'dotenv-rails'
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
