@@ -15,7 +15,8 @@
       price: price[0],
       desc: Faker::Lorem.paragraph(sentence_count: 3),
       image: sleeveImage[0],
-      category_id: cat.id
+      category_id: cat.id,
+      back_image: 'https://img.huffingtonpost.com/asset/599dda7a1900002500dd5139.jpeg?ops=scalefit_630_noupscale'
       )
       sleeve.delete_at(0)
       price.delete_at(0)

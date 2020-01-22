@@ -85,8 +85,6 @@ class ItemView extends React.Component {
       value: itemVariant.id,
       id: itemVariant.id
     }))
-    
-    // need function to determine if there is a back image or not and display/not display
 
   return(
     <>
@@ -100,6 +98,7 @@ class ItemView extends React.Component {
         default: return <Image style={{ height: '500px', width: '450px'}} src={image} />
         }
         })()}
+        { back_image ? 
       <Mini>
         <div> <Image src={ image }
           style={{ cursor: 'pointer', height: '100px' }}
@@ -116,6 +115,17 @@ class ItemView extends React.Component {
           />
         </div>
       </Mini>
+      :
+      <OneMini>
+      <div> <Image src={ image }
+          style={{ cursor: 'pointer', height: '100px', position: 'relative', display: 'float', alignItems: 'center' }}
+          onMouseOver={ this.hover }
+          onMouseLeave={ this.clearHover }
+          onClick={ () =>  this.setState({ currentImage: 0 }) }
+          /> 
+        </div> 
+        </OneMini>
+      }
       </div>
         
         {/* possiblity to make below section into second Item/Cart Form component and render here instead */}
@@ -186,6 +196,13 @@ const Mini = styled.div`
   grid-template-columns: repeat(4, 90px);
   grid-template-rows: repeat(4, 40px);
   margin: 20px 20px 20px 140px;
+`
+
+const OneMini = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 90px);
+  grid-template-rows: repeat(4, 40px);
+  margin: 20px 20px 20px 180px;
 `
 
 ItemView.contextType = ProductContext
