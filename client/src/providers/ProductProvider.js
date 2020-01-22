@@ -41,7 +41,7 @@ export class ProductProvider extends React.Component {
     itemVarient.total = price
 
     this.setState(() => {
-      return { itemVarients: tempProducts, cart: [...this.state.cart, itemVarient] }
+      return { itemVarients: tempProducts, cart: [itemVarient, ...this.state.cart ] }
     }, () => {
       this.addTotals();
     })
@@ -112,7 +112,7 @@ export class ProductProvider extends React.Component {
 
   addTotals = () => {
     let subTotal = 0;
-    this.state.cart.map(itemVarient => (subTotal += itemVarient.total));
+    this.state.cart.map(itemV => (subTotal += itemV.total));
     const tempTax = subTotal * 0.1;
     const tax = parseFloat(tempTax.toFixed(2));
     const total = subTotal + tax;
