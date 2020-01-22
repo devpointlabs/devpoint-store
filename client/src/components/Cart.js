@@ -15,6 +15,10 @@ class Cart extends React.Component {
     cartTotal: 0
   }
 
+  componentDidMount() {
+    console.log(this.context)
+  }
+
 
 
   showItems() {

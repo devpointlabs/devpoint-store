@@ -41,7 +41,7 @@ export class ProductProvider extends React.Component {
     itemVarient.total = price
 
     this.setState(() => {
-      return { itemVarients: tempProducts, cart: [...this.state.cart, itemVarient] }
+      return { itemVarients: tempProducts, cart: [itemVarient, ...this.state.cart ] }
     }, () => {
       this.addTotals();
     })
