@@ -58,7 +58,7 @@ class Cart extends React.Component {
             {c.qty}
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             ${c.price}
-
+            <Button onClick={()=> this.context.removeItem(c.id)}>DEL</Button>
           </li>
         </ul>
         
