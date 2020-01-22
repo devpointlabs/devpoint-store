@@ -4,12 +4,12 @@
     image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519422/shirtimage_lsexnh.jpg',
     full_width: 'true'
     )
+    2.times do
     sleeve = [ 'Long Sleeve Tee', 'Short Sleeve Tee' ]
-    price = [ 25.00, 20.00 ]
+    price = [ 25, 20 ]
     sleeveImage = [
       'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958293/longsleevefront_mfokvd.jpg',
       'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958317/shortsleeve2_fqroqm.jpg']
-  2.times do
     item = Item.create(
       name: sleeve[0],
       price: price[0],
@@ -21,52 +21,20 @@
       price.delete_at(0)
       sleeveImage.delete_at(0)
       size = [ 'Small', 'Medium', 'Large' ]
-      3.times do
-        ItemVariant.create(
-          size: size[0],
-          quantity: '3',
-          image: item.image,
-          item_id: item.id,
-          price: item.price
-          )
-          size.delete_at(0)
+    3.times do
+      ItemVariant.create(
+        size: size[0],
+        quantity: '3',
+        image: item.image,
+        item_id: item.id,
+        price: item.price
+        )
+        size.delete_at(0)
 
     end
   end
 end
 
-1.times do
-  cat = Category.create(
-    name: 'Hats',
-    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519429/hatimage_jqvmhz.jpg',
-    full_width: 'false'
-    )
-  
-  style = [ 'hat', 'cap' ]
-  image = [ 
-  'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958403/hat_wwqd8t.png',
-  'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958411/hat2_n5gvy0.jpg']
-  2.times do
-    item = Item.create(
-      name: style[0],
-      price: 15.00,
-      desc: Faker::Lorem.paragraph(sentence_count: 3),
-      image: image[0],
-      category_id: cat.id
-      )
-      style.delete_at(0)
-      image.delete_at(0)
-    1.times do
-      ItemVariant.create(
-        size:'one size fits all',
-        quantity:'3',
-        image: item.image,
-        item_id: item.id,
-        price: item.price
-        )
-    end
-  end 
-end
 1.times do
   cat = Category.create(
     name: 'Hoodies',
@@ -89,8 +57,8 @@ end
       hoodieStyle.delete_at(0)
       hoodiePrice.delete_at(0)
       hoodieImage.delete_at(0)
-    size = [ 'Small', 'Medium', 'Large' ]
     3.times do
+      size = [ 'Small', 'Medium', 'Large' ]
       ItemVariant.create(
         size: size[0],
         quantity: '3',
@@ -102,6 +70,38 @@ end
     end
   end
 end
+
+1.times do
+  cat = Category.create(
+    name: 'Hats',
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519429/hatimage_jqvmhz.jpg',
+    full_width: 'false'
+    )
+    2.times do
+      style = [ 'hat', 'cap' ]
+      image = [ 
+      'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958403/hat_wwqd8t.png',
+      'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958411/hat2_n5gvy0.jpg']
+      item = Item.create(
+        name: style[0],
+        price: 15.00,
+        desc: Faker::Lorem.paragraph(sentence_count: 3),
+        image: image[0],
+        category_id: cat.id
+        )
+        style.delete_at(0)
+        image.delete_at(0)
+    1.times do
+      ItemVariant.create(
+        size:'one size fits all',
+        quantity:'3',
+        image: item.image,
+        item_id: item.id,
+        price: item.price
+        )
+    end
+  end 
+end
 1.times do
   cat = Category.create(
     name: 'Stickers',
@@ -111,14 +111,15 @@ end
   3.times do
     item = Item.create(
       name: 'Sticker',
-      price: 5.00,
+      price: 5,
       desc: Faker::Lorem.paragraph(sentence_count: 3),
       image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
       category_id: cat.id
       )
     1.times do
       ItemVariant.create(
-        size: '',
+        size: '---',
+        price: item.price,
         quantity: '5',
         image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
         item_id: item.id
