@@ -8,7 +8,6 @@ import minilogo from '../components/Images/DevPoint_Labs.png'
 import styled from "styled-components";
 import '../App.css';
 import axios from 'axios';
-
 const Navbar = (props) => {
   const [selection, setSelection] = useState('')
   const [tShirts, setTshirts] = useState({})
@@ -16,8 +15,6 @@ const Navbar = (props) => {
   const [hats, setHats] = useState({})
   const [stickers, setStickers] = useState({})
   const context = useContext(AuthContext)
-
-
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
@@ -27,7 +24,6 @@ const Navbar = (props) => {
         setStickers(res.data[3])
       })
   }, []);
-
   const options = () => {
     if (context.user) {
       return (
@@ -52,31 +48,25 @@ const Navbar = (props) => {
       )
     }
   }
-
   const handleChange = (e, { value, }, ) => setSelection(value)
-
   const userOptions = () => {
     switch (selection) {
       case "Hats":
         props.history.push(`/categories/${hats.id}`)
         setSelection('')
         break;
-
       case "Stickers":
         props.history.push(`/categories/${stickers.id}`)
         setSelection('')
         break;
-
       case 'Contact':
         props.history.push('/Contact')
         setSelection('')
         break;
-
       case 'AdminPage':
         props.history.push('/AdminPage')
         setSelection('')
         break;
-
       case "Register":
         props.history.push('/Register')
         setSelection('')
@@ -91,8 +81,7 @@ const Navbar = (props) => {
         break;
     }
   }
-
-
+  
   return (
     <AuthConsumer>
       {auth => (
@@ -173,7 +162,6 @@ const Navbar = (props) => {
     </AuthConsumer>
   )
 }
-
 const cust = {
   display: 'flex',
   paddingBottom: '55px',
@@ -183,7 +171,6 @@ const cust = {
   justifyContent: 'flex-End',
   paddingRight: '150px',
 }
-
 const home = {
   backgroundColor: 'white',
   paddingTop: '60px',
@@ -191,17 +178,11 @@ const home = {
   color: 'black',
   fontSize: '27px'
 }
-
 const text = {
   color: 'black',
 }
-
 const lift = {
   display: 'flex',
   alignItems: 'flex-start'
 }
-
 export default withRouter(Navbar)
-
-
-
