@@ -15,15 +15,17 @@ const Navbar = (props) => {
   const [hats, setHats] = useState({})
   const [stickers, setStickers] = useState({})
   const context = useContext(AuthContext)
+
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
         setTshirts(res.data[0])
-        setHats(res.data[1])
-        setHoodies(res.data[2])
+        setHats(res.data[2])
+        setHoodies(res.data[1])
         setStickers(res.data[3])
       })
   }, []);
+
   const options = () => {
     if (context.user) {
       return (
@@ -32,7 +34,6 @@ const Navbar = (props) => {
           { key: 2, text: 'Stickers', value: 'Stickers' },
           { key: 3, text: 'Contact', value: 'Contact' },
           { key: 4, text: 'AdminPage', value: 'AdminPage' },
-          { key: 5, text: 'Register', value: 'Register' },
           { key: 6, text: 'Logout', value: 'Logout' },
         ]
       )
@@ -49,6 +50,7 @@ const Navbar = (props) => {
       )
     }
   }
+
   const handleChange = (e, { value, }, ) => setSelection(value)
   const userOptions = () => {
     switch (selection) {
