@@ -19,6 +19,7 @@
       )
       sleeve.delete_at(0)
       price.delete_at(0)
+      sleeveImage.delete_at(0)
       size = [ 'Small', 'Medium', 'Large' ]
       3.times do
         ItemVariant.create(
@@ -29,7 +30,7 @@
           price: item.price
           )
           size.delete_at(0)
-          sleeveImage.delete_at(0)
+
     end
   end
 end
