@@ -3,10 +3,7 @@ import ItemForm from './ItemForm'
 import React from 'react'
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
-
 import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
-
-//TODO: figure out how to get more than one size in size options lol
 
 class ItemView extends React.Component {
   state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '' }
@@ -30,7 +27,6 @@ class ItemView extends React.Component {
       .catch(err => {
         console.log(err)
       })
-
   }
 
   updateItem = (item) => {
@@ -98,8 +94,8 @@ class ItemView extends React.Component {
         default: return <Image style={{ height: '500px', width: '450px'}} src={image} />
         }
         })()}
-        { back_image ? 
-      <Mini>
+      { back_image ? 
+        <Mini>
         <div> <Image src={ image }
           style={{ cursor: 'pointer', height: '100px' }}
           onMouseOver={ this.hover }
@@ -114,10 +110,10 @@ class ItemView extends React.Component {
           onClick={ () => this.setState({ currentImage: 1 }) }
           />
         </div>
-      </Mini>
+        </Mini>
       :
-      <OneMini>
-      <div> <Image src={ image }
+        <OneMini>
+        <div> <Image src={ image }
           style={{ cursor: 'pointer', height: '100px', position: 'relative', display: 'float', alignItems: 'center' }}
           onMouseOver={ this.hover }
           onMouseLeave={ this.clearHover }
@@ -186,7 +182,6 @@ class ItemView extends React.Component {
       </Grid>
     </Container>
     </>
-
     )
   }
 }
@@ -200,6 +195,7 @@ const Mini = styled.div`
 
 const OneMini = styled.div`
   display: grid;
+  position: 'relative'
   grid-template-columns: repeat(4, 90px);
   grid-template-rows: repeat(4, 40px);
   margin: 20px 20px 20px 180px;
