@@ -136,7 +136,6 @@ class ItemView extends React.Component {
                   // options= {sizeOptions}
                   options={ivList}
                   selection
-
                   onChange={this.handleChange}
                   value={ivList.value}
                   style={{ backgroundColor: '#ececec' }}

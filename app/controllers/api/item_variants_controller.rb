@@ -46,6 +46,6 @@ class Api::ItemVariantsController < ApplicationController
   end
 
    def item_variant_params
-    params.require(:item_variant).permit(:color, :size, :quantity)
+    params.require(:item_variant).permit(:color, :size, :quantity, :image)
    end
 end
