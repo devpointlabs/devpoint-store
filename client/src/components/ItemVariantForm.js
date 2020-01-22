@@ -51,15 +51,6 @@ class ItemVariantForm extends React.Component {
   //       this.setState({ items: [...items, res.data], })
   //     })
   // }
-  
-  //discarding order
-  // deleteItem = (id) => {
-  //   axios.delete(`api/items/${this.props.item_id}/item_variants/${id}`)
-  //     .then(res => {
-  //       const { items, } = this.state;
-  //       this.setState({ items: items.filter(i => i.id != id), })
-  //     })
-  
 
   render() {
     const { color, image, quantity, size } = this.state
