@@ -1,8 +1,8 @@
 import React from "react";
-import gshirt from './Images/gshirt.jpg'
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
 import { Image, Header, Container, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 class Cart extends React.Component {
   // will need to pass in or grab items/item variants that were added to cart
@@ -19,110 +19,68 @@ class Cart extends React.Component {
     console.log(this.context)
   }
 
-
-
   showItems() {
-    // map through items to make dynamic
-    return (
+    return this.context.cart.map(c => (
       <>
         <div style={{ backgroundColor: 'white', overflow: 'hidden', position: 'relative' }}>
-          <Image src={gshirt} style={{ height: '130px', width: '130px', padding: '10px', float: 'left' }} />
-          <Button color='grey' floated='right' style={{ borderRadius: '0px', height: '140px', width: '60px' }}>
+          <Image src={c.image} style={{ height: '150px', width: '150px', padding: '10px', float: 'left' }} />
+          <Button 
+            onClick={()=> this.context.removeItem(c.id)}
+            backgroundColor='grey'
+            floated='right'
+            style={{ borderRadius: '0px', height: '150px', width: '60px' }}>
             <i
-              color='white'
               class="icon trash large"
               onClick={this.handleDelete}
             />
           </Button>
-          <Header as='h2' style={{ position: 'relative', left: '10px', top: '60px' }} > shirt wow, medium x1 </Header>
-          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '10px', left: '-30px' }}> $25.00 </Header>
+          {/* Shirt below is a placeholder for c.name */}
+          <Header as='h2' style={{ position: 'relative', left: '10px', top: '60px' }} >Shirt, {c.size} x{c.qty} </Header>
+          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '10px', left: '-30px' }}> ${c.price} </Header>
         </div>
       </>
-    )
-  }
-
-  renderCartfull() {
-    return this.context.cart.map(c => (
-      <div>
-        <ul>
-          <li>
-          <Image 
-            style={{
-              height: "40px",
-              width: '100px',
-            }}
-          src={c.image} /> 
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            {c.size}
-
-          </li>
-        </ul>
-      </div>
     ))
   }
+
 // if cart is empty render EMPTY otherwise render cart items
   renderCart() {
-
-    
-
     if (this.context.cart.length >= 1) {
       return (
-
-       
-       this.renderCartfull()
-           
+       this.showItems()
       )
-
     } else {
       return (
-       <div>EMPTY</div>
+       <Header as='h3'> Oh no, your cart is empty! Continue <Link to='/'>shopping?</Link> </Header>
       )
     }
   }
- 
-
 
   render() {
-
-    return (
-     
-      //    <>
-      // <Page>
-      //     <Container>
-      //     <Header as='h1'> Cart </Header>
-      //     { this.showItems() }
-      //     </Container>
-      //   <br />
-      //   <br />
-      //   <br />
-      //   <br />
-      //   </Page>
-      //   <Header as='h2' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Total: $25.00 </Header>
-      //   <Button size='huge' floated='right' color='black' style={{ borderRadius: '0px', position: 'relative', left: '-25px'}}> Checkout </Button>
-      //   <br />
-      //   <br />
-      //   <br />
-      //   <br />
-      //   <br /> 
-      //    <div>
-
-
-      //    </div>
-
-      //    </> 
-      <div>
-        
-        {this.renderCart()}
-
-      </div>
-
+    return ( 
+      <>
+      <Page>
+          <Container>
+          <Header as='h1' style={{ padding: '10px'}}> Cart </Header>
+          {this.renderCart()}
+          </Container>
+        <br />
+        <br />
+        <br />
+        <br />
+      </Page>
+        <Header as='h4' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Price: ${this.context.cartSubTotal} </Header>
+        <Header as='h4' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Tax: ${this.context.cartTax} </Header>
+        <Header as='h3' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Total: ${this.context.cartTotal} </Header>
+        <Button size='huge' floated='right' color='black' style={{ borderRadius: '0px', position: 'relative', left: '-25px', margin: '0px 0px 90px 0px'}}> Checkout </Button>
+            </>
     )
   }
 }
 
-
-const Page = styled.body`
+const Page = styled.div`
   background-color: rgba(0, 0, 0, 0.03);
+  height: '3000px';
+  width: '3000px';
   `
 
 Cart.contextType = ProductContext
