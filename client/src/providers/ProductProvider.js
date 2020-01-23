@@ -32,15 +32,14 @@ export class ProductProvider extends React.Component {
   }
 
 
-  addToCart = (id) => {
-    debugger
+  addToCart = (id, itemqty) => {
     let tempProducts = [...this.state.itemVarients]
     const index = tempProducts.indexOf(this.getItem(id))
     const itemVarient = tempProducts[index]
     itemVarient.inCart = true
-    itemVarient.qty = 1
+    itemVarient.qty = itemqty
     const price = itemVarient.price
-    itemVarient.total = price
+    itemVarient.total = price * itemVarient.qty
 
     this.setState(() => {
       return { itemVarients: tempProducts, cart: [itemVarient, ...this.state.cart ] }
@@ -101,6 +100,7 @@ export class ProductProvider extends React.Component {
       }
     }, () => {
       this.addTotals()
+      localStorage.setItem('myCart', JSON.stringify(this.state.cart))
     })
   }
 
@@ -121,9 +121,9 @@ export class ProductProvider extends React.Component {
     const total = subTotal + tax;
     this.setState(() => {
       return {
-        cartSubTotal: subTotal,
-        cartTax: tax,
-        cartTotal: total
+        cartSubTotal: subTotal.toFixed(2),
+        cartTax: tax.toFixed(2),
+        cartTotal: total.toFixed(2)
       }
     })
   }

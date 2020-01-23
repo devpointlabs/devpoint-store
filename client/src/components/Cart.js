@@ -35,6 +35,7 @@ class Cart extends React.Component {
             />
           </Button>
           {/* Shirt below is a placeholder for c.name */}
+
           <Header as='h2' style={{ position: 'relative', left: '10px', top: '95px' }} >Shirt, {c.size} x{c.qty} </Header>
           <Icon 
           style={{ position: 'relative', top:'55px', left: '200px', cursor: 'pointer'}}
@@ -49,7 +50,7 @@ class Cart extends React.Component {
           name='minus square'
           onClick={() => this.context.decrement(c.id)}
           />
-          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '-20px', left: '-20px'}}> ${c.price} </Header>
+          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '-20px', left: '-20px'}}> ${c.total} </Header>
         </div>
       </>
     ))
