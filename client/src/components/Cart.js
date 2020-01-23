@@ -36,7 +36,7 @@ class Cart extends React.Component {
           </Button>
           {/* Shirt below is a placeholder for c.name */}
 
-          <Header as='h2' style={{ position: 'relative', left: '10px', top: '95px' }} >Shirt, {c.size} x{c.qty} </Header>
+          <Header as='h2' style={{ position: 'relative', left: '10px', top: '95px' }} >{c.name}, {c.size} x{c.qty} </Header>
           <Icon 
           style={{ position: 'relative', top: '-60px', left: '480px', cursor: 'pointer'}}
           color='grey'

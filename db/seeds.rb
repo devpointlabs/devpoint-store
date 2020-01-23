@@ -29,7 +29,8 @@
         quantity: '3',
         image: item.image,
         item_id: item.id,
-        price: item.price
+        price: item.price,
+        name: item.name
         )
         size.delete_at(0)
 
@@ -67,7 +68,8 @@ end
         quantity: '3',
         image: item.image,
         item_id: item.id,
-        price: item.price
+        price: item.price,
+        name: item.name
         )
         size.delete_at(0)
     end
