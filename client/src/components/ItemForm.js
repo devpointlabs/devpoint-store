@@ -5,7 +5,7 @@ import { Link, NavLink, } from 'react-router-dom';
 
 
 class ItemForm extends React.Component {
-  state = {category_id: '',name: '',price: '',desc: '', image: '', }
+  state = {category_id:'',name:'',price:'',desc:'', image:'', }
 
   componentDidMount() {
     const { id, category_id, } = this.props
@@ -106,4 +106,4 @@ class ItemForm extends React.Component {
   }
 }
 
-export default ItemForm
+export default ItemForm;

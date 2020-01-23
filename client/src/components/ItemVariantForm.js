@@ -3,7 +3,7 @@ import axios from "axios"
 import { Form, Header, Button, } from "semantic-ui-react"
 
 class ItemVariantForm extends React.Component {
-  state = { item_id: '', color: "", image: "", quantity: "", size: "", }
+  state = { item_id:'', color:"", image:"", quantity:"", size:"", }
 
   //grab the item reveling details 
   componentDidMount() {
@@ -18,6 +18,7 @@ class ItemVariantForm extends React.Component {
           console.log(err.responce)
         })
   }
+
   //this needs to get looked at
   handleChange = (e) => {
     const { target: { name, value } } = e
@@ -43,6 +44,10 @@ class ItemVariantForm extends React.Component {
     }
   }
 
+  handleDrop = (e) =>{
+    this.setState({item_id: e.currentTarget.id})
+  } 
+
   ItemOptions = [
     { key: 1, text: 'TShirts', value: 'TShirts', id: 1 },
     { key: 2, text: 'Hoodies', value: 'Hoodies', id: 3 },
@@ -59,7 +64,7 @@ class ItemVariantForm extends React.Component {
           <Form.Group>
 
             <Form.Dropdown
-              placeholder='ItemVariant'
+              placeholder='Item'
               fluid
               selection
               options={this.ItemOptions}
@@ -76,8 +81,8 @@ class ItemVariantForm extends React.Component {
             <Form.Input
               name='quantity'
               value={quantity}
-              label="Quantity"
               placeholder="Quantity"
+              label="Quantity"
               // required
               onChange={this.handleChange}
             />
@@ -90,7 +95,7 @@ class ItemVariantForm extends React.Component {
               onChange={this.handleChange}
             />
             <Form.Input
-              name='olor'
+              name='color'
               value={color}
               label="Color"
               placeholder="color"
