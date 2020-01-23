@@ -54,52 +54,53 @@ class ItemVariantForm extends React.Component {
     const { color, image, quantity, size } = this.state
     return (
       <>
-        <h1> ItemVariantForm</h1>
+        <h1>ItemVariantForm</h1>
         <Form onSubmit={this.handleSubmit}>
+          <Form.Group>
 
-          <Form.Dropdown
-            placeholder='ItemVariant'
-            fluid
-            selection
-            options={this.ItemOptions}
-            onChange={this.handleDropdown}
-          />
-          <Form.Input
-            name='Image'
-            value={image}
-            label="Image"
-            placeholder="Image"
-            // required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name='quantity'
-            value={quantity}
-            label="Quantity"
-            placeholder="Quantity"
-            // required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name='size'
-            value={size}
-            label="Size"
-            placeholder="Size"
-            // required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name='olor'
-            value={color}
-            label="Color"
-            placeholder="color"
-            // required
-            onChange={this.handleChange}
-          />
-          <br /><br />
-          <Form.Button color="blue">
-            Submit
-            </Form.Button>
+            <Form.Dropdown
+              placeholder='ItemVariant'
+              fluid
+              selection
+              options={this.ItemOptions}
+              onChange={this.handleDropdown}
+            />
+            <Form.Input
+              name='Image'
+              value={image}
+              label="Image"
+              placeholder="Image"
+              // required
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              name='quantity'
+              value={quantity}
+              label="Quantity"
+              placeholder="Quantity"
+              // required
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              name='size'
+              value={size}
+              label="Size"
+              placeholder="Size"
+              // required
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              name='olor'
+              value={color}
+              label="Color"
+              placeholder="color"
+              // required
+              onChange={this.handleChange}
+            />
+            <Form.Button color="blue">
+              Submit
+          </Form.Button>
+          </Form.Group>
         </Form>
       </>
     )
