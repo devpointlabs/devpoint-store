@@ -37,19 +37,20 @@ class Cart extends React.Component {
           {/* Shirt below is a placeholder for c.name */}
           <Header as='h2' style={{ position: 'relative', left: '10px', top: '95px' }} >Shirt, {c.size} x{c.qty} </Header>
           <Icon 
-          style={{ position: 'relative', top:'55px', left: '200px', cursor: 'pointer'}}
+          style={{ position: 'relative', top: '-50px', left: '480px', cursor: 'pointer'}}
           color='grey'
+          size='large'
           name='plus square'
           onClick={() => this.context.increment(c.id)}
           />
           <Icon 
-          style={{position: 'relative', cursor: 'pointer', top: '55px', left: '205px'}}
-          cursor='pointer'
+          style={{position: 'relative', cursor: 'pointer', top: '-25px', left: '452px'}}
           color='grey'
+          size='large'
           name='minus square'
           onClick={() => this.context.decrement(c.id)}
           />
-          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '-20px', left: '-20px'}}> ${c.price} </Header>
+          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '10px', left: '-20px'}}> ${c.price} </Header>
         </div>
       </>
     ))
