@@ -50,7 +50,7 @@ class Cart extends React.Component {
           name='minus square'
           onClick={() => this.context.decrement(c.id)}
           />
-          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '-20px', left: '-20px'}}> ${c.total} </Header>
+          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '-20px', left: '-20px'}}> ${c.total.toFixed(2)} </Header>
         </div>
       </>
     ))
