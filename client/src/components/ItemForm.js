@@ -24,6 +24,7 @@ class ItemForm extends React.Component {
     const { target: { name, value } } = e
     this.setState({ [name]: value })
   }
+  
 //e.currentTarget.id
   handleDropdown = (e) => {
     this.setState({category_id: e.currentTarget.id})

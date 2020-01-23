@@ -22,11 +22,13 @@ class ItemVariantForm extends React.Component {
   handleDrop = (e) =>{
     this.setState({item_id: e.currentTarget.id})
   } 
+  
   //this needs to get looked at
   handleChange = (e) => {
     const { target: { name, value } } = e
     this.setState({ [name]: value })
   }
+
   //this needs to get looked at
   handleSubmit = (e) => {
     e.preventDefault()
@@ -71,7 +73,7 @@ class ItemVariantForm extends React.Component {
               onChange={this.handleDrop}
             />
             <Form.Input
-              name='Image'
+              name='image'
               value={image}
               placeholder="Image"
               autoFocus
