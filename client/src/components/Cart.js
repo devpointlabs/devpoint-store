@@ -36,7 +36,7 @@ class Cart extends React.Component {
           </Button>
           {/* Shirt below is a placeholder for c.name */}
           <Header as='h2' style={{ position: 'relative', left: '10px', top: '60px' }} >Shirt, {c.size} x{c.qty} </Header>
-          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '10px', left: '-30px' }}> ${c.price} </Header>
+          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '10px', left: '-30px' }}> ${c.total} </Header>
         </div>
       </>
     ))

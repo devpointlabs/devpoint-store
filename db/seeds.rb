@@ -6,7 +6,7 @@
     )
 
   sleeve = [ 'Long Sleeve Tee', 'Short Sleeve Tee' ]
-  price = [ 25, 20 ]
+  price = [ 25.00, 20.00 ]
   sleeveImage = ['https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958293/longsleevefront_mfokvd.jpg',
     'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958317/shortsleeve2_fqroqm.jpg']
   2.times do
