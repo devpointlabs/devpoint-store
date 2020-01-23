@@ -1,8 +1,9 @@
 import React from "react";
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
-import { Image, Header, Container, Button, Icon } from 'semantic-ui-react'
+import { Image, Header, Container, Button, Icon, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import BraintreeDrop from './BraintreeDrop'
 
 class Cart extends React.Component {
   // will need to pass in or grab items/item variants that were added to cart
@@ -12,11 +13,12 @@ class Cart extends React.Component {
     inCart: false,
     cartSubTotal: 0,
     cartTax: 0,
-    cartTotal: 0
+    cartTotal: 0,
+    checkout: false
   }
 
   componentDidMount() {
-    console.log(this.context)
+    console.log(this.state)
   }
 
   showItems() {
@@ -57,7 +59,7 @@ class Cart extends React.Component {
     ))
   }
 
-// if cart is empty render EMPTY otherwise render cart items
+  // if cart is empty render EMPTY otherwise render cart items
   renderCart() {
     if (this.context.cart.length >= 1) {
       return (
@@ -70,24 +72,58 @@ class Cart extends React.Component {
     }
   }
 
+  toggleCheckout = () => {
+    this.setState({ checkout: !this.state.checkout})
+  }
+
+  openCheckout = () => {
+    if (this.state.checkout === true) {
+      return (
+        <>
+          <br />
+          <Segment style={{ padding: '0px 150px 0px 150px'}}>
+            <BraintreeDrop/>
+          </Segment>
+        </>
+    )}    
+  }
+
   render() {
     return ( 
       <>
-      <Page>
+        <Page>
           <Container>
-          <Header as='h1' style={{ padding: '10px'}}> Cart </Header>
-          {this.renderCart()}
+            <Header as='h1' style={{ padding: '10px'}}> Cart </Header>
+            {this.renderCart()}
           </Container>
-        <br />
-        <br />
-        <br />
-        <br />
-      </Page>
+          <br />
+          <br />
+          <br />
+          <br />
+        </Page>
+
         <Header as='h4' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Price: ${this.context.cartSubTotal} </Header>
         <Header as='h4' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Tax: ${this.context.cartTax} </Header>
-        <Header as='h3' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Total: ${this.context.cartTotal} </Header>
-        <Button size='huge' floated='right' color='black' style={{ borderRadius: '0px', position: 'relative', left: '-25px', margin: '0px 0px 90px 0px'}}> Checkout </Button>
-            </>
+        <Header as='h2' style={{ textAlign: 'right', position: 'relative', left: '-30px'}}> Total: ${this.context.cartTotal} </Header>
+        
+        <Button
+          total={this.context.cartTotal}
+          onClick={this.toggleCheckout}
+          size='huge'
+          floated='right'
+          color='black'
+          style={{
+            borderRadius: '0px',
+            position: 'relative',
+            left: '-25px',
+            margin: '0px 0px 90px 0px'
+          }}>
+          Checkout 
+        </Button>
+        <br />
+        <br />
+        {this.openCheckout()}
+      </>
     )
   }
 }
