@@ -58,7 +58,6 @@ class ItemForm extends React.Component {
 
   render() {
     const { name, desc, price, image, } = this.state
-
     return (
       <>
         <h1>New Item</h1>
