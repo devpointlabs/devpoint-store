@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
-import { Image, Header, Container, Button } from 'semantic-ui-react'
+import { Image, Header, Container, Button, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class Cart extends React.Component {
@@ -22,21 +22,34 @@ class Cart extends React.Component {
   showItems() {
     return this.context.cart.map(c => (
       <>
-        <div style={{ backgroundColor: 'white', overflow: 'hidden', position: 'relative' }}>
-          <Image src={c.image} style={{ height: '150px', width: '150px', padding: '10px', float: 'left' }} />
+        <div style={{ backgroundColor: 'white', overflow: 'hidden', position: 'relative', margin: '0px 0px 20px 0px' }}>
+          <Image src={c.image} style={{ height: '160px', width: '150px', padding: '10px', float: 'left' }} />
           <Button 
             onClick={()=> this.context.removeItem(c.id)}
             backgroundColor='grey'
             floated='right'
-            style={{ borderRadius: '0px', height: '150px', width: '60px' }}>
+            style={{ borderRadius: '0px', height: '162px', width: '60px' }}>
             <i
               class="icon trash large"
               onClick={this.handleDelete}
             />
           </Button>
           {/* Shirt below is a placeholder for c.name */}
-          <Header as='h2' style={{ position: 'relative', left: '10px', top: '60px' }} >Shirt, {c.size} x{c.qty} </Header>
-          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '10px', left: '-30px' }}> ${c.price} </Header>
+          <Header as='h2' style={{ position: 'relative', left: '10px', top: '95px' }} >Shirt, {c.size} x{c.qty} </Header>
+          <Icon 
+          style={{ position: 'relative', top:'55px', left: '200px', cursor: 'pointer'}}
+          color='grey'
+          name='plus square'
+          onClick={() => this.context.increment(c.id)}
+          />
+          <Icon 
+          style={{position: 'relative', cursor: 'pointer', top: '55px', left: '205px'}}
+          cursor='pointer'
+          color='grey'
+          name='minus square'
+          onClick={() => this.context.decrement(c.id)}
+          />
+          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '-20px', left: '-20px'}}> ${c.price} </Header>
         </div>
       </>
     ))
