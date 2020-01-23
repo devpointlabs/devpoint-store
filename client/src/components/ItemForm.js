@@ -50,7 +50,7 @@ class ItemForm extends React.Component {
   }
 
   CategoryOptions = [
-    { key: 1, text: 'TShirts', value: 'TShirts', id: 1 },
+    { key: 1, text: 'tShirts', value: 'TShirts', id: 1 },
     { key: 2, text: 'Hoodies', value: 'Hoodies', id: 3 },
     { key: 3, text: 'Hats', value: 'Hats', id: 2 },
     { key: 4, text: 'Stickers', value: 'Stickers', id: 4 },

@@ -49,7 +49,7 @@ class ItemVariantForm extends React.Component {
 
 
   ItemOptions = [
-    { key: 1, text: 'TShirts', value: 'TShirts', id: 1 },
+    { key: 1, text: 'tShirts', value: 'TShirts', id: 1 },
     { key: 2, text: 'Hoodies', value: 'Hoodies', id: 3 },
     { key: 3, text: 'Hats', value: 'Hats', id: 2 },
     { key: 4, text: 'Stickers', value: 'Stickers', id: 4 },
@@ -74,30 +74,31 @@ class ItemVariantForm extends React.Component {
               name='Image'
               value={image}
               placeholder="Image"
-              // required
+              autoFocus
               onChange={this.handleChange}
             />
             <Form.Input
               name='quantity'
               value={quantity}
               placeholder="Quantity"
-              // required
+              autoFocus
               onChange={this.handleChange}
             />
             <Form.Input
               name='size'
               value={size}
               placeholder="Size"
-              // required
+              autoFocus
               onChange={this.handleChange}
             />
             <Form.Input
               name='color'
               value={color}
               placeholder="color"
-              // required
+              autoFocus
               onChange={this.handleChange}
             />
+
             <Form.Button color="blue">
               Submit
           </Form.Button>
