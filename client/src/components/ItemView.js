@@ -194,7 +194,7 @@ const Mini = styled.div`
 
 const OneMini = styled.div`
   display: grid;
-  position: 'relative'
+  position: 'relative';
   grid-template-columns: repeat(4, 90px);
   grid-template-rows: repeat(4, 40px);
   margin: 20px 20px 20px 180px;

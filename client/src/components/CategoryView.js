@@ -77,7 +77,7 @@ class CategoryView extends React.Component {
             <Image src={i.image} />
             <h4 style={{ textAlign: "center", color: 'black', fontWeight: 'bold' }}>   {i.name}</h4>
 
-            <h4 style={{ textAlign: "center", color: 'black' }}> ${i.price}.00 </h4>
+            <h4 style={{ textAlign: "center", color: 'black' }}> ${i.price} </h4>
             <br />
             <br />
           </Link>
