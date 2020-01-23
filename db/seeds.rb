@@ -103,7 +103,8 @@ end
         quantity:'3',
         image: item.image,
         item_id: item.id,
-        price: item.price
+        price: item.price,
+        name: item.name
         )
     end
   end 
@@ -131,7 +132,9 @@ end
         price: item.price,
         quantity: '5',
         image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
-        item_id: item.id
+        item_id: item.id,
+        price: item.price,
+        name: item.name
         )
     end
   end
