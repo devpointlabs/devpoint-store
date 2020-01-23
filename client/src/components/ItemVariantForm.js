@@ -38,7 +38,7 @@ class ItemVariantForm extends React.Component {
     } else {
       axios.post(`/api/items/${item_id}/item_variants`, itemVariant)
         .then(res => {
-
+          
         })
     }
   }
