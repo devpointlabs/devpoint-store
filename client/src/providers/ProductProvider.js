@@ -16,7 +16,7 @@ export class ProductProvider extends React.Component {
 
   componentDidMount() {
    const cartlocal = localStorage.getItem('myCart')
-    this.setState({cart: JSON.parse(cartlocal) ? JSON.parse(cartlocal) : []}, this.addTotal)
+    this.setState({cart: JSON.parse(cartlocal) ? JSON.parse(cartlocal) : []}, this.addTotals)
       axios.get("/api/allItemV")
       .then( res => {
         this.setState({ itemVarients: [ ...res.data], })
