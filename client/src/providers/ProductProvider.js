@@ -15,9 +15,11 @@ export class ProductProvider extends React.Component {
   }
 
   componentDidMount() {
+   const cartlocal = localStorage.getItem('myCart')
+    this.setState({cart: JSON.parse(cartlocal) ? JSON.parse(cartlocal) : []}, this.addTotals)
       axios.get("/api/allItemV")
       .then( res => {
-        this.setState({ itemVarients: [ ...res.data], });
+        this.setState({ itemVarients: [ ...res.data], })
       })
       .catch( err => {
         console.log(err)
@@ -43,7 +45,8 @@ export class ProductProvider extends React.Component {
     this.setState(() => {
       return { itemVarients: tempProducts, cart: [itemVarient, ...this.state.cart ] }
     }, () => {
-      this.addTotals();
+      this.addTotals()
+      localStorage.setItem('myCart', JSON.stringify(this.state.cart))
     })
   }
 
