@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_214214) do
+ActiveRecord::Schema.define(version: 2020_01_23_175120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_01_21_214214) do
   end
 
   create_table "item_variants", force: :cascade do |t|
-    t.string "color"
     t.string "image"
     t.integer "quantity"
     t.string "size"
@@ -32,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_214214) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "price"
+    t.string "name"
     t.index ["item_id"], name: "index_item_variants_on_item_id"
   end
 
