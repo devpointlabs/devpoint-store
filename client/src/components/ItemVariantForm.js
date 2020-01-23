@@ -38,19 +38,10 @@ class ItemVariantForm extends React.Component {
     } else {
       axios.post(`/api/items/${item_id}/item_variants`, itemVariant)
         .then(res => {
-
+          
         })
     }
   }
-
-  //adding aditional attributes
-  // addItemVariant = (color, image, quantity, size) => {
-  //   axios.post(`api/items/${this.props.item_id}/item_variants`, { color, image, quantity, size })
-  //     .then(res => {
-  //       const { items, } = this.state
-  //       this.setState({ items: [...items, res.data], })
-  //     })
-  // }
 
   render() {
     const { color, image, quantity, size } = this.state
