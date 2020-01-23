@@ -2,14 +2,14 @@
 #shirtpic{ 
   height: 350px;
   width: 100vw;
-  box-shadow: 15px 25px 10px grey;
+  box-shadow: 15px 25px 10px rgb(37, 37, 37);
 
 }
 
 #restimages{
   height: 350px;
   width: 100vw;
-  box-shadow: 15px 25px 10px grey;
+  box-shadow: 15px 25px 10px rgb(37, 37, 37);
 }
 
 #shirty{
