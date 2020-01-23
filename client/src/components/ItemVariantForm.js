@@ -38,7 +38,7 @@ class ItemVariantForm extends React.Component {
     } else {
       axios.post(`/api/items/${item_id}/item_variants`, itemVariant)
         .then(res => {
-          
+
         })
     }
   }
@@ -56,6 +56,14 @@ class ItemVariantForm extends React.Component {
       <>
         <h1> ItemVariantForm</h1>
         <Form onSubmit={this.handleSubmit}>
+
+          <Form.Dropdown
+            placeholder='ItemVariant'
+            fluid
+            selection
+            options={this.ItemOptions}
+            onChange={this.handleDropdown}
+          />
           <Form.Input
             name='Image'
             value={image}
