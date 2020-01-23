@@ -19,6 +19,9 @@ class ItemVariantForm extends React.Component {
         })
   }
 
+  handleDrop = (e) =>{
+    this.setState({item_id: e.currentTarget.id})
+  } 
   //this needs to get looked at
   handleChange = (e) => {
     const { target: { name, value } } = e
@@ -44,9 +47,6 @@ class ItemVariantForm extends React.Component {
     }
   }
 
-  handleDrop = (e) =>{
-    this.setState({item_id: e.currentTarget.id})
-  } 
 
   ItemOptions = [
     { key: 1, text: 'TShirts', value: 'TShirts', id: 1 },
@@ -68,12 +68,11 @@ class ItemVariantForm extends React.Component {
               fluid
               selection
               options={this.ItemOptions}
-              onChange={this.handleDropdown}
+              onChange={this.handleDrop}
             />
             <Form.Input
               name='Image'
               value={image}
-              label="Image"
               placeholder="Image"
               // required
               onChange={this.handleChange}
@@ -82,14 +81,12 @@ class ItemVariantForm extends React.Component {
               name='quantity'
               value={quantity}
               placeholder="Quantity"
-              label="Quantity"
               // required
               onChange={this.handleChange}
             />
             <Form.Input
               name='size'
               value={size}
-              label="Size"
               placeholder="Size"
               // required
               onChange={this.handleChange}
@@ -97,7 +94,6 @@ class ItemVariantForm extends React.Component {
             <Form.Input
               name='color'
               value={color}
-              label="Color"
               placeholder="color"
               // required
               onChange={this.handleChange}
