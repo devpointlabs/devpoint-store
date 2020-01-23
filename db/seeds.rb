@@ -33,6 +33,7 @@
         name: item.name
         )
         size.delete_at(0)
+        
 
     end
   end
@@ -104,7 +105,7 @@ end
         image: item.image,
         item_id: item.id,
         price: item.price,
-        name: item.name
+        name:item.name
         )
     end
   end 

@@ -54,7 +54,7 @@ export class ProductProvider extends React.Component {
     const selectedProduct = tempCart.find(itemVarient => itemVarient.id === id)
     const index = tempCart.indexOf(selectedProduct)
     const itemVarient = tempCart[index]
-    itemVarient.qty = itemVarient.qty + 1
+    itemVarient.qty = parseInt(itemVarient.qty) + 1
     itemVarient.total = itemVarient.qty * itemVarient.price
     this.setState(() => {
       return {
