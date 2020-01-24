@@ -19,7 +19,7 @@ class ItemVariantForm extends React.Component {
   //add function
   addItemVariant = (name, image, quantity, size, item_id) => {
     axios.post(`/api/items/${item_id}/item_variants`,
-      { name, image, quantity, size, }).then(res => {
+      { name, image, quantity, size, item_id }).then(res => {
         const { items } = this.state;
         this.setState({ items: [...items, res.data] });
       });
@@ -47,18 +47,20 @@ class ItemVariantForm extends React.Component {
 
   //this needs to get looked at
   handleSubmit = (e) => {
+    // debugger
     e.preventDefault()
     const { name, quantity, size } = this.state
     const itemVariant = { name, quantity, size, }
     const { id, item_id, } = this.props
     if (id && item_id) {
-      axios.put(`/api/items/${item_id}/item_variants/${id}`, itemVariant)
+      axios.put(`/api/items/${this.state.item_id}/item_variants/${id}`, itemVariant)
         .then(res => {
           this.props.update(res.data)
         })
       this.props.close()
+      debugger
     } else {
-      axios.post(`/api/items/${item_id}/item_variants`, itemVariant)
+      axios.post(`/api/items/${this.state.item_id}/item_variants`, itemVariant)
         .then(res => {
           
         })
