@@ -11,11 +11,11 @@ class AdminPage extends React.Component {
     return (
       <>
         <CategoryForm />
-        <br />
-        <ItemForm category_id={this.state.categories} />
-        <br />
+          <br />
+        <ItemForm category_id = {this.state.categories} />
+          <br />
         <ItemVariantForm />
-        <br />
+         <br />
       </>
     )
   }

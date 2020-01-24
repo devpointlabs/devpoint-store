@@ -3,10 +3,10 @@ import ItemForm from './ItemForm'
 import React from 'react'
 import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
-import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
+import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid, Popup} from 'semantic-ui-react'
 
 class ItemView extends React.Component {
-  state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '' }
+  state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '', itemqty: 1 }
 
   componentDidMount() {
     const { match: { params: { id, category_id } } } = this.props
@@ -70,6 +70,10 @@ class ItemView extends React.Component {
 
   handleChange = (e) => {
     this.setState({ selection: e.currentTarget.id })
+  }
+
+  handleChangeqty = (e) => {
+    this.setState({itemqty: e.currentTarget.value})
   }
   
   render() {
@@ -144,9 +148,20 @@ class ItemView extends React.Component {
           <Header as='h3'> Quantity </Header>
             <Form>
               {/* might need an onchange function here to pass value to cart */}
-              <Input defaultValue={1} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
+              <Input onChange={this.handleChangeqty}   value={this.state.itemqty} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}}  />
             </Form>
-            <Button onClick={() => this.context.addToCart(this.state.selection)} animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
+                <Popup
+                style={{
+                  backgroundColor: 'black',
+                  color: 'white',
+              }}
+                content='Added to Cart'
+                position='right center'
+                on='click'
+                
+                trigger={
+
+            <Button onClick={() => this.context.addToCart(this.state.selection, this.state.itemqty)} animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
               <Button.Content visible>
                 Add to Cart 
               </Button.Content> 
@@ -154,6 +169,7 @@ class ItemView extends React.Component {
                 <Icon name='cart' />
               </Button.Content>
             </Button>
+                }/>
 
           {/* crud actions below should be hidden for regular users */}
 
@@ -194,7 +210,7 @@ const Mini = styled.div`
 
 const OneMini = styled.div`
   display: grid;
-  position: 'relative'
+  position: 'relative';
   grid-template-columns: repeat(4, 90px);
   grid-template-rows: repeat(4, 40px);
   margin: 20px 20px 20px 180px;

@@ -57,6 +57,8 @@ class Home extends React.Component {
     return (
       <Container>
         <Card.Group itemsPerRow={1}>{this.renderImages()}</Card.Group>
+        <br />
+        <br />
 
         <div class="stacking cards">
           <Card.Group itemsPerRow={2}>{this.renderImagessmall()}</Card.Group>
