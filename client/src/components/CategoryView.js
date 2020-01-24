@@ -141,8 +141,6 @@ class CategoryView extends React.Component {
 
 
 
-
-
 export default CategoryView;
 
 

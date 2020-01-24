@@ -80,11 +80,15 @@ class ItemVariantForm extends React.Component {
     const { items, } = this.state
     return items.map(c => (
       <div>
-        <li>
-          {c.name}
-        </li>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <Button name="red" onClick={() => this.deleteCategory(c.id)}>
+        <ul>
+
+          <li>
+            {c.name}
+          </li>
+        </ul>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <Button color="red" onClick={() => this.deleteItemVariant(c.id)}>
           delete
             </Button>
       </div>
@@ -95,12 +99,12 @@ class ItemVariantForm extends React.Component {
     const { name, image, quantity, size } = this.state
     return (
       <>
-        <h1>ItemVariantForm</h1>
-        <Form onSubmit={this.handleSubmit}>
+        <h1 style={view}>ItemVariantForm</h1>
+        <Form onSubmit={this.handleSubmit} style={view}>
           <Form.Group>
 
             <Form.Dropdown
-              placeholder='Item'
+              placeholder='Specific Item'
               fluid
               selection
               options={this.renderDropDown()}
@@ -135,16 +139,21 @@ class ItemVariantForm extends React.Component {
               onChange={this.handleChange}
             />
 
-            <Form.Button name="blue">
+            <Form.Button color="blue">
               Submit
           </Form.Button>
             <br />
-            {this.renderItem()}
           </Form.Group>
         </Form>
+            {this.renderItem()}
       </>
     )
   }
+}
+
+const view  = {
+  display: "flex",
+  justifyContent: "center"
 }
 
 export default ItemVariantForm;

@@ -66,10 +66,10 @@ class CategoryForm extends React.Component {
 		return (
 			<>
 				<div>
-					<Header as="h1">New Category</Header>
-					<Form onSubmit={this.handleSubmit}>
+					<Header as="h1" style={view}>New Category</Header>
+					<Form onSubmit={this.handleSubmit} style={view}>
+						<Form.Group>
 						<Form.Input
-							label="Category"
 							placeholder="Add A Category"
 							required
 							name="name"
@@ -77,7 +77,6 @@ class CategoryForm extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<Form.Input
-							label="Image"
 							placeholder="Add a URL"
 							required
 							name="image"
@@ -88,12 +87,18 @@ class CategoryForm extends React.Component {
 						<br />
 						<Form.Button color="blue">Submit</Form.Button>
 						<br />
-						{this.renderCategory()}
+					</Form.Group>
 					</Form>
+						{this.renderCategory()}
 				</div>
 			</>
 		);
 	}
 }
+const view  = {
+  display: "flex",
+  justifyContent: "center"
+}
+
 
 export default CategoryForm;

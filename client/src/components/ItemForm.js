@@ -61,8 +61,8 @@ class ItemForm extends React.Component {
     const { name, desc, price, image, } = this.state
     return (
       <>
-        <h1>New Item</h1>
-        <Form onSubmit={this.handleSubmit}>
+        <h1 style={view}>New Item</h1>
+        <Form onSubmit={this.handleSubmit} style={view}>
           <Form.Group>
 
             <Form.Dropdown
@@ -97,7 +97,8 @@ class ItemForm extends React.Component {
               value={image}
               onChange={this.handleChange}
             />
-            <Form.Button color="blue">
+            <br />
+            <Form.Button color="blue" style={view}>
               Submit
           </Form.Button>
           </Form.Group>
@@ -105,6 +106,12 @@ class ItemForm extends React.Component {
       </>
     )
   }
+}
+
+
+const view  = {
+  display: "flex",
+  justifyContent: "center"
 }
 
 export default ItemForm;
