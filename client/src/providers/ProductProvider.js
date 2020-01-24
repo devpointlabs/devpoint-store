@@ -56,7 +56,7 @@ export class ProductProvider extends React.Component {
     })
   }
 
-
+  // add to cart function
   addToCart = (id, itemqty) => {
     let tempProducts = [...this.state.itemVarients]
     const index = tempProducts.indexOf(this.getItem(id))
@@ -80,7 +80,7 @@ export class ProductProvider extends React.Component {
 
 
 
-
+  // add quantity
   increment = (id) => {
     let tempCart = [...this.state.cart]
     const selectedProduct = tempCart.find(itemVarient => itemVarient.id === id)
@@ -97,7 +97,7 @@ export class ProductProvider extends React.Component {
       localStorage.setItem('myCart', JSON.stringify(this.state.cart))
     })
   }
-
+  // quantity decrease
   decrement = (id) => {
     let tempCart = [...this.state.cart]
     const selectedProduct = tempCart.find(item => item.id === id)
@@ -118,7 +118,7 @@ export class ProductProvider extends React.Component {
       localStorage.setItem('myCart', JSON.stringify(this.state.cart))
     })
   }
-
+  // del item
   removeItem = (id) => {
     let tempProducts = [...this.state.itemVarients]
     let tempCart = [...this.state.cart]
@@ -138,7 +138,7 @@ export class ProductProvider extends React.Component {
       localStorage.setItem('myCart', JSON.stringify(this.state.cart))
     })
   }
-
+  // clear cart function
   clearCart = () => {
     this.setState(() => {
       return { cart: [] }
@@ -147,7 +147,7 @@ export class ProductProvider extends React.Component {
       this.addTotals();
     })
   }
-
+  // calculate totals
   addTotals = () => {
     let subTotal = 0;
     this.state.cart.map(itemV => (subTotal += itemV.total));
@@ -162,7 +162,7 @@ export class ProductProvider extends React.Component {
       }
     })
   }
-
+  
   render() {
     return (
       <ProductContext.Provider value={{
