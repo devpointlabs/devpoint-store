@@ -2,6 +2,7 @@ import axios from 'axios'
 import ItemForm from './ItemForm'
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { ProductContext } from '../providers/ProductProvider'
 import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid } from 'semantic-ui-react'
 
@@ -155,7 +156,7 @@ class ItemView extends React.Component {
                 Add to Cart 
               </Button.Content> 
               <Button.Content hidden>
-                <Icon name='cart' />
+                <Icon name='cart plus' />
               </Button.Content>
             </Button>
 

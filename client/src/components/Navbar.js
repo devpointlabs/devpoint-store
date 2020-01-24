@@ -153,7 +153,7 @@ const Navbar = (props) => {
               >
                 <h3 style={text}>
                   <Icon
-                    name='cart arrow down'>
+                    name='shopping cart'>
                   </Icon>
                   Cart
               </h3>
