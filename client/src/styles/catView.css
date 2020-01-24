@@ -17,7 +17,7 @@
   position: absolute;
   top: 0px;
   left: 40px;
-  font-family: "Times New Roman", Times, serif ;
+  font-family: 'Open Sans' ;
   color:white; 
 }
 
@@ -31,6 +31,6 @@
   position: absolute;
   bottom: 3px;
   right: 185px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Open Sans' ;
   color:white;
 }
