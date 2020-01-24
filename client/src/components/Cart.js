@@ -80,7 +80,7 @@ class Cart extends React.Component {
         <>
           <br />
           <Segment style={{ padding: '0px 150px 0px 150px'}}>
-            <BraintreeDrop/>
+            <BraintreeDrop total={this.context.cartTotal}/>
           </Segment>
         </>
     )}    
