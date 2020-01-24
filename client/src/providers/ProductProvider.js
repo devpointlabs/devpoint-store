@@ -58,6 +58,13 @@ export class ProductProvider extends React.Component {
 
 
   addToCart = (id, itemqty) => {
+    // if statement to check for size and quant !null
+    if ( id === "") {
+      alert('Please fill in all fields')
+    } else if (itemqty === "") {
+      alert('Please fill in all fields')
+    } else {
+      debugger
     let tempProducts = [...this.state.itemVarients]
     const index = tempProducts.indexOf(this.getItem(id))
     const itemVarient = tempProducts[index]
@@ -66,6 +73,7 @@ export class ProductProvider extends React.Component {
     const price = itemVarient.price
     itemVarient.total = price * itemVarient.qty
     this.checkCart(itemVarient, tempProducts)
+    }
   }
 
 // original add to cart
