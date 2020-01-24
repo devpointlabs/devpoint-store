@@ -148,7 +148,7 @@ class ItemView extends React.Component {
           <Header as='h3'> Quantity </Header>
             <Form>
               {/* might need an onchange function here to pass value to cart */}
-              <Input onChange={this.handleChangeqty}   value={this.state.itemqty} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}} placeholder='1' />
+              <Input onChange={this.handleChangeqty}   value={this.state.itemqty} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}}  />
             </Form>
                 <Popup
                 style={{
