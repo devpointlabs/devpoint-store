@@ -3,26 +3,42 @@ import axios from "axios"
 import { Form, Header, Button, } from "semantic-ui-react"
 
 class ItemVariantForm extends React.Component {
-  state = { item_id:'', color:"", image:"", quantity:"", size:"", }
+  state = { item_id: '', name: "", image: "", quantity: "", size: "", items: [] };
 
   //grab the item reveling details 
   componentDidMount() {
-    const { id, item_id, } = this.props
-    if (id && item_id)
-      axios.get(`/api/items/${item_id}/item_variants/${id}`)
-        .then(res => {
-          const { item_id, color, image, quantity, size } = res.data
-          this.setState({ item_id, color, image, quantity, size })
-        })
-        .catch(err => {
-          console.log(err.responce)
-        })
+    axios.get('/api/all_items')
+      .then(res => {
+        this.setState({ items: res.data })
+      })
+      .catch(err => {
+        console.log(err.responce)
+      })
   }
 
-  handleDrop = (e) =>{
-    this.setState({item_id: e.currentTarget.id})
-  } 
-  
+  //add function
+  addItemVariant = (name, image, quantity, size, item_id) => {
+    axios.post(`/api/items/${item_id}/item_variants`,
+      { name, image, quantity, size, }).then(res => {
+        const { items } = this.state;
+        this.setState({ items: [...items, res.data] });
+      });
+  };
+
+  //delete function
+  deleteItemVariant = (id, item_id) => {
+    axios.delete(`/api/items/${item_id}/item_variants/${id},`)
+      .then(res => {
+        const { items } = this.state;
+        this.setState({ items: items.filter(c => c.id !== id) });
+      })
+  }
+
+  handleDrop = (e) => {
+    this.setState({ item_id: e.currentTarget.id })
+
+  }
+
   //this needs to get looked at
   handleChange = (e) => {
     const { target: { name, value } } = e
@@ -32,8 +48,8 @@ class ItemVariantForm extends React.Component {
   //this needs to get looked at
   handleSubmit = (e) => {
     e.preventDefault()
-    const { color, quantity, size } = this.state
-    const itemVariant = { color, quantity, size, }
+    const { name, quantity, size } = this.state
+    const itemVariant = { name, quantity, size, }
     const { id, item_id, } = this.props
     if (id && item_id) {
       axios.put(`/api/items/${item_id}/item_variants/${id}`, itemVariant)
@@ -49,16 +65,34 @@ class ItemVariantForm extends React.Component {
     }
   }
 
+  renderDropDown = () => {
+    const itemOptions = this.state.items.map(item => ({
+      key: item.id,
+      text: item.name,
+      value: item.name,
+      id: item.id
+    })
+    )
+    return itemOptions
+  }
 
-  ItemOptions = [
-    { key: 1, text: 'tShirts', value: 'TShirts', id: 1 },
-    { key: 2, text: 'Hoodies', value: 'Hoodies', id: 3 },
-    { key: 3, text: 'Hats', value: 'Hats', id: 2 },
-    { key: 4, text: 'Stickers', value: 'Stickers', id: 4 },
-  ]
+  renderItem() {
+    const { items, } = this.state
+    return items.map(c => (
+      <div>
+        <li>
+          {c.name}
+        </li>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <Button name="red" onClick={() => this.deleteCategory(c.id)}>
+          delete
+            </Button>
+      </div>
+    ));
+  }
 
   render() {
-    const { color, image, quantity, size } = this.state
+    const { name, image, quantity, size } = this.state
     return (
       <>
         <h1>ItemVariantForm</h1>
@@ -69,7 +103,7 @@ class ItemVariantForm extends React.Component {
               placeholder='Item'
               fluid
               selection
-              options={this.ItemOptions}
+              options={this.renderDropDown()}
               onChange={this.handleDrop}
             />
             <Form.Input
@@ -94,16 +128,18 @@ class ItemVariantForm extends React.Component {
               onChange={this.handleChange}
             />
             <Form.Input
-              name='color'
-              value={color}
-              placeholder="color"
+              name='name'
+              value={name}
+              placeholder="name"
               autoFocus
               onChange={this.handleChange}
             />
 
-            <Form.Button color="blue">
+            <Form.Button name="blue">
               Submit
           </Form.Button>
+            <br />
+            {this.renderItem()}
           </Form.Group>
         </Form>
       </>
