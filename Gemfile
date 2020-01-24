@@ -27,7 +27,7 @@ gem 'devise_token_auth'
 
 gem 'cloudinary'
 # Payments
-gem 'braintree'
+# gem 'braintree'
 
 group :development, :test do
    # Email Opener
