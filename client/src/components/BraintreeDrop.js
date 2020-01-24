@@ -16,15 +16,14 @@ class BraintreeDrop extends React.Component {
 
   componentDidMount() {
     axios.get('/api/braintree_token')
-      .then( res => {
-        const { data: token, } = res;
-        this.setState({ token, loaded: true, });
-      })
+    .then( res => {
+      const { data: token, } = res;
+      this.setState({ token, loaded: true, });
+    })
   }
   
   handlePaymentMethod = (payload) => {
-    const { amount } = this.props;
-
+    const amount = this.props.total;
     axios.post('/api/payment', { amount, ...payload, })
       .then( res => {
         const { data: transactionId, } = res;
@@ -38,13 +37,14 @@ class BraintreeDrop extends React.Component {
   render () {
     const { loaded, token, } = this.state;
 
-    // if(Redirect)
-    //   return(
-    //     <Redirect to={{
-    //       pathname: '/payment_success',
-    //       state: { amount: this.props.amount, transactionId }
-    //     }}/>
-    //   )
+    if(this.state.redirect)
+      return(
+        <Redirect to={{
+          pathname: '/payment_success',
+          state: { amount: this.props.total, transactionId: this.state.transactionId }
+        }}/>
+        )
+      
     if(loaded)
       return (
         <Segment basic textAlign='center'>
