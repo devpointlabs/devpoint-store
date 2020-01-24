@@ -18,7 +18,7 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state)
+    console.log(this.context)
   }
 
   showItems() {

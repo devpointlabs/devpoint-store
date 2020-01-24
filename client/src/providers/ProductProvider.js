@@ -15,20 +15,45 @@ export class ProductProvider extends React.Component {
   }
 
   componentDidMount() {
-   const cartlocal = localStorage.getItem('myCart')
-    this.setState({cart: JSON.parse(cartlocal) ? JSON.parse(cartlocal) : []}, this.addTotals)
-      axios.get("/api/allItemV")
-      .then( res => {
-        this.setState({ itemVarients: [ ...res.data], })
+    const cartlocal = localStorage.getItem('myCart')
+    this.setState({ cart: JSON.parse(cartlocal) ? JSON.parse(cartlocal) : [] }, this.addTotals)
+    axios.get("/api/allItemV")
+      .then(res => {
+        this.setState({ itemVarients: [...res.data], })
       })
-      .catch( err => {
+      .catch(err => {
         console.log(err)
       })
   }
-
+// compares id's to submitted id
   getItem = (id) => {
     const itemVarient = this.state.itemVarients.find(itemVarient => itemVarient.id == id)
     return itemVarient
+  }
+// checks for duplicates
+  checkCart = (itemVarient, tempProducts) => {
+    const { cart, } = this.state
+    cart.length >= 1 ? cart.map(c => {
+      if (c.id === itemVarient.id)
+        alert("in cart")
+        else
+        this.setState({
+          itemVarients: [...tempProducts],
+          cart: [itemVarient, ...this.state.cart]
+        }, () => {
+          this.addTotals()
+          localStorage.setItem('myCart', JSON.stringify(this.state.cart))
+        })
+
+    })
+    :
+    this.setState({
+      itemVarients: [...tempProducts],
+      cart: [itemVarient, ...this.state.cart]
+    }, () => {
+      this.addTotals()
+      localStorage.setItem('myCart', JSON.stringify(this.state.cart))
+    })
   }
 
 
@@ -40,14 +65,21 @@ export class ProductProvider extends React.Component {
     itemVarient.qty = itemqty
     const price = itemVarient.price
     itemVarient.total = price * itemVarient.qty
-
-    this.setState(() => {
-      return { itemVarients: tempProducts, cart: [itemVarient, ...this.state.cart ] }
-    }, () => {
-      this.addTotals()
-      localStorage.setItem('myCart', JSON.stringify(this.state.cart))
-    })
+    this.checkCart(itemVarient, tempProducts)
   }
+
+// original add to cart
+
+  //   this.setState(() => {
+  //     return { itemVarients: tempProducts, cart: [itemVarient, ...this.state.cart ] }
+  //   }, () => {
+  //     this.addTotals()
+  //     localStorage.setItem('myCart', JSON.stringify(this.state.cart))
+  //   })
+  // }
+
+
+
 
   increment = (id) => {
     let tempCart = [...this.state.cart]
@@ -62,6 +94,7 @@ export class ProductProvider extends React.Component {
       }
     }, () => {
       this.addTotals()
+      localStorage.setItem('myCart', JSON.stringify(this.state.cart))
     })
   }
 
@@ -80,7 +113,9 @@ export class ProductProvider extends React.Component {
         cart: [...tempCart]
       }
     }, () => {
+
       this.addTotals()
+      localStorage.setItem('myCart', JSON.stringify(this.state.cart))
     })
   }
 
