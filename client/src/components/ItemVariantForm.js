@@ -3,13 +3,13 @@ import axios from "axios"
 import { Form, Header, Button, } from "semantic-ui-react"
 
 class ItemVariantForm extends React.Component {
-  state = { item_id: '', name: "", image: "", quantity: "", size: "", items: [] };
+  state = {item_id:'', name: "", image: "", quantity: "", size: "", items: [] };
 
   //grab the item reveling details 
   componentDidMount() {
     axios.get('/api/all_items')
       .then(res => {
-        this.setState({ items: res.data })
+        this.setState({items: res.data })
       })
       .catch(err => {
         console.log(err.responce)
@@ -27,16 +27,16 @@ class ItemVariantForm extends React.Component {
 
   //delete function
   deleteItemVariant = (id, item_id) => {
-    axios.delete(`/api/items/${item_id}/item_variants/${id},`)
+    debugger
+    axios.delete(`/api/items/${item_id}/item_variants/${id}`)
       .then(res => {
         const { items } = this.state;
-        this.setState({ items: items.filter(c => c.id !== id) });
-      })
-  }
+        this.setState({ items: items.filter(i => i.id !== id) });
+      });
+  };
 
   handleDrop = (e) => {
-    this.setState({ item_id: e.currentTarget.id })
-
+    this.setState({item_id: e.currentTarget.id })
   }
 
   //this needs to get looked at
@@ -78,19 +78,18 @@ class ItemVariantForm extends React.Component {
 
   renderItem() {
     const { items, } = this.state
-    return items.map(c => (
+    return items.map(i => (
       <div>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <ul>
-
-          <li>
-            {c.name}
-          </li>
-        </ul>
+          <ul>
+            <li>
+              {i.name}
+            </li>
+          </ul>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <Button color="red" onClick={() => this.deleteItemVariant(c.id)}>
+        <Button color="red" onClick={() => this.deleteItemVariant(i.id)}>
           delete
-            </Button>
+        </Button>
       </div>
     ));
   }
@@ -145,7 +144,7 @@ class ItemVariantForm extends React.Component {
             <br />
           </Form.Group>
         </Form>
-            {this.renderItem()}
+        {this.renderItem()}
       </>
     )
   }

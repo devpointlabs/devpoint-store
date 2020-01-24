@@ -121,16 +121,12 @@ class CategoryView extends React.Component {
               </Card.Content>
             </Card>
           </Card.Group>
-          <br />
-          <br />
-          <br />
-        {/* <Segment>
+   
+        <Segment>
           <ItemForm category_id={this.props.match.params.id} add={this.add} />
-        </Segment> */}
+        </Segment>
 
-          {/* <hr /> */}
-          <br />
-          <br />
+          <hr />
           <br />
           <Grid >
             <Grid.Row padded relaxed columns={4}>
@@ -142,6 +138,8 @@ class CategoryView extends React.Component {
     );
   }
 }
+
+
 
 
 

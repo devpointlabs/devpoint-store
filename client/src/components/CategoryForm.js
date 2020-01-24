@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Form, Header, Button } from "semantic-ui-react";
+import { Form, Header, Button, Card, Grid } from "semantic-ui-react";
 
 class CategoryForm extends React.Component {
 	state = { name: "", image: "", full_width: false, categories: [] };
@@ -47,16 +47,23 @@ class CategoryForm extends React.Component {
 	renderCategory() {
 		return this.state.categories.map(c => (
 			<div>
-				<ul>
-					<li>
-						{c.name}
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<Button color="red" onClick={() => this.deleteCategory(c.id)}>
-							Delete
-						</Button>
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					</li>
-				</ul>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<Card>
+					<div>
+						<ul style={view}>
+							<li>
+								{c.name}
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							</li>
+						</ul>
+						<center>
+							<Button color="red" onClick={() => this.deleteCategory(c.id)}>
+								Delete
+					    </Button>
+						</center>
+					</div>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				</Card>
 			</div>
 		));
 	}
@@ -65,39 +72,48 @@ class CategoryForm extends React.Component {
 	render() {
 		return (
 			<>
+
 				<div>
 					<Header as="h1" style={view}>New Category</Header>
 					<Form onSubmit={this.handleSubmit} style={view}>
 						<Form.Group>
-						<Form.Input
-							placeholder="Add A Category"
-							required
-							name="name"
-							value={this.state.name}
-							onChange={this.handleChange}
-						/>
-						<Form.Input
-							placeholder="Add a URL"
-							required
-							name="image"
-							value={this.state.image}
-							onChange={this.handleChange}
-						/>
-						<br />
-						<br />
-						<Form.Button color="blue">Submit</Form.Button>
-						<br />
-					</Form.Group>
+							<Form.Input
+								placeholder="Add A Category"
+								required
+								name="name"
+								value={this.state.name}
+								onChange={this.handleChange}
+							/>
+							<Form.Input
+								placeholder="Add a URL"
+								required
+								name="image"
+								value={this.state.image}
+								onChange={this.handleChange}
+							/>
+							<br />
+							<br />
+							<Form.Button color="blue">Submit</Form.Button>
+							<br />
+						</Form.Group>
 					</Form>
-						{this.renderCategory()}
+
+					<center>
+						<Grid.Column>
+							<Grid columns={4}
+								align="center">
+								{this.renderCategory()}
+							</Grid>
+						</Grid.Column>
+					</center>
 				</div>
 			</>
 		);
 	}
 }
-const view  = {
-  display: "flex",
-  justifyContent: "center"
+const view = {
+	display: "flex",
+	justifyContent: "center"
 }
 
 
