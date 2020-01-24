@@ -1,15 +1,15 @@
 import React from 'react'
 import axios from "axios"
-import { Form, Header, Button, } from "semantic-ui-react"
+import { Form, Header, Button, Grid, Card, } from "semantic-ui-react"
 
 class ItemVariantForm extends React.Component {
-  state = {item_id:'', name: "", image: "", quantity: "", size: "", items: [] };
+  state = { item_id: '', name: "", image: "", quantity: "", size: "", items: [] };
 
   //grab the item reveling details 
   componentDidMount() {
     axios.get('/api/all_items')
       .then(res => {
-        this.setState({items: res.data })
+        this.setState({ items: res.data })
       })
       .catch(err => {
         console.log(err.responce)
@@ -36,7 +36,7 @@ class ItemVariantForm extends React.Component {
   };
 
   handleDrop = (e) => {
-    this.setState({item_id: e.currentTarget.id })
+    this.setState({ item_id: e.currentTarget.id })
   }
 
   //this needs to get looked at
@@ -81,15 +81,22 @@ class ItemVariantForm extends React.Component {
     return items.map(i => (
       <div>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <ul>
-            <li>
-              {i.name}
-            </li>
-          </ul>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <Button color="red" onClick={() => this.deleteItemVariant(i.id)}>
-          delete
-        </Button>
+        <Card>
+          <div>
+            <ul style={view}>
+              <li>
+                {i.name}
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              </li>
+            </ul>
+            <center>
+              <Button color="red" onClick={() => this.deleteItemVariant(i.id)}>
+                delete
+          </Button>
+            </center>
+          </div>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </Card>
       </div>
     ));
   }
@@ -101,7 +108,6 @@ class ItemVariantForm extends React.Component {
         <h1 style={view}>ItemVariantForm</h1>
         <Form onSubmit={this.handleSubmit} style={view}>
           <Form.Group>
-
             <Form.Dropdown
               placeholder='Specific Item'
               fluid
@@ -144,13 +150,20 @@ class ItemVariantForm extends React.Component {
             <br />
           </Form.Group>
         </Form>
-        {this.renderItem()}
+        <center>
+          <Grid.Column>
+            <Grid columns={4}
+              align="center">
+              {this.renderItem()}
+            </Grid>
+          </Grid.Column>
+        </center>
       </>
     )
   }
 }
 
-const view  = {
+const view = {
   display: "flex",
   justifyContent: "center"
 }
