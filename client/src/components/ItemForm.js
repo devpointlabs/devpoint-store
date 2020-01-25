@@ -5,20 +5,20 @@ import { Link, NavLink, } from 'react-router-dom';
 
 
 class ItemForm extends React.Component {
-  state = {category_id:'',name:'',price:'',desc:'', image:'', }
+  state = {category_id:'',name:'',price:'',desc:'', image:'', items: [] }
 
   componentDidMount() {
-    const { id, category_id, } = this.props
-    if (id && category_id)
-      axios.get(`/api/categories/${category_id}/items/${id}`)
-        .then(res => {
-          const { category_id, name, desc, price, image, } = res.data
-          this.setState({ category_id, name, desc, price, image })
-        })
-        .catch(err => {
-          console.log(err.response)
-        })
+    axios.get(`/api/categories/${this.props.match.params.id}/items`)
+    .then( res => {
+      this.setState({ items: res.data })
+    })
   }
+
+  renderItems = () => (
+    this.state.items.map( i => {
+      return <p>{i.name}</p>
+    })
+  )
 
   handleChange = (e) => {
     const { target: { name, value } } = e
@@ -36,13 +36,13 @@ class ItemForm extends React.Component {
     const item = { name, price, desc, }
     const { id, category_id, } = this.props
     if (id && category_id) {
-      axios.put(`/api/categories/${this.state.category_id}/items/${id}`, item)
+      axios.put(`/api/categories/${category_id}/items/${id}`, item)
         .then(res => {
           this.props.update(res.data)
         })
       this.props.close()
     } else {
-      axios.post(`/api/categories/${this.state.category_id}/items`, item)
+      axios.post(`/api/categories/${category_id}/items`, item)
         .then(res => {
           //clear the form function or redirect to itemView or custom component 
         })
@@ -64,14 +64,6 @@ class ItemForm extends React.Component {
         <h1 style={view}>New Item</h1>
         <Form onSubmit={this.handleSubmit} style={view}>
           <Form.Group>
-
-            <Form.Dropdown
-              placeholder='Category'
-              fluid
-              selection
-              options={this.CategoryOptions}
-              onChange={this.handleDropdown}
-            />
             <Form.Input
               name='name'
               placeholder='Item Name'
@@ -103,6 +95,10 @@ class ItemForm extends React.Component {
           </Form.Button>
           </Form.Group>
         </Form>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+        
+        {this.renderItems()}
       </>
     )
   }

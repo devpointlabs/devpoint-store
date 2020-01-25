@@ -2,25 +2,21 @@ import React from "react";
 import axios from "axios";
 import ItemForm from "./ItemForm";
 import { Link } from "react-router-dom";
-import { Image, Card, Container, Button, Grid, Segment,Dropdown } from "semantic-ui-react";
+import { Image, Card, Container, Button, Grid, Segment, Dropdown } from "semantic-ui-react";
 import '../styles/catView.css'
-
 
 class CategoryView extends React.Component {
   state = { category: {}, items: [] };
-  
 
   // Mount used to make API calls to update state
   componentDidMount() {
     this.axiosCall();
   }
 
-
   componentDidUpdate(prevProps) {
     const { id } = this.props.match.params;
     if (id != this.state.category.id) this.axiosCall();
   }
-
 
   axiosCall() {
     const { id } = this.props.match.params;
@@ -36,7 +32,6 @@ class CategoryView extends React.Component {
       .then(res => this.setState({ items: res.data }));
   }
 
-  
   newMethod = () => {
     const { id } = this.category.id;
     axios
@@ -53,7 +48,6 @@ class CategoryView extends React.Component {
       .then(res => this.setState({ items: res.data }));
   }
 
-
   deleteItem = (id) => {
     axios.delete(`/api/categories/${this.props.match.params.id}/items/${id}`)
       .then(res => {
@@ -61,7 +55,6 @@ class CategoryView extends React.Component {
         this.setState({ items: items.filter(i => i.id !== id), })
       })
   }
-
 
   add = (data) => {
     this.setState({ ...this.state, items: [...this.state.items, data] })
@@ -75,8 +68,7 @@ class CategoryView extends React.Component {
         <Grid.Column style={{ display: "flex", justifyContent: "center" }}>
           <Link to={`/api/categories/${id}/items/${i.id}`}>
             <Image src={i.image} />
-            <h4 style={{ textAlign: "center", color: 'black', fontWeight: 'bold' }}>   {i.name}</h4>
-
+            <h4 style={{ textAlign: "center", color: 'black', fontWeight: 'bold' }}>   {i.name}</h4>\
             <h4 style={{ textAlign: "center", color: 'black' }}> ${i.price} </h4>
             <br />
             <br />
@@ -88,10 +80,7 @@ class CategoryView extends React.Component {
     ));
   }
 
-
   render() {
-
-
     const options = [
       { key: 1, text: 'Price: Low to High', value: 1 },
       { key: 2, text: 'Price: High to Low', value: 2 },
@@ -105,27 +94,25 @@ class CategoryView extends React.Component {
           <Card.Group itemsPerRow={1}>
             <Card>
               <Card.Content>
-                <Image id ='mainimage'src={this.state.category.image} />
+                <Image id='mainimage' src={this.state.category.image} />
                 <div id="shadowy"></div>
                 <h1 id='cardname'>{this.state.category.name}</h1>
                 <h3 id='sorty'>Sort By:</h3>
                 <Button.Group
-                 id='sortbutton'
-                 inverted color='black'>
+                  id='sortbutton'
+                  inverted color='black'>
                   <Dropdown
                     className='button icon'
                     floating
                     options={options}
                     placeholder='Select an Option' />
-                </Button.Group>        
+                </Button.Group>
               </Card.Content>
             </Card>
           </Card.Group>
-   
-        <Segment>
-          <ItemForm category_id={this.props.match.params.id} add={this.add} />
-        </Segment>
-
+          <Segment>
+            <ItemForm category_id={this.props.match.params.id} add={this.add} />
+          </Segment>
           <hr />
           <br />
           <Grid >
@@ -138,9 +125,6 @@ class CategoryView extends React.Component {
     );
   }
 }
-
-
-
 
 
 export default CategoryView;
