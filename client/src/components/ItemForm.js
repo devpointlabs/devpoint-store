@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect, } from 'react';
-import { Form } from 'semantic-ui-react'
+import { Form, Card, } from 'semantic-ui-react'
 import { Link, NavLink, } from 'react-router-dom';
 
 
@@ -42,7 +42,7 @@ class ItemForm extends React.Component {
         })
       this.props.close()
     } else {
-      axios.post(`/api/categories/${category_id}/items`, item)
+      axios.post(`/api/categories/${this.props.match.params.id}/items`, item)
         .then(res => {
           //clear the form function or redirect to itemView or custom component 
         })
@@ -97,8 +97,9 @@ class ItemForm extends React.Component {
         </Form>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-        
+      
         {this.renderItems()}
+       
       </>
     )
   }

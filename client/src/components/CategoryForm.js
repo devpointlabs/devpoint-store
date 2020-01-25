@@ -57,7 +57,7 @@ class CategoryForm extends React.Component {
 				{/* render items of categories */}
 				<Card>
 					<ul style={view}>
-						<Link to={`/categories/${c.id}`}>
+						<Link to={`/admin_categories/${c.id}`}>
 							<h2>{c.name}</h2>
 						</Link>
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
