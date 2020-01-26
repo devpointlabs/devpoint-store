@@ -68,7 +68,7 @@ class Cart extends React.Component {
       )
     } else {
       return (
-       <Header as='h3'> Oh no, your cart is empty! Continue <Link to='/'>shopping?</Link> </Header>
+       <Header as='h3'> Your cart is empty! Continue <Link to='/'>shopping?</Link> </Header>
       )
     }
   }

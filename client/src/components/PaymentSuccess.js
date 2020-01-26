@@ -8,7 +8,7 @@ const PaymentSuccess = ({ location: { state, }, }) => {
     return(
       <Segment basic textAlign='center'>
         <Header as='h1' color='green'>Thank You For Your Purchase!</Header>
-        <h3>You have been successfully charged: ${state.amount.toFixed(2)}</h3>
+        <h3>You have been successfully charged: ${state.amount}</h3>
         <h3>Your Transcation Id is: {state.transactionId}</h3>
         <br />
         <Link to='/'>

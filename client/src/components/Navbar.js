@@ -19,10 +19,10 @@ const Navbar = (props) => {
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
-        setTshirts(res.data[0])
-        setHats(res.data[2])
-        setHoodies(res.data[1])
-        setStickers(res.data[3])
+        setTshirts(res.data[1])
+        setHats(res.data[3])
+        setHoodies(res.data[0])
+        setStickers(res.data[2])
       })
   }, []);
 
@@ -152,7 +152,7 @@ const Navbar = (props) => {
               >
                 <h3 style={text}>
                   <Icon
-                    name='cart arrow down'>
+                    name='shopping cart'>
                   </Icon>
                   Cart
               </h3>
