@@ -27,17 +27,18 @@ gem 'devise_token_auth'
 
 gem 'cloudinary'
 # Payments
-gem 'braintree'
+# gem 'braintree'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 group :development, :test do
-   # Email Opener
-   gem 'letter_opener'
-   # Secure Environment Variables
-   gem 'dotenv-rails'
+  # Email Opener
+  gem 'letter_opener'
+  # Secure Environment Variables
+  gem 'dotenv-rails'
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
-  # Generate fake testing data
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  # Generate fake testing data
 end
 
 

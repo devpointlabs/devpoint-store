@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     get 'allItemV', to: 'item_variants#allItemV'
     get 'all_items', to: 'items#all_items'
     get '/contact', to: 'contact#contact'
-    get '/braintree_token', to: 'braintree#token'
-    post '/payment', to: 'braintree#payment'
+    # get '/braintree_token', to: 'braintree#token'
+    # post '/payment', to: 'braintree#payment'
   end
 
     get '*other', to: 'static#index'
