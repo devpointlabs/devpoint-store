@@ -81,7 +81,7 @@ class ItemVariantForm extends React.Component {
   renderItem() {
     const { items, } = this.state
     return items.map(i => (
-      <div>
+      <div style={{ margin: '0 auto'}}>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <Card>
           <div>
@@ -93,7 +93,7 @@ class ItemVariantForm extends React.Component {
             </ul>
             <center>
               <Button color="red" onClick={() => this.deleteItemVariant(i.id)}>
-                delete
+                Delete
           </Button>
             </center>
           </div>

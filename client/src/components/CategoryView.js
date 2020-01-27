@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import ItemForm from "./ItemForm";
 import { Link } from "react-router-dom";
 import {
   Image,
@@ -8,7 +7,6 @@ import {
   Container,
   Button,
   Grid,
-  Segment,
   Dropdown
 } from "semantic-ui-react";
 import "../styles/catView.css";
@@ -95,7 +93,7 @@ class CategoryView extends React.Component {
       <>
         <Grid.Column style={{ display: "flex", justifyContent: "center" }}>
           <Link to={`/api/categories/${id}/items/${i.id}`}>
-            <Image src={i.image} />
+            <Image src={i.image} style={{ height: '300px', width: '300px'}}/>
             <h4
               style={{
                 textAlign: "center",
@@ -152,14 +150,14 @@ class CategoryView extends React.Component {
               </Card.Content>
             </Card>
           </Card.Group>
+{/*    
+        <Segment>
+          <ItemForm category_id={this.props.match.params.id} add={this.add} />
+        </Segment>
 
-          {/* <Segment>
-            <ItemForm category_id={this.props.match.params.id} add={this.add} />
-          </Segment> */}
-
+          <hr /> */}
           <br />
-
-          <hr />
+          <br />
           <br />
           <Grid>
             <Grid.Row padded relaxed columns={4}>

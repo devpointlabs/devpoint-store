@@ -46,7 +46,7 @@ class CategoryForm extends React.Component {
 	//  render list of categories on same page
 	renderCategory() {
 		return this.state.categories.map(c => (
-			<div>
+			<div style={{ margin: '0 auto'}}>
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<Card>
 					<div>

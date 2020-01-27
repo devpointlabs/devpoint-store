@@ -46,7 +46,7 @@ end
     full_width: 'false'
     )
     
-  hoodieStyle = [ 'Black hoodie', 'Grey hoodie' ]
+  hoodieStyle = [ 'Black Hoodie', 'Grey Hoodie' ]
   hoodiePrice = [ 35.99, 49.99 ]
   hoodieImage = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958618/hoodie1_kbvtue.jpg',
     'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958630/hoodiefront2_o0qskk.jpg']
@@ -84,7 +84,7 @@ end
     full_width: 'false'
     )
 
-  style = [ 'hat', 'cap' ]
+  style = [ 'Hat', 'Cap' ]
   image = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958403/hat_wwqd8t.png',
   'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958411/hat2_n5gvy0.jpg']
   2.times do
@@ -100,7 +100,7 @@ end
       
     1.times do
       ItemVariant.create(
-        size:'one size fits all',
+        size:'One Size',
         quantity:'3',
         image: item.image,
         item_id: item.id,
@@ -129,7 +129,8 @@ end
 
     1.times do
       ItemVariant.create(
-        size: '---',
+        size: 'One Size',
+        price: item.price,
         quantity: '5',
         image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
         item_id: item.id,
