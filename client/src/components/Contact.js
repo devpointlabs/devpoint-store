@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
-import { Form } from "semantic-ui-react"
+import { Form, Container } from "semantic-ui-react"
 import styled from "styled-components"
 import { StyledButton, StyledHeader } from "../styles/shared"
 
@@ -27,6 +27,7 @@ const Contact = () => {
 
   return (
     <>
+    <Container>
       <StyledHeader as="h1">Contact Us</StyledHeader>
       <br />
       <Form onSubmit={handleSubmit}>
@@ -64,6 +65,7 @@ const Contact = () => {
         />
         <StyledButton type="submit">Submit</StyledButton>
       </Form>
+      </Container>
     </>
   );
 };

@@ -129,7 +129,7 @@ end
 
     1.times do
       ItemVariant.create(
-        size: '---',
+        size: 'One size',
         price: item.price,
         quantity: '5',
         image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
