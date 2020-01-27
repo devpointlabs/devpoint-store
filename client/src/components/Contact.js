@@ -69,6 +69,7 @@ const Contact = () => {
     </>
   );
 };
+
 const StyledInput = styled(Form.Input)`
   & > label {
     color: white !important;
