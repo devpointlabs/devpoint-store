@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ProductContext } from '../providers/ProductProvider'
 import { Image, Header, Container, Button, Icon, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import BraintreeDrop from './BraintreeDrop'
+// import BraintreeDrop from './BraintreeDrop'
 
 class Cart extends React.Component {
   // will need to pass in or grab items/item variants that were added to cart
@@ -73,21 +73,21 @@ class Cart extends React.Component {
     }
   }
 
-  toggleCheckout = () => {
-    this.setState({ checkout: !this.state.checkout})
-  }
+  // toggleCheckout = () => {
+  //   this.setState({ checkout: !this.state.checkout})
+  // }
 
-  openCheckout = () => {
-    if (this.state.checkout === true) {
-      return (
-        <>
-          <br />
-          <Segment style={{ padding: '0px 150px 0px 150px'}}>
-            <BraintreeDrop total={this.context.cartTotal}/>
-          </Segment>
-        </>
-    )}    
-  }
+  // openCheckout = () => {
+  //   if (this.state.checkout === true) {
+  //     return (
+  //       <>
+  //         <br />
+  //         <Segment style={{ padding: '0px 150px 0px 150px'}}>
+  //           <BraintreeDrop total={this.context.cartTotal}/>
+  //         </Segment>
+  //       </>
+  //   )}    
+  // }
 
   render() {
     return ( 
@@ -109,7 +109,7 @@ class Cart extends React.Component {
         
         <Button
           total={this.context.cartTotal}
-          onClick={this.toggleCheckout}
+          // onClick={this.toggleCheckout}
           size='huge'
           floated='right'
           color='black'
@@ -123,7 +123,7 @@ class Cart extends React.Component {
         </Button>
         <br />
         <br />
-        {this.openCheckout()}
+        {/* {this.openCheckout()} */}
       </>
     )
   }

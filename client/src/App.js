@@ -13,7 +13,7 @@ import FetchUser from './components/FetchUser'
 import { Switch, Route } from 'react-router-dom'
 import CategoryView from './components/CategoryView'
 import CategoryForm from './components/CategoryForm'
-import PaymentSuccess from './components/PaymentSuccess';
+// import PaymentSuccess from './components/PaymentSuccess';
 // import ItemVariantForm from './components/ItemVariantForm'
 
 const App = () => (
@@ -30,7 +30,7 @@ const App = () => (
           <Route exact path="/CategoryForm" component={CategoryForm} />
           <Route exact path="/AdminPage" component={AdminPage} />
           <Route exact path="/categories/:id" component={CategoryView} />
-          <Route exact path='/payment_success' component={PaymentSuccess} />
+          {/* <Route exact path='/payment_success' component={PaymentSuccess} /> */}
           {/* <Route exact path="/ItemVariantForm" component={ItemVariantForm}/> */}
           <Route exact path='/api/categories/:category_id/items/:id' component={ItemView} />
           <Route component={NoMatch} />
