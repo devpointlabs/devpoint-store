@@ -16,7 +16,6 @@ export const StyledButton = styled.button`
   color: white;
   cursor: pointer;
   border-radius: 4px;
-  font-family: 'open-sans';
   outline: none;
   transition: background 0.2s ease;
 

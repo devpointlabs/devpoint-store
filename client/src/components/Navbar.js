@@ -168,21 +168,23 @@ const Navbar = (props) => {
 }
 const cust = {
   display: 'flex',
-  paddingBottom: '55px',
+  paddingBottom: '30px',
+  marginTop: '-40px',
   backgroundColor: 'white',
   color: 'black',
   fontSize: '30px',
   justifyContent: 'flex-End',
-  alignItems: 'flex-start',
   paddingRight: '150px',
+  zIndex: '10'
 }
 const home = {
   backgroundColor: 'white',
-  paddingTop: '60px',
+  paddingTop: '30px',
   paddingLeft: '105px',
   color: 'black',
   fontSize: '27px',
   width: '250px',
+  zIndex: '1'
 }
 const text = {
   color: 'black',

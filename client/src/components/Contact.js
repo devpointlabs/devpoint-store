@@ -73,7 +73,6 @@ const Contact = () => {
 const StyledInput = styled(Form.Input)`
   & > label {
     color: black !important;
-    font-family: 'open-sans';
    
   }
   & > div {
@@ -88,7 +87,6 @@ const StyledInput = styled(Form.Input)`
 const StyledTextArea = styled(Form.TextArea)`
   & > label {
     color: black !important;
-    font-family: 'open-sans';
     & > textarea {
       /* background: #1c1c1d !important; */
       height: 200px;
