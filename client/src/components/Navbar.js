@@ -87,29 +87,31 @@ const Navbar = (props) => {
   return (
     <AuthConsumer>
       {auth => (
-        <div id='whole navbar'>
+        <>
           <div id='left side navbar'>
             <div style={home}>
-              <NavLink
-                to="/" exact
-                activeClassName="active"
-                className="nav-link"
+              <Link
+                to="/"
               >
                 <div style={text}>
                   <img
                     src={minilogo}
-                    height="60"
-                    width="60"
-                    class="navbar"
+                    height="60px"
+                    width="60px"
                   />
+                  <div style={{ position: 'relative',
+                    top: '-25px',
+                    left: '60px'
+                    }}>
                   .SHOP( )
+                  </div>
                 </div>
-              </NavLink>
+              </Link>
             </div>
           </div>
           <div id='right side navbar' style={cust}>
             <div>
-              <NavLink to='/' exact>
+              <NavLink to='/'>
                 <h3 style={text}>
                   All Products
                </h3>
@@ -159,7 +161,7 @@ const Navbar = (props) => {
               </Link>
             </div>
           </div>
-        </div>
+          </>
       )}
     </AuthConsumer>
   )
