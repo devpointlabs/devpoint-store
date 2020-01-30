@@ -54,11 +54,11 @@ const Navbar = (props) => {
   const userOptions = () => {
     switch (selection) {
       case "Hats":
-        props.history.push(`/categories/${hats.id}`)
+        props.history.push(`/categories/3`)
         setSelection('')
         break;
       case "Stickers":
-        props.history.push(`/categories/${stickers.id}`)
+        props.history.push(`/categories/4`)
         setSelection('')
         break;
       case 'Contact':
@@ -119,7 +119,7 @@ const Navbar = (props) => {
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
-              <NavLink to={`/categories/${tShirts.id}`}>
+              <NavLink to={`/categories/1`}>
                 <h3 style={text}>
                   T-Shirts
                </h3>
@@ -127,7 +127,7 @@ const Navbar = (props) => {
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
-              <NavLink to={`/categories/${hoodies.id}`}>
+              <NavLink to={`/categories/2`}>
                 <h3 style={text}>
                   Hoodies
                </h3>
