@@ -3,11 +3,11 @@ import { withRouter, } from 'react-router-dom';
 import { AuthConsumer } from '../providers/AuthProvider';
 import { AuthContext } from '../providers/AuthProvider';
 import { Link, NavLink, } from 'react-router-dom';
-import { Button, Icon, Dropdown, } from "semantic-ui-react";
+import { Icon, Dropdown, } from "semantic-ui-react";
 import minilogo from '../components/Images/DevPoint_Labs.png'
-import styled from "styled-components";
 import '../App.css';
 import axios from 'axios';
+
 const Navbar = (props) => {
   const [selection, setSelection] = useState('')
   const [tShirts, setTshirts] = useState({})
@@ -173,6 +173,7 @@ const cust = {
   color: 'black',
   fontSize: '30px',
   justifyContent: 'flex-End',
+  alignItems: 'flex-start',
   paddingRight: '150px',
 }
 const home = {
@@ -180,7 +181,8 @@ const home = {
   paddingTop: '60px',
   paddingLeft: '105px',
   color: 'black',
-  fontSize: '27px'
+  fontSize: '27px',
+  width: '250px',
 }
 const text = {
   color: 'black',
