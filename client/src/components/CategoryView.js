@@ -123,7 +123,6 @@ class CategoryView extends React.Component {
     this.setState({ value: data.value }, () => this.sortItems());
   };
 
-
   render() {
     return (
       <>

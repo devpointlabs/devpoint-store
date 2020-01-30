@@ -26,8 +26,8 @@ class ItemVariantForm extends React.Component {
   };
 
   //delete function
-  deleteItemVariant = (id, item_id) => {
-    debugger
+  deleteItemVariant = (id ,item_id) => {
+    // debugger
     axios.delete(`/api/items/${item_id}/item_variants/${id}`)
       .then(res => {
         const { items } = this.state;
@@ -58,12 +58,12 @@ class ItemVariantForm extends React.Component {
           this.props.update(res.data)
         })
       this.props.close()
-      debugger
+      // debugger
     } else {
       axios.post(`/api/items/${this.state.item_id}/item_variants`, itemVariant)
         .then(res => {
-          
-        })
+
+      })
     }
   }
 
@@ -145,7 +145,6 @@ class ItemVariantForm extends React.Component {
               autoFocus
               onChange={this.handleChange}
             />
-
             <Form.Button color="blue">
               Submit
           </Form.Button>

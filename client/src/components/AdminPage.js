@@ -17,9 +17,8 @@ class AdminPage extends React.Component {
         <br />
         <CategoryForm />
           <br />
-        <ItemForm category_id = {this.state.categories} />
           <br />
-        <ItemVariantForm item_id = {this.state.items}/>
+        {/* <ItemVariantForm items = {this.state.items}/> */}
          <br />
       </Container>
       </Page>

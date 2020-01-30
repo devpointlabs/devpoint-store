@@ -72,25 +72,28 @@ const Contact = () => {
 
 const StyledInput = styled(Form.Input)`
   & > label {
-    color: white !important;
-    font-family: "Audiowide", cursive;
+    color: black !important;
+    font-family: 'open-sans';
+   
   }
   & > div {
     & > input {
-      background: #1c1c1d !important;
-      color: white !important;
+      /* background: #1c1c1d !important; */
+      color: black !important;
+      width: 80%;
     }
   }
 `;
 
 const StyledTextArea = styled(Form.TextArea)`
   & > label {
-    color: white !important;
-    font-family: "Audiowide", cursive;
+    color: black !important;
+    font-family: 'open-sans';
     & > textarea {
-      background: #1c1c1d !important;
+      /* background: #1c1c1d !important; */
       height: 200px;
-      color: white !important;
+      color: black !important;
+      width: 80%;
     }
   }
 `;

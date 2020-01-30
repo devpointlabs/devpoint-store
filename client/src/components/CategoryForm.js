@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { Form, Header, Button, Card, Grid } from "semantic-ui-react";
+import ItemForm from "./ItemForm";
+import { Link } from "react-router-dom"
+import { Form, Header, Button, Card, Grid, } from "semantic-ui-react";
 
 class CategoryForm extends React.Component {
 	state = { name: "", image: "", full_width: false, categories: [] };
@@ -36,6 +38,10 @@ class CategoryForm extends React.Component {
 		});
 	};
 
+	button = () => {
+
+	}
+
 	// delete function
 	deleteCategory = id => {
 		axios.delete(`/api/categories/${id}`).then(res => {
@@ -48,20 +54,21 @@ class CategoryForm extends React.Component {
 		return this.state.categories.map(c => (
 			<div style={{ margin: '0 auto'}}>
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				{/* render items of categories */}
 				<Card>
-					<div>
-						<ul style={view}>
-							<li>
-								{c.name}
-								<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-							</li>
-						</ul>
-						<center>
+					<ul style={view}>
+						<Link to={`/admin_categories/${c.id}`}>
+							<h2>{c.name}</h2>
+						</Link>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					</ul>
+					<center>
+						<div>
 							<Button color="red" onClick={() => this.deleteCategory(c.id)}>
 								Delete
 					    </Button>
-						</center>
-					</div>
+						</div>
+					</center>
 					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				</Card>
 			</div>
@@ -72,7 +79,6 @@ class CategoryForm extends React.Component {
 	render() {
 		return (
 			<>
-
 				<div>
 					<Header as="h1" style={view}>New Category</Header>
 					<Form onSubmit={this.handleSubmit} style={view}>
@@ -97,11 +103,13 @@ class CategoryForm extends React.Component {
 							<br />
 						</Form.Group>
 					</Form>
-
+					<br /><br />
 					<center>
 						<Grid.Column>
 							<Grid columns={4}
-								align="center">
+								align="center"
+								style={view}
+							>
 								{this.renderCategory()}
 							</Grid>
 						</Grid.Column>
@@ -115,6 +123,7 @@ const view = {
 	display: "flex",
 	justifyContent: "center"
 }
+
 
 
 export default CategoryForm;
