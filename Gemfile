@@ -27,7 +27,7 @@ gem 'devise_token_auth'
 
 gem 'cloudinary'
 # Payments
-# gem 'braintree'
+gem 'braintree'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 group :development, :test do
