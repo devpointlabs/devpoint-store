@@ -124,12 +124,15 @@ end
 end
 image = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501793/DPL_koozie_jnqac3.jpg', 
 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501818/Sunglasses_x1tt68.jpg',
+'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580510159/P1049067_s9jse3.jpg',
+'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580510169/P1049064_qad07v.jpg',
+'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580510183/P1049065_f90mmf.jpg'
 ]
 
 backmisimage = ['https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501793/DPL_koozie_jnqac3.jpg',
 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501809/Sunglass2_zutnvm.jpg']
 
-misName = [ 'Koozie', 'Sunglasses']
+misName = [ 'Koozie', 'Sunglasses', 'DPL Sticker #1', 'DPL Sticker #2', 'DPL Sticker #3']
 1.times do
   cat = Category.create(
     name: 'Miscellaneous',
@@ -137,7 +140,7 @@ misName = [ 'Koozie', 'Sunglasses']
     full_width: 'false'
     )
 
-  2.times do
+  5.times do
     item = Item.create(
       name: misName[0],
       price: 5.00,
