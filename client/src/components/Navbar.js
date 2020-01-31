@@ -3,11 +3,11 @@ import { withRouter, } from 'react-router-dom';
 import { AuthConsumer } from '../providers/AuthProvider';
 import { AuthContext } from '../providers/AuthProvider';
 import { Link, NavLink, } from 'react-router-dom';
-import { Button, Icon, Dropdown, } from "semantic-ui-react";
+import { Icon, Dropdown, } from "semantic-ui-react";
 import minilogo from '../components/Images/DevPoint_Labs.png'
-import styled from "styled-components";
 import '../App.css';
 import axios from 'axios';
+
 const Navbar = (props) => {
   const [selection, setSelection] = useState('')
   const [tShirts, setTshirts] = useState({})
@@ -54,11 +54,11 @@ const Navbar = (props) => {
   const userOptions = () => {
     switch (selection) {
       case "Hats":
-        props.history.push(`/categories/${hats.id}`)
+        props.history.push(`/categories/3`)
         setSelection('')
         break;
       case "Stickers":
-        props.history.push(`/categories/${stickers.id}`)
+        props.history.push(`/categories/4`)
         setSelection('')
         break;
       case 'Contact':
@@ -87,29 +87,31 @@ const Navbar = (props) => {
   return (
     <AuthConsumer>
       {auth => (
-        <div id='whole navbar'>
+        <>
           <div id='left side navbar'>
             <div style={home}>
-              <NavLink
-                to="/" exact
-                activeClassName="active"
-                className="nav-link"
+              <Link
+                to="/"
               >
                 <div style={text}>
                   <img
                     src={minilogo}
-                    height="60"
-                    width="60"
-                    class="navbar"
+                    height="60px"
+                    width="60px"
                   />
+                  <div style={{ position: 'relative',
+                    top: '-25px',
+                    left: '60px'
+                    }}>
                   .SHOP( )
+                  </div>
                 </div>
-              </NavLink>
+              </Link>
             </div>
           </div>
           <div id='right side navbar' style={cust}>
             <div>
-              <NavLink to='/' exact>
+              <NavLink to='/'>
                 <h3 style={text}>
                   All Products
                </h3>
@@ -117,7 +119,7 @@ const Navbar = (props) => {
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
-              <NavLink to={`/categories/${tShirts.id}`}>
+              <NavLink to={`/categories/1`}>
                 <h3 style={text}>
                   T-Shirts
                </h3>
@@ -125,7 +127,7 @@ const Navbar = (props) => {
             </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
-              <NavLink to={`/categories/${hoodies.id}`}>
+              <NavLink to={`/categories/2`}>
                 <h3 style={text}>
                   Hoodies
                </h3>
@@ -159,26 +161,30 @@ const Navbar = (props) => {
               </Link>
             </div>
           </div>
-        </div>
+          </>
       )}
     </AuthConsumer>
   )
 }
 const cust = {
   display: 'flex',
-  paddingBottom: '55px',
+  paddingBottom: '30px',
+  marginTop: '-40px',
   backgroundColor: 'white',
   color: 'black',
   fontSize: '30px',
   justifyContent: 'flex-End',
   paddingRight: '150px',
+  zIndex: '10'
 }
 const home = {
   backgroundColor: 'white',
-  paddingTop: '60px',
+  paddingTop: '30px',
   paddingLeft: '105px',
   color: 'black',
-  fontSize: '27px'
+  fontSize: '27px',
+  width: '250px',
+  zIndex: '1'
 }
 const text = {
   color: 'black',
