@@ -90,7 +90,7 @@ end
 1.times do
   cat = Category.create(
     name: 'Hats',
-    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519429/hatimage_jqvmhz.jpg',
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580507234/herstorm_snapback_hat_snapback_hats_women_woman_snapback_cap_869506cd-6ab5-4aca-bbe4-2595b1e27664_1200x1200_gakdjo.jpg',
     full_width: 'false'
     )
 
@@ -122,22 +122,34 @@ end
     end
   end 
 end
+image = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501793/DPL_koozie_jnqac3.jpg', 
+'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501818/Sunglasses_x1tt68.jpg',
+]
 
+backmisimage = ['https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501793/DPL_koozie_jnqac3.jpg',
+'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501809/Sunglass2_zutnvm.jpg']
+
+misName = [ 'Koozie', 'Sunglasses']
 1.times do
   cat = Category.create(
     name: 'Miscellaneous',
-    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519447/stickerimage_o87upo.jpg',
+    image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580507100/f9cbc389265ee8e7e9c2136481ed685a_qnidsf.jpg',
     full_width: 'false'
     )
 
-  3.times do
+  2.times do
     item = Item.create(
-      name: 'Sticker',
+      name: misName[0],
       price: 5.00,
       desc: Faker::Lorem.paragraph(sentence_count: 3),
-      image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
-      category_id: cat.id
+      image: image[0],
+      category_id: cat.id,
+      back_image: backmisimage[0]
       )
+      backmisimage.delete_at(0)
+      image.delete_at(0)
+      misName.delete_at(0)
+
 
     1.times do
       ItemVariant.create(
