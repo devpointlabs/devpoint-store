@@ -113,7 +113,7 @@ end
 
 1.times do
   cat = Category.create(
-    name: 'Stickers',
+    name: 'Miscellaneous',
     image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578519447/stickerimage_o87upo.jpg',
     full_width: 'false'
     )

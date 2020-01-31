@@ -13,7 +13,7 @@ const Navbar = (props) => {
   const [tShirts, setTshirts] = useState({})
   const [hoodies, setHoodies] = useState({})
   const [hats, setHats] = useState({})
-  const [stickers, setStickers] = useState({})
+  const [Miscellaneous, setMiscellaneous] = useState({})
   const context = useContext(AuthContext)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Navbar = (props) => {
         setTshirts(res.data[0])
         setHats(res.data[2])
         setHoodies(res.data[1])
-        setStickers(res.data[3])
+        setMiscellaneous(res.data[3])
       })
   }, []);
 
@@ -31,9 +31,9 @@ const Navbar = (props) => {
       return (
         [
           { key: 1, text: 'Hats', value: 'Hats' },
-          { key: 2, text: 'Stickers', value: 'Stickers' },
+          { key: 2, text: 'Miscellaneous', value: 'Miscellaneous' },
           { key: 3, text: 'Contact', value: 'Contact' },
-          { key: 4, text: 'AdminPage', value: 'AdminPage' },
+          // { key: 4, text: 'AdminPage', value: 'AdminPage' },
           { key: 6, text: 'Logout', value: 'Logout' },
         ]
       )
@@ -41,7 +41,7 @@ const Navbar = (props) => {
       return (
         [
           { key: 1, text: 'Hats', value: 'Hats' },
-          { key: 2, text: 'Stickers', value: 'Stickers' },
+          { key: 2, text: 'Miscellaneous', value: 'Miscellaneous' },
           { key: 3, text: 'Contact', value: 'Contact' },
           { key: 5, text: 'Register', value: 'Register' },
           { key: 6, text: 'Login', value: 'Login' },
@@ -57,8 +57,8 @@ const Navbar = (props) => {
         props.history.push(`/categories/${hats.id}`)
         setSelection('')
         break;
-      case "Stickers":
-        props.history.push(`/categories/${stickers.id}`)
+      case "Miscellaneous":
+        props.history.push(`/categories/${Miscellaneous.id}`)
         setSelection('')
         break;
       case 'Contact':
