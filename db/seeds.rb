@@ -159,7 +159,7 @@ misName = [ 'Koozie', 'Sunglasses', 'DPL Sticker #1', 'DPL Sticker #2', 'DPL Sti
         size: 'One Size',
         price: item.price,
         quantity: '5',
-        image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
+        image: item.image,
         item_id: item.id,
         name: item.name
         )
