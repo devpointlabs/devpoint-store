@@ -33,28 +33,18 @@ export class ProductProvider extends React.Component {
 // checks for duplicates
   checkCart = (itemVarient, tempProducts) => {
     const { cart, } = this.state
-    cart.length >= 1 ? cart.map(c => {
-      if (c.id === itemVarient.id)
-        alert("in cart")
-        else
-        this.setState({
-          itemVarients: [...tempProducts],
-          cart: [itemVarient, ...this.state.cart]
-        }, () => {
-          this.addTotals()
-          localStorage.setItem('myCart', JSON.stringify(this.state.cart))
-        })
-
-    })
-    :
-    this.setState({
-      itemVarients: [...tempProducts],
-      cart: [itemVarient, ...this.state.cart]
-    }, () => {
-      this.addTotals()
-      localStorage.setItem('myCart', JSON.stringify(this.state.cart))
-    })
+    const itemFound = cart.find((c) => c.id === itemVarient.id);
+    if(!itemFound) {
+      this.setState({
+        itemVarients: tempProducts,
+        cart: [itemVarient, ...this.state.cart]
+      }, () => {
+        this.addTotals()
+        localStorage.setItem('myCart', JSON.stringify(this.state.cart))
+      })
+    }
   }
+
 
   // add to cart function
   addToCart = (id, itemqty) => {
@@ -64,15 +54,14 @@ export class ProductProvider extends React.Component {
     } else if (itemqty === "") {
       alert('Please fill in all fields')
     } else {
-      debugger
-    let tempProducts = [...this.state.itemVarients]
-    const index = tempProducts.indexOf(this.getItem(id))
-    const itemVarient = tempProducts[index]
-    itemVarient.inCart = true
-    itemVarient.qty = itemqty
-    const price = itemVarient.price
-    itemVarient.total = price * itemVarient.qty
-    this.checkCart(itemVarient, tempProducts)
+      let tempProducts = [...this.state.itemVarients]
+      const index = tempProducts.indexOf(this.getItem(id))
+      const itemVarient = tempProducts[index]
+      itemVarient.inCart = true
+      itemVarient.qty = itemqty
+      const price = itemVarient.price
+      itemVarient.total = price * itemVarient.qty
+      this.checkCart(itemVarient, tempProducts)
     }
   }
 

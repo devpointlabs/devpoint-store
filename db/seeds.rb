@@ -134,7 +134,6 @@ end
         quantity: '5',
         image: 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958417/sticker1_xhisdz.jpg',
         item_id: item.id,
-        price: item.price,
         name: item.name
         )
     end
