@@ -32,7 +32,7 @@ class Api::ItemVariantsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    @item_variant.destroy
     render json: { message: 'Item variant deleted' }
   end
 
@@ -46,6 +46,6 @@ class Api::ItemVariantsController < ApplicationController
   end
 
    def item_variant_params
-    params.require(:item_variant).permit(:color, :size, :quantity, :image)
+    params.require(:item_variant).permit(:color, :size, :quantity, :image, :name, :price)
    end
 end

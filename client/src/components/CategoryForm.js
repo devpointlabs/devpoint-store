@@ -1,7 +1,5 @@
 import React from "react";
 import axios from "axios";
-import ItemForm from "./ItemForm";
-import { Link } from "react-router-dom"
 import { Form, Header, Button, Card, Grid, } from "semantic-ui-react";
 
 class CategoryForm extends React.Component {
@@ -16,7 +14,7 @@ class CategoryForm extends React.Component {
 			})
 			.catch(err => {
 				console.log(err);
-			});
+			})
 	}
 
 	// on submit
@@ -26,6 +24,7 @@ class CategoryForm extends React.Component {
 		this.setState({ name: "", image: "" });
 	};
 
+	// allows change of state
 	handleChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
@@ -54,12 +53,9 @@ class CategoryForm extends React.Component {
 		return this.state.categories.map(c => (
 			<div style={{ margin: '0 auto'}}>
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				{/* render items of categories */}
 				<Card>
 					<ul style={view}>
-						<Link to={`/admin_categories/${c.id}`}>
 							<h2>{c.name}</h2>
-						</Link>
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					</ul>
 					<center>
@@ -99,7 +95,7 @@ class CategoryForm extends React.Component {
 							/>
 							<br />
 							<br />
-							<Form.Button color="blue">Submit</Form.Button>
+							<Form.Button color="blue" onClick={() => window.location.reload()} > Submit</Form.Button>
 							<br />
 						</Form.Group>
 					</Form>
