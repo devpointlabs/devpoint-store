@@ -5,10 +5,12 @@
     full_width: 'true'
     )
 
-  sleeve = [ 'Long Sleeve Tee', 'Short Sleeve Tee' ]
+  sleeve = [ 'Planet Short Sleeve', 'DPL Short Sleeve' ]
   price = [ 25.00, 20.00 ]
-  sleeveImage = ['https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958293/longsleevefront_mfokvd.jpg',
-    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958317/shortsleeve2_fqroqm.jpg']
+  sleeveImage = ['https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501801/Planet_l2xxpi.jpg',
+    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501631/DPL_Gray_ijrkr5.jpg']
+    backsleeveimg = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501801/Planet_l2xxpi.jpg',
+    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501581/DPL_Gray_Back_c8xyah.jpg']
   2.times do
     item = Item.create(
       name: sleeve[0],
@@ -16,11 +18,12 @@
       desc: Faker::Lorem.paragraph(sentence_count: 3),
       image: sleeveImage[0],
       category_id: cat.id,
-      back_image: 'https://img.huffingtonpost.com/asset/599dda7a1900002500dd5139.jpeg?ops=scalefit_630_noupscale'
+      back_image:backsleeveimg[0], 
       )
       sleeve.delete_at(0)
       price.delete_at(0)
       sleeveImage.delete_at(0)
+      backsleeveimg.delete_at(0)
 
     size = [ 'Small', 'Medium', 'Large' ]
     3.times do
@@ -46,21 +49,28 @@ end
     full_width: 'false'
     )
     
-  hoodieStyle = [ 'Black Hoodie', 'Grey Hoodie' ]
-  hoodiePrice = [ 35.99, 49.99 ]
-  hoodieImage = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958618/hoodie1_kbvtue.jpg',
-    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958630/hoodiefront2_o0qskk.jpg']
-  2.times do
+  hoodieStyle = [ 'DPL Jacket', 'DPL Gray Hoodie', 'Dpl Black Hoodie' ]
+  hoodiePrice = [ 35.99, 49.99, 35.99]
+  hoodieImage = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501723/DPL_Jacket_lydqrn.jpg',
+    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501612/DPL_Gray_Hoodie_bx79sy.jpg',
+  'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501571/DPL_Black_Hoodie_dbdw3e.jpg']
+
+  backhoodieimg = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501785/DPL_Jacket2_ydn5eb.jpg',
+  'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501596/DPL_Gray_Hoodie_Back_nn2ud6.jpg',
+  'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958625/hoodieback2_ccp1sg.jpg']
+  3.times do
     item = Item.create(
       name: hoodieStyle[0] ,
       price: hoodiePrice[0],
       desc: Faker::Lorem.paragraph(sentence_count: 3),
       image: hoodieImage[0],
-      category_id: cat.id
+      category_id: cat.id,
+      back_image:backhoodieimg[0],
       )
       hoodieStyle.delete_at(0)
       hoodiePrice.delete_at(0)
       hoodieImage.delete_at(0)
+      backhoodieimg.delete_at(0)
 
     size = [ 'Small', 'Medium', 'Large' ]
     3.times do
@@ -84,19 +94,21 @@ end
     full_width: 'false'
     )
 
-  style = [ 'Hat', 'Cap' ]
-  image = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958403/hat_wwqd8t.png',
-  'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958411/hat2_n5gvy0.jpg']
-  2.times do
+  style = [ 'Hat',  ]
+  image = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501658/DPL_Hat_ujtzmt.jpg',]
+  backhatimg = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501667/DPL_Hat2_dfwies.jpg',]
+  1.times do
     item = Item.create(
       name: style[0],
       price: 15.00,
       desc: Faker::Lorem.paragraph(sentence_count: 3),
       image: image[0],
-      category_id: cat.id
+      category_id: cat.id,
+      back_image:backhatimg[0]
       )
       style.delete_at(0)
       image.delete_at(0)
+      backhatimg.delete_at(0)
       
     1.times do
       ItemVariant.create(
