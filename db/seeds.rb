@@ -5,10 +5,10 @@
     full_width: 'true'
     )
 
-  sleeve = [ 'Long Sleeve Tee', 'Short Sleeve Tee' ]
+  sleeve = [ 'Planet Short Sleeve', 'DPL Short Sleeve' ]
   price = [ 25.00, 20.00 ]
-  sleeveImage = ['https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958293/longsleevefront_mfokvd.jpg',
-    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958317/shortsleeve2_fqroqm.jpg']
+  sleeveImage = ['https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501801/Planet_l2xxpi.jpg',
+    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501631/DPL_Gray_ijrkr5.jpg']
   2.times do
     item = Item.create(
       name: sleeve[0],
@@ -46,11 +46,12 @@ end
     full_width: 'false'
     )
     
-  hoodieStyle = [ 'Black Hoodie', 'Grey Hoodie' ]
-  hoodiePrice = [ 35.99, 49.99 ]
-  hoodieImage = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958618/hoodie1_kbvtue.jpg',
-    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958630/hoodiefront2_o0qskk.jpg']
-  2.times do
+  hoodieStyle = [ 'DPL Jacket', 'DPL Gray Hoodie', 'Dpl Black Hoodie' ]
+  hoodiePrice = [ 35.99, 49.99, 35.99]
+  hoodieImage = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501723/DPL_Jacket_lydqrn.jpg',
+    'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501612/DPL_Gray_Hoodie_bx79sy.jpg',
+  'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501571/DPL_Black_Hoodie_dbdw3e.jpg']
+  3.times do
     item = Item.create(
       name: hoodieStyle[0] ,
       price: hoodiePrice[0],
@@ -84,10 +85,9 @@ end
     full_width: 'false'
     )
 
-  style = [ 'Hat', 'Cap' ]
-  image = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958403/hat_wwqd8t.png',
-  'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1578958411/hat2_n5gvy0.jpg']
-  2.times do
+  style = [ 'Hat',  ]
+  image = [ 'https://res.cloudinary.com/dyhj8aqsh/image/upload/v1580501658/DPL_Hat_ujtzmt.jpg',]
+  1.times do
     item = Item.create(
       name: style[0],
       price: 15.00,
