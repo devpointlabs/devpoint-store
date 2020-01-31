@@ -3,7 +3,7 @@ import axios from "axios"
 import { Form, Header, Button, Grid, Card, } from "semantic-ui-react"
 
 class ItemVariantForm extends React.Component {
-  state = { item_id: '', name: "", image: "", quantity: "", size: "", items: [], itemVs: [], };
+  state = { item_id: '', name: "", image: "", quantity: "", size: "", items: [], itemVs: [], price: "" };
 
   //grab the item reveling details 
   componentDidMount() {
@@ -24,9 +24,9 @@ class ItemVariantForm extends React.Component {
   }
 
   //add function
-  addItemVariant = (name, image, quantity, size, item_id) => {
+  addItemVariant = (name, image, quantity, size, item_id, price) => {
     axios.post(`/api/items/${item_id}/item_variants`,
-      { name, image, quantity, size, item_id }).then(res => {
+      { name, image, quantity, size, item_id, price }).then(res => {
         const { items } = this.state;
         this.setState({ items: [...items, res.data] });
       });
@@ -63,16 +63,16 @@ class ItemVariantForm extends React.Component {
   //this needs to get looked at
   handleSubmit = (e) => {
     e.preventDefault()
-    const { name, image, quantity, size, item_id } = this.state
-    this.addItemV( name, image, quantity, size, item_id )
+    const { name, image, quantity, size, item_id, price } = this.state
+    this.addItemV( name, image, quantity, size, item_id, price )
   }
 
-  addItemV = (name, image, quantity, size, item_id ) => {
+  addItemV = (name, image, quantity, size, item_id, price ) => {
     debugger
-    axios.post(`/api/items/${item_id}/item_variants`, { name, image, quantity, size, item_id })
+    axios.post(`/api/items/${item_id}/item_variants`, { name, image, quantity, size, item_id, price })
     .then(res => {
       console.log(res.data)
-      const itemV = { name, image, quantity, size, item_id  }
+      const itemV = { name, image, quantity, size, item_id, price  }
       this.setState({ itemVs: [...this.state.itemVs, res.data] })
 
 		});
@@ -114,10 +114,11 @@ class ItemVariantForm extends React.Component {
         </Card>
       </div>
     ));
+    
   }
 
   render() {
-    const { name, image, quantity, size } = this.state
+    const { name, image, quantity, size, price } = this.state
     return (
       <>
         <h1 style={view}>ItemVariantForm</h1>
@@ -135,6 +136,13 @@ class ItemVariantForm extends React.Component {
               name='image'
               value={image}
               placeholder="Image"
+              autoFocus
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              name='price'
+              value={price}
+              placeholder="Price"
               autoFocus
               onChange={this.handleChange}
             />
