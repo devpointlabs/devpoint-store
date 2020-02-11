@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
-import { Form, Container } from "semantic-ui-react"
+import { Form } from "semantic-ui-react"
 import styled from "styled-components"
 import { StyledButton, StyledHeader } from "../styles/shared"
 
@@ -27,7 +27,6 @@ const Contact = () => {
 
   return (
     <>
-    <Container>
       <StyledHeader as="h1">Contact Us</StyledHeader>
       <br />
       <Form onSubmit={handleSubmit}>
@@ -65,35 +64,30 @@ const Contact = () => {
         />
         <StyledButton type="submit">Submit</StyledButton>
       </Form>
-      </Container>
     </>
   );
 };
-
 const StyledInput = styled(Form.Input)`
   & > label {
-    color: black !important;
-    font-family: 'open-sans';
-   
+    color: white !important;
+    font-family: "Audiowide", cursive;
   }
   & > div {
     & > input {
-      /* background: #1c1c1d !important; */
-      color: black !important;
-      width: 80%;
+      background: #1c1c1d !important;
+      color: white !important;
     }
   }
 `;
 
 const StyledTextArea = styled(Form.TextArea)`
   & > label {
-    color: black !important;
-    font-family: 'open-sans';
+    color: white !important;
+    font-family: "Audiowide", cursive;
     & > textarea {
-      /* background: #1c1c1d !important; */
+      background: #1c1c1d !important;
       height: 200px;
-      color: black !important;
-      width: 80%;
+      color: white !important;
     }
   }
 `;

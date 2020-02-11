@@ -16,12 +16,12 @@ export const StyledButton = styled.button`
   color: white;
   cursor: pointer;
   border-radius: 4px;
-  font-family: 'open-sans';
+  font-family: "Audiowide", cursive;
   outline: none;
   transition: background 0.2s ease;
 
   &:hover {
-    /* background: #1c1c1da3; */
+    background: #1c1c1da3;
     transition: background 0.2s ease;
   }
 `;

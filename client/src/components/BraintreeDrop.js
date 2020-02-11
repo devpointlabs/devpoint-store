@@ -36,7 +36,7 @@ class BraintreeDrop extends React.Component {
 
   render () {
     const { loaded, token, } = this.state;
-    debugger
+
     if(this.state.redirect)
       return(
         <Redirect to={{

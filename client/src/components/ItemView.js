@@ -6,7 +6,7 @@ import { ProductContext } from '../providers/ProductProvider'
 import { Container, Button, Image, Icon, Header, Dropdown, Form, Input, Modal, Grid, Popup} from 'semantic-ui-react'
 
 class ItemView extends React.Component {
-  state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '', itemqty: 1}
+  state = { item: {}, currentImage: 0, open: false, itemVariants: [], selection: '', itemqty: 1 }
 
   componentDidMount() {
     const { match: { params: { id, category_id } } } = this.props
@@ -79,14 +79,12 @@ class ItemView extends React.Component {
   render() {
     const { name, desc, price, image, back_image } = this.state.item
     const { itemVariants } = this.state
-
     const ivList = itemVariants.map((itemVariant) => ({
       key: itemVariant.id,
       text: itemVariant.size,
       value: itemVariant.id,
-      id: itemVariant.id,
-    })
-    )
+      id: itemVariant.id
+    }))
 
   return(
     <>
@@ -136,18 +134,21 @@ class ItemView extends React.Component {
           <Header as='h1'> { name } </Header>
           <Header as='h2' style={{ color: '#A9A9A9' }}> $ { price } </Header>
           <Header as='h3'> Size </Header>
-            <Form required>
+            <Form>
                 <Dropdown
                   placeholder='Select Size'
+                  // options= {sizeOptions}
                   options={ivList}
                   selection
                   onChange={this.handleChange}
                   value={ivList.value}
+                  style={{ backgroundColor: '#ececec' }}
                 />
             </Form>
           <Header as='h3'> Quantity </Header>
             <Form>
-              <Input onChange={this.handleChangeqty} value={this.state.itemqty} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}}  />
+              {/* might need an onchange function here to pass value to cart */}
+              <Input onChange={this.handleChangeqty}   value={this.state.itemqty} style={{ height: '45px', width: '120px', margin: '0px 0px 20px 0px'}}  />
             </Form>
                 <Popup
                 style={{
@@ -160,17 +161,12 @@ class ItemView extends React.Component {
                 
                 trigger={
 
-            <Button
-            onClick={() => this.context.addToCart(this.state.selection, this.state.itemqty)}
-            animated size='huge'
-            basic color='black'
-            style={{ margin: '20px 0px 0px 0px'}}
-            >
+            <Button onClick={() => this.context.addToCart(this.state.selection, this.state.itemqty)} animated size='huge' basic color='black' style={{ margin: '20px 0px 0px 0px'}}>
               <Button.Content visible>
                 Add to Cart 
               </Button.Content> 
               <Button.Content hidden>
-                <Icon name='cart plus' />
+                <Icon name='cart' />
               </Button.Content>
             </Button>
                 }/>

@@ -3,11 +3,12 @@ import { Segment, Header, Button } from 'semantic-ui-react';
 import { Link, Redirect, } from 'react-router-dom';
 
 const PaymentSuccess = ({ location: { state, }, }) => {
+  debugger
   if(state && state.transactionId)
     return(
       <Segment basic textAlign='center'>
         <Header as='h1' color='green'>Thank You For Your Purchase!</Header>
-        <h3>You have been successfully charged: ${state.amount}</h3>
+        <h3>You have been successfully charged: ${state.amount.toFixed(2)}</h3>
         <h3>Your Transcation Id is: {state.transactionId}</h3>
         <br />
         <Link to='/'>

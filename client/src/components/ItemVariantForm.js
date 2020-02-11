@@ -3,7 +3,7 @@ import axios from "axios"
 import { Form, Header, Button, Grid, Card, } from "semantic-ui-react"
 
 class ItemVariantForm extends React.Component {
-  state = { item_id: '', name: "", image: "", quantity: "", size: "", items: [], itemVs: [], };
+  state = { item_id: '', name: "", image: "", quantity: "", size: "", items: [] };
 
   //grab the item reveling details 
   componentDidMount() {
@@ -14,41 +14,26 @@ class ItemVariantForm extends React.Component {
       .catch(err => {
         console.log(err.responce)
       })
-      axios.get("/api/allItemV")
-      .then(response => {
-        this.setState({ itemVs: response.data })
-      })
-      .catch(err => {
-        console.log(err.responce)
-      })
   }
 
   //add function
   addItemVariant = (name, image, quantity, size, item_id) => {
     axios.post(`/api/items/${item_id}/item_variants`,
-      { name, image, quantity, size, item_id }).then(res => {
+      { name, image, quantity, size, }).then(res => {
         const { items } = this.state;
         this.setState({ items: [...items, res.data] });
       });
   };
 
   //delete function
-  // deleteItemVariant = (id ,item_id) => {
-  //   // debugger
-  //   axios.delete(`/api/items/${item_id}/item_variants/${id}`)
-  //     .then(res => {
-  //       const { items } = this.state;
-  //       this.setState({ items: items.filter(i => i.id !== id) });
-  //     });
-  // };
-
-  deleteItemVariant = (id, i_id) => {
-
-   axios.delete(`/api/items/${i_id}/item_variants/${id}`)
-   .then( res => {
-     this.setState({itemVs: this.state.itemVs.filter( iV => iV.id !== id) })
- })
-}
+  deleteItemVariant = (id, item_id) => {
+    debugger
+    axios.delete(`/api/items/${item_id}/item_variants/${id}`)
+      .then(res => {
+        const { items } = this.state;
+        this.setState({ items: items.filter(i => i.id !== id) });
+      });
+  };
 
   handleDrop = (e) => {
     this.setState({ item_id: e.currentTarget.id })
@@ -63,20 +48,22 @@ class ItemVariantForm extends React.Component {
   //this needs to get looked at
   handleSubmit = (e) => {
     e.preventDefault()
-    const { name, image, quantity, size, item_id } = this.state
-    this.addItemV( name, image, quantity, size, item_id )
+    const { name, quantity, size } = this.state
+    const itemVariant = { name, quantity, size, }
+    const { id, item_id, } = this.props
+    if (id && item_id) {
+      axios.put(`/api/items/${item_id}/item_variants/${id}`, itemVariant)
+        .then(res => {
+          this.props.update(res.data)
+        })
+      this.props.close()
+    } else {
+      axios.post(`/api/items/${item_id}/item_variants`, itemVariant)
+        .then(res => {
+
+        })
+    }
   }
-
-  addItemV = (name, image, quantity, size, item_id ) => {
-    debugger
-    axios.post(`/api/items/${item_id}/item_variants`, { name, image, quantity, size, item_id })
-    .then(res => {
-      console.log(res.data)
-      const itemV = { name, image, quantity, size, item_id  }
-      this.setState({ itemVs: [...this.state.itemVs, res.data] })
-
-		});
-	};
 
   renderDropDown = () => {
     const itemOptions = this.state.items.map(item => ({
@@ -90,23 +77,21 @@ class ItemVariantForm extends React.Component {
   }
 
   renderItem() {
-    const { itemVs, } = this.state
-    console.log(itemVs)
-    return itemVs.map(iV => (
-      <div style={{ margin: '0 auto'}}>
+    const { items, } = this.state
+    return items.map(i => (
+      <div>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <Card>
           <div>
             <ul style={view}>
               <li>
-                {iV.name}
-                {iV.size}
+                {i.name}
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
               </li>
             </ul>
             <center>
-              <Button color="red" onClick={() => this.deleteItemVariant(iV.id, iV.item_id)}>
-                Delete
+              <Button color="red" onClick={() => this.deleteItemVariant(i.id)}>
+                delete
           </Button>
             </center>
           </div>
@@ -125,7 +110,6 @@ class ItemVariantForm extends React.Component {
           <Form.Group>
             <Form.Dropdown
               placeholder='Specific Item'
-            
               fluid
               selection
               options={this.renderDropDown()}
@@ -159,7 +143,8 @@ class ItemVariantForm extends React.Component {
               autoFocus
               onChange={this.handleChange}
             />
-            <Form.Button color="blue" onClick={() => window.location.reload() }>
+
+            <Form.Button color="blue">
               Submit
           </Form.Button>
             <br />

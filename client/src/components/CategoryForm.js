@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Form, Header, Button, Card, Grid, } from "semantic-ui-react";
+import { Form, Header, Button, Card, Grid } from "semantic-ui-react";
 
 class CategoryForm extends React.Component {
 	state = { name: "", image: "", full_width: false, categories: [] };
@@ -14,7 +14,7 @@ class CategoryForm extends React.Component {
 			})
 			.catch(err => {
 				console.log(err);
-			})
+			});
 	}
 
 	// on submit
@@ -24,7 +24,6 @@ class CategoryForm extends React.Component {
 		this.setState({ name: "", image: "" });
 	};
 
-	// allows change of state
 	handleChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
@@ -37,10 +36,6 @@ class CategoryForm extends React.Component {
 		});
 	};
 
-	button = () => {
-
-	}
-
 	// delete function
 	deleteCategory = id => {
 		axios.delete(`/api/categories/${id}`).then(res => {
@@ -51,20 +46,22 @@ class CategoryForm extends React.Component {
 	//  render list of categories on same page
 	renderCategory() {
 		return this.state.categories.map(c => (
-			<div style={{ margin: '0 auto'}}>
+			<div>
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<Card>
-					<ul style={view}>
-							<h2>{c.name}</h2>
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					</ul>
-					<center>
-						<div>
+					<div>
+						<ul style={view}>
+							<li>
+								{c.name}
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							</li>
+						</ul>
+						<center>
 							<Button color="red" onClick={() => this.deleteCategory(c.id)}>
 								Delete
 					    </Button>
-						</div>
-					</center>
+						</center>
+					</div>
 					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				</Card>
 			</div>
@@ -95,17 +92,15 @@ class CategoryForm extends React.Component {
 							/>
 							<br />
 							<br />
-							<Form.Button color="blue" onClick={() => window.location.reload()} > Submit</Form.Button>
+							<Form.Button color="blue">Submit</Form.Button>
 							<br />
 						</Form.Group>
 					</Form>
-					<br /><br />
+
 					<center>
 						<Grid.Column>
 							<Grid columns={4}
-								align="center"
-								style={view}
-							>
+								align="center">
 								{this.renderCategory()}
 							</Grid>
 						</Grid.Column>
@@ -119,7 +114,6 @@ const view = {
 	display: "flex",
 	justifyContent: "center"
 }
-
 
 
 export default CategoryForm;

@@ -22,39 +22,41 @@ class Cart extends React.Component {
   }
 
   showItems() {
-    return this.context.cart.map((c, index) => (
-      <div key={index} style={{ backgroundColor: 'white', overflow: 'hidden', position: 'relative', margin: '0px 0px 20px 0px' }}>
-        <Image src={c.image} style={{ height: '160px', width: '150px', padding: '10px', float: 'left' }} />
-        <Button 
-          onClick={()=> this.context.removeItem(c.id)}
-          backgroundColor='grey'
-          floated='right'
-          style={{ borderRadius: '0px', height: '162px', width: '60px' }}>
-          <i
-            class="icon trash large"
-            onClick={this.handleDelete}
+    return this.context.cart.map(c => (
+      <>
+        <div style={{ backgroundColor: 'white', overflow: 'hidden', position: 'relative', margin: '0px 0px 20px 0px' }}>
+          <Image src={c.image} style={{ height: '160px', width: '150px', padding: '10px', float: 'left' }} />
+          <Button 
+            onClick={()=> this.context.removeItem(c.id)}
+            backgroundColor='grey'
+            floated='right'
+            style={{ borderRadius: '0px', height: '162px', width: '60px' }}>
+            <i
+              class="icon trash large"
+              onClick={this.handleDelete}
+            />
+          </Button>
+
+          <Icon 
+            style={{ position: 'relative', cursor: 'pointer', top: '10px'}}
+            color='grey'
+            size='large'
+            name='plus square'
+            onClick={() => this.context.increment(c.id)}
           />
-        </Button>
+          <Icon 
+            style={{position: 'relative', cursor: 'pointer', top: '10px'}}
+            color='grey'
+            size='large'
+            name='minus square'
+            onClick={() => this.context.decrement(c.id)}
+          />
 
-        <Icon 
-          style={{ position: 'relative', cursor: 'pointer', top: '10px'}}
-          color='grey'
-          size='large'
-          name='plus square'
-          onClick={() => this.context.increment(c.id)}
-        />
-        <Icon 
-          style={{position: 'relative', cursor: 'pointer', top: '10px'}}
-          color='grey'
-          size='large'
-          name='minus square'
-          onClick={() => this.context.decrement(c.id)}
-        />
+          <Header as='h2' style={{ position: 'relative', left: '10px', top: '75px' }} >{c.name}, {c.size} x{c.qty} </Header>
 
-        <Header as='h2' style={{ position: 'relative', left: '10px', top: '75px' }} >{c.name} - {c.size} x{c.qty} </Header>
-
-        <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '20px', left: '-20px'}}> ${c.total.toFixed(2)} </Header>
-      </div>
+          <Header as='h2' style={{ textAlign: 'right', position: 'relative', top: '20px', left: '-20px'}}> ${c.total.toFixed(2)} </Header>
+        </div>
+      </>
     ))
   }
 
@@ -66,7 +68,7 @@ class Cart extends React.Component {
       )
     } else {
       return (
-       <Header as='h3'> Your cart is empty! Continue <Link to='/'>shopping?</Link> </Header>
+       <Header as='h3'> Oh no, your cart is empty! Continue <Link to='/'>shopping?</Link> </Header>
       )
     }
   }

@@ -8,12 +8,14 @@ import minilogo from '../components/Images/DevPoint_Labs.png'
 import styled from "styled-components";
 import '../App.css';
 import axios from 'axios';
+
+
 const Navbar = (props) => {
   const [selection, setSelection] = useState('')
   const [tShirts, setTshirts] = useState({})
   const [hoodies, setHoodies] = useState({})
   const [hats, setHats] = useState({})
-  const [Miscellaneous, setMiscellaneous] = useState({})
+  const [stickers, setStickers] = useState({})
   const context = useContext(AuthContext)
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const Navbar = (props) => {
         setTshirts(res.data[0])
         setHats(res.data[2])
         setHoodies(res.data[1])
-        setMiscellaneous(res.data[3])
+        setStickers(res.data[3])
       })
   }, []);
 
@@ -31,9 +33,9 @@ const Navbar = (props) => {
       return (
         [
           { key: 1, text: 'Hats', value: 'Hats' },
-          { key: 2, text: 'Miscellaneous', value: 'Miscellaneous' },
+          { key: 2, text: 'Stickers', value: 'Stickers' },
           { key: 3, text: 'Contact', value: 'Contact' },
-          // { key: 4, text: 'AdminPage', value: 'AdminPage' },
+          { key: 4, text: 'AdminPage', value: 'AdminPage' },
           { key: 6, text: 'Logout', value: 'Logout' },
         ]
       )
@@ -41,7 +43,7 @@ const Navbar = (props) => {
       return (
         [
           { key: 1, text: 'Hats', value: 'Hats' },
-          { key: 2, text: 'Miscellaneous', value: 'Miscellaneous' },
+          { key: 2, text: 'Stickers', value: 'Stickers' },
           { key: 3, text: 'Contact', value: 'Contact' },
           { key: 5, text: 'Register', value: 'Register' },
           { key: 6, text: 'Login', value: 'Login' },
@@ -57,8 +59,8 @@ const Navbar = (props) => {
         props.history.push(`/categories/${hats.id}`)
         setSelection('')
         break;
-      case "Miscellaneous":
-        props.history.push(`/categories/${Miscellaneous.id}`)
+      case "Stickers":
+        props.history.push(`/categories/${stickers.id}`)
         setSelection('')
         break;
       case 'Contact':
@@ -115,7 +117,7 @@ const Navbar = (props) => {
                </h3>
               </NavLink>
             </div>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
               <NavLink to={`/categories/${tShirts.id}`}>
                 <h3 style={text}>
@@ -123,7 +125,7 @@ const Navbar = (props) => {
                </h3>
               </NavLink>
             </div>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div>
               <NavLink to={`/categories/${hoodies.id}`}>
                 <h3 style={text}>
@@ -131,7 +133,7 @@ const Navbar = (props) => {
                </h3>
               </NavLink>
             </div>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             {selection != '' ? userOptions() : null}
             <div style={lift} >
               <Dropdown
@@ -152,7 +154,7 @@ const Navbar = (props) => {
               >
                 <h3 style={text}>
                   <Icon
-                    name='shopping cart'>
+                    name='cart arrow down'>
                   </Icon>
                   Cart
               </h3>
